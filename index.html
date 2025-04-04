@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roo Code Modes Manager</title>
+    <!-- JSZip for Splitter Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #0d6efd; /* Bootstrap Blue */
+            --secondary-color: #6c757d; /* Bootstrap Gray */
+            --success-color: #198754; /* Bootstrap Green */
+            --info-color: #0dcaf0;    /* Bootstrap Teal */
+            --warning-color: #ffc107; /* Bootstrap Yellow */
+            --danger-color: #dc3545;  /* Bootstrap Red */
+            --light-bg: #f8f9fa;
+            --white-bg: #ffffff;
+            --border-color: #dee2e6;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --border-radius: 0.375rem; /* Bootstrap default */
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            --input-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            background-color: var(--white-bg);
+            padding: 25px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* --- Tabs --- */
+        .tab-nav {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            overflow-x: auto; /* Handle overflow on small screens */
+        }
+        .tab-button {
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 1.05em;
+            color: var(--secondary-color);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -1px; /* Overlap container border */
+            transition: color 0.2s ease, border-color 0.2s ease;
+            white-space: nowrap;
+        }
+        .tab-button:hover { color: #343a40; }
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-section { display: none; }
+        .tab-section.active { display: block; }
+
+        /* --- General Styling --- */
+        h1, h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 25px; }
+        h1 { color: var(--primary-color); font-size: 1.9em; margin-top: 0; }
+        h2 { color: var(--text-color); font-size: 1.5em; margin-top: 35px; }
+
+        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        small { color: var(--text-muted); display: block; margin-top: 0.25rem; font-size: 0.875em;}
+
+        textarea {
+            width: 97%;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-family: monospace;
+            font-size: 0.9em;
+            min-height: 180px;
+            resize: vertical;
+            box-shadow: var(--input-shadow);
+        }
+         textarea:focus { outline: none; border-color: #86b7fe; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+
+        button, .file-upload-label {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 400;
+            margin-right: 0.5rem;
+            transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        button:hover, .file-upload-label:hover { background-color: #0b5ed7; }
+        button:disabled { background-color: var(--secondary-color); cursor: not-allowed; opacity: 0.65; }
+        input[type="file"] { display: none; }
+
+        .input-group { margin-bottom: 1.5rem; padding: 1.25rem; border: 1px solid #eee; border-radius: var(--border-radius); background-color: #fcfcfc; }
+        .radio-group label { display: inline-block; margin-right: 1rem; font-weight: 400; cursor: pointer; }
+        .radio-group input[type="radio"] { margin-right: 0.3rem; cursor: pointer; vertical-align: middle; }
+
+        .file-area, .paste-area { margin-top: 1rem; }
+
+        .file-list-display {
+            margin-top: 0.75rem; font-size: 0.9em; color: var(--text-muted); background-color: var(--light-bg);
+            padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius);
+            max-height: 120px; overflow-y: auto;
+        }
+        .file-list-display ul { list-style: none; padding: 0; margin: 0; }
+        .file-list-display li { margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+
+        .feedback-area {
+            margin: 1.5rem 0; padding: 1rem 1.25rem; border-radius: var(--border-radius); border: 1px solid transparent;
+            font-weight: 400; display: none; /* Hidden by default */
+        }
+        .feedback-area.error { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; display: block; }
+        .feedback-area.info { color: #055160; background-color: #cff4fc; border-color: #b6effb; display: block; }
+
+        .output-area, .checklist-area, .download-area {
+            margin-top: 1.5rem; padding: 1.5rem; border: 1px dashed var(--border-color);
+            border-radius: var(--border-radius); background-color: var(--light-bg);
+        }
+        .output-area h3, .checklist-area h3, .download-area h3 {
+            margin-top: 0; color: var(--text-color); font-size: 1.25em;
+            border-bottom: 1px solid #eee; padding-bottom: 0.75rem; margin-bottom: 1rem;
+        }
+        .output-container { position: relative; }
+        .copy-button {
+            position: absolute;
+            top: 8px; right: 8px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8em;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+        .output-container:hover .copy-button { opacity: 1; }
+        .copy-button:hover { background-color: #5a6268; }
+
+         /* Filter Specific */
+         .checklist-area .filter-buttons button { font-size: 0.85em; padding: 0.3rem 0.8rem; margin-right: 0.3rem; background-color: var(--secondary-color);}
+         .checklist-area .filter-buttons button:hover { background-color: #5a6268;}
+         #filterModeList { max-height: 300px; overflow-y: auto; margin-bottom: 1rem; margin-top: 0.5rem; font-size: 0.95em;}
+         #filterModeList div { display: flex; align-items: center; margin-bottom: 0.3rem; padding: 2px 0;}
+         #filterModeList input[type="checkbox"] { margin-right: 0.5rem; cursor: pointer; transform: scale(1.1); flex-shrink: 0;}
+         #filterModeList label { font-weight: 400; margin-bottom: 0; cursor: pointer; flex-grow: 1;}
+
+         /* Split Specific */
+         #splitModeListDisplay { list-style: disc; padding-left: 1.25rem; margin-bottom: 1rem; max-height: 180px; overflow-y: auto; font-size: 0.95em; }
+         #splitModeListDisplay li { margin-bottom: 0.25rem; }
+         .download-area .download-button { background-color: var(--success-color); margin-right: 0.5rem; }
+         .download-area .download-button:hover { background-color: #157347; }
+
+         /* Primary Action Button */
+         .action-button {
+            display: block; width: 100%; font-size: 1.1em; padding: 0.75rem; margin-top: 1.5rem;
+            background-color: var(--success-color);
+         }
+          .action-button:hover { background-color: #157347; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Roo Code Modes Manager</h1>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+        <button class="tab-button active" data-target="sortFilterSection">Sort & Filter</button>
+        <button class="tab-button" data-target="combineSection">Combine & Sort</button>
+        <button class="tab-button" data-target="splitSection">Split Modes</button>
+    </nav>
+
+    <!-- General Feedback Area -->
+    <div id="feedbackArea" class="feedback-area"></div>
+
+    <!-- Sort & Filter Section -->
+    <section id="sortFilterSection" class="tab-section active">
+        <h2>Sort & Filter Modes from Full JSON</h2>
+        <p>Load a full `custom_modes.json` structure (via paste or file upload). The modes will be sorted, and you can optionally filter them before generating the final JSON output.</p>
+
+        <div class="input-group">
+            <label>Input Source:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="sortFilterInputType" value="paste" checked> Paste JSON</label>
+                <label><input type="radio" name="sortFilterInputType" value="upload"> Upload File</label>
+            </div>
+
+            <div id="sortFilterPasteArea" class="paste-area">
+                <label for="sortFilterJsonInput">Paste full `custom_modes.json` content:</label>
+                <textarea id="sortFilterJsonInput" placeholder="Paste JSON here..."></textarea>
+            </div>
+            <div id="sortFilterFileArea" class="file-area" style="display: none;">
+                <label for="sortFilterFileInput" class="file-upload-label">Select Single File (.json, .txt)</label>
+                <input type="file" id="sortFilterFileInput" accept=".json,.txt">
+                <div id="sortFilterFileInfo" class="file-list-display"><p>No file selected.</p></div>
+            </div>
+            <button id="sortFilterLoadButton" style="margin-top: 10px;">Load & Prepare Modes</button>
+        </div>
+
+        <div id="sortFilterChecklistArea" class="checklist-area" style="display: none;">
+            <h3>Select Modes to Include (Sorted):</h3>
+            <div class="filter-buttons">
+                 <button id="sortFilterSelectAllButton">Select All</button>
+                 <button id="sortFilterSelectNoneButton">Select None</button>
+            </div>
+            <div id="filterModeList"></div>
+             <button id="sortFilterGenerateButton" class="action-button" disabled>Generate Sorted & Filtered JSON</button>
+        </div>
+
+        <div id="sortFilterOutputArea" class="output-area" style="display: none;">
+            <h3>Sorted & Filtered Output:</h3>
+             <div class="output-container">
+                <textarea id="sortFilterOutputJson" readonly></textarea>
+                <button class="copy-button" data-target="sortFilterOutputJson">Copy</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combine & Sort Section -->
+    <section id="combineSection" class="tab-section">
+         <h2>Combine & Sort Individual Mode Files</h2>
+        <p>Upload multiple files, each containing a *single* mode definition. They will be combined and sorted into the final `custom_modes.json` structure.</p>
+
+        <div class="input-group">
+            <label for="combineFileInput" class="file-upload-label">Select Individual Mode Files (.json, .txt)</label>
+            <input type="file" id="combineFileInput" accept=".json,.txt" multiple>
+            <div id="combineFileList" class="file-list-display"><p>No files selected.</p></div>
+             <button id="combineProcessButton" class="action-button" disabled>Combine & Sort Files</button>
+        </div>
+
+         <div id="combineOutputArea" class="output-area" style="display: none;">
+             <h3>Combined & Sorted Output:</h3>
+              <div class="output-container">
+                <textarea id="combineOutputJson" readonly></textarea>
+                <button class="copy-button" data-target="combineOutputJson">Copy</button>
+             </div>
+        </div>
+    </section>
+
+    <!-- Split Section -->
+    <section id="splitSection" class="tab-section">
+        <h2>Split Modes into Separate Files</h2>
+        <p>Upload a single `custom_modes.json` structure to prepare individual files for download. Modes will be sorted before download links are generated.</p>
+
+        <div class="input-group">
+            <label for="splitFileInput" class="file-upload-label">Select Combined Mode File (.json, .txt)</label>
+            <input type="file" id="splitFileInput" accept=".json,.txt">
+            <div id="splitFileInfo" class="file-list-display"><p>No file selected.</p></div>
+            <button id="splitProcessButton" class="action-button" disabled>Process File for Splitting</button>
+        </div>
+
+         <div id="splitDownloadArea" class="download-area" style="display: none;">
+            <h3>Detected & Sorted Modes:</h3>
+            <ul id="splitModeListDisplay"></ul>
+            <p>Download Options:</p>
+            <button id="splitDownloadSeparateButton" class="download-button">Download All (Separate Files)</button>
+            <button id="splitDownloadZipButton" class="download-button">Download All (ZIP Archive)</button>
+            <small>Downloading separate files might require multiple browser confirmations.</small>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // --- Mode Categories & Order (Same as previous example) ---
+    const modeCategories = {
+        "roo-commander": "Orchestration",
+        "project-manager": "Management", "technical-architect": "Management", "devops-manager": "Management",
+        "frontend-developer": "Core Web Specialists", "api-developer": "Core Web Specialists", "database-specialist": "Core Web Specialists", "ui-designer": "Core Web Specialists",
+        "react-specialist": "Framework Specialists", "material-ui-specialist": "Framework Specialists", "tailwind-specialist": "Framework Specialists", "php-laravel-developer": "Framework Specialists", "firebase-specialist": "Framework Specialists", "supabase-developer": "Framework Specialists",
+        "agentic-ai-developer": "AI Specialists", "rag-database-developer": "AI Specialists", "openai-api-developer": "AI Specialists", "google-gemini-api-developer": "AI Specialists", "vertex-ai-developer": "AI Specialists",
+        "cicd-specialist": "DevOps Specialists", "infrastructure-specialist": "DevOps Specialists", "containerization-developer": "DevOps Specialists",
+        "bug-fixer": "QA & Maintenance", "code-reviewer": "QA & Maintenance", "integration-tester": "QA & Maintenance", "e2e-testing-specialist": "QA & Maintenance", "performance-optimizer": "QA & Maintenance", "refactor-specialist": "QA & Maintenance", "accessibility-specialist": "QA & Maintenance", "security-specialist": "QA & Maintenance",
+        "project-onboarding": "Support & Utility", "discovery-agent": "Support & Utility", "project-initializer": "Support & Utility", "git-manager": "Support & Utility", "complex-problem-solver": "Support & Utility", "research-context-builder": "Support & Utility", "second-opinion": "Support & Utility", "technical-writer": "Support & Utility", "secretary": "Support & Utility", "context-resolver": "Support & Utility", "diagramer": "Support & Utility", "file-repair-specialist": "Support & Utility", "mcp-installer": "Support & Utility", "mcp-server-creator-py": "Support & Utility", "mcp-server-creator-ts": "Support & Utility",
+    };
+    const categoryOrder = [ "Orchestration", "Management", "Core Web Specialists", "Framework Specialists", "AI Specialists", "DevOps Specialists", "QA & Maintenance", "Support & Utility", "Other" ];
+
+    // --- DOM Elements ---
+    const feedbackArea = document.getElementById('feedbackArea');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabSections = document.querySelectorAll('.tab-section');
+    // Sort/Filter Elements
+    const sortFilterPasteArea = document.getElementById('sortFilterPasteArea');
+    const sortFilterFileArea = document.getElementById('sortFilterFileArea');
+    const sortFilterJsonInput = document.getElementById('sortFilterJsonInput');
+    const sortFilterFileInput = document.getElementById('sortFilterFileInput');
+    const sortFilterFileInfo = document.getElementById('sortFilterFileInfo');
+    const sortFilterLoadButton = document.getElementById('sortFilterLoadButton');
+    const sortFilterChecklistArea = document.getElementById('sortFilterChecklistArea');
+    const filterModeList = document.getElementById('filterModeList');
+    const sortFilterSelectAllButton = document.getElementById('sortFilterSelectAllButton');
+    const sortFilterSelectNoneButton = document.getElementById('sortFilterSelectNoneButton');
+    const sortFilterGenerateButton = document.getElementById('sortFilterGenerateButton');
+    const sortFilterOutputArea = document.getElementById('sortFilterOutputArea');
+    const sortFilterOutputJson = document.getElementById('sortFilterOutputJson');
+    const sortFilterInputRadios = document.querySelectorAll('input[name="sortFilterInputType"]');
+    // Combine Elements
+    const combineFileInput = document.getElementById('combineFileInput');
+    const combineFileList = document.getElementById('combineFileList');
+    const combineProcessButton = document.getElementById('combineProcessButton');
+    const combineOutputArea = document.getElementById('combineOutputArea');
+    const combineOutputJson = document.getElementById('combineOutputJson');
+    // Split Elements
+    const splitFileInput = document.getElementById('splitFileInput');
+    const splitFileInfo = document.getElementById('splitFileInfo');
+    const splitProcessButton = document.getElementById('splitProcessButton');
+    const splitDownloadArea = document.getElementById('splitDownloadArea');
+    const splitModeListDisplay = document.getElementById('splitModeListDisplay');
+    const splitDownloadSeparateButton = document.getElementById('splitDownloadSeparateButton');
+    const splitDownloadZipButton = document.getElementById('splitDownloadZipButton');
+    // Copy Buttons
+    const copyButtons = document.querySelectorAll('.copy-button');
+
+    // --- State Variables ---
+    let sortFilterAllModes = []; // Holds modes loaded in the sort/filter tab
+    let combineSelectedFiles = [];
+    let splitSelectedFile = null;
+    let splitProcessedSortedModes = []; // Holds sorted modes for split downloads
+
+    // --- Utility Functions ---
+    function showFeedback(message, type = 'error') { /* ... same as before ... */
+        feedbackArea.textContent = message;
+        feedbackArea.className = `feedback-area ${type}`;
+        feedbackArea.style.display = message ? 'block' : 'none';
+    }
+    function clearFeedback() { showFeedback('', 'info'); }
+
+    function readFileAsText(file) { /* ... same as before ... */
+        return new Promise((resolve, reject) => {
+            if (!file) return reject(new Error("No file provided."));
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = (e) => reject(new Error(`Error reading file ${file.name}`));
+            reader.readAsText(file);
+        });
+    }
+
+    function triggerDownload(blob, filename) { /* ... same as before ... */
+        try {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.style.display = 'none'; a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click();
+            setTimeout(() => { URL.revokeObjectURL(url); document.body.removeChild(a); }, 150);
+        } catch (err) { console.error("DL trigger failed:", err); showFeedback(`Failed to initiate download for ${filename}.`, 'error');}
+    }
+
+    // --- Sorting Function ---
+    function sortModes(modesArray) {
+        if (!Array.isArray(modesArray)) return [];
+        return modesArray
+            .map(mode => ({ ...mode, _category: (mode && mode.slug && modeCategories[mode.slug]) ? modeCategories[mode.slug] : "Other" }))
+            .sort((a, b) => {
+                const orderA = categoryOrder.indexOf(a._category);
+                const orderB = categoryOrder.indexOf(b._category);
+                const idxA = orderA === -1 ? categoryOrder.length : orderA;
+                const idxB = orderB === -1 ? categoryOrder.length : orderB;
+                if (idxA !== idxB) return idxA - idxB;
+                const nameA = a.name || ""; const nameB = b.name || "";
+                return nameA.localeCompare(nameB);
+            })
+            .map(mode => { const { _category, ...rest } = mode; return rest; }); // Remove temp prop
+    }
+
+    // --- Tab Switching ---
+    tabButtons.forEach(button => { /* ... same as before ... */
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            tabSections.forEach(section => section.style.display = section.id === targetId ? 'block' : 'none');
+            clearFeedback();
+        });
+    });
+
+    // --- Sort & Filter Logic ---
+    sortFilterInputRadios.forEach(radio => { /* ... same as before ... */
+        radio.addEventListener('change', () => {
+            const isPaste = radio.value === 'paste';
+            sortFilterPasteArea.style.display = isPaste ? 'block' : 'none';
+            sortFilterFileArea.style.display = isPaste ? 'none' : 'block';
+            clearFeedback(); sortFilterChecklistArea.style.display = 'none'; sortFilterOutputArea.style.display = 'none'; // Reset UI
+        });
+    });
+    sortFilterFileInput.addEventListener('change', (e) => { /* ... same as before, update sortFilterFileInfo ... */
+        const file = e.target.files[0];
+        sortFilterFileInfo.innerHTML = file ? `<p>Selected: <strong>${file.name}</strong></p>` : '<p>No file selected.</p>';
+        if(file) sortFilterJsonInput.value = ''; // Clear textarea
+    });
+    sortFilterLoadButton.addEventListener('click', async () => { /* ... same as before, loads modes into sortFilterAllModes, calls sortModes, populates filterModeList ... */
+        clearFeedback();
+        sortFilterChecklistArea.style.display = 'none'; filterModeList.innerHTML = ''; sortFilterOutputArea.style.display = 'none';
+        sortFilterAllModes = []; sortFilterGenerateButton.disabled = true;
+        const inputType = document.querySelector('input[name="sortFilterInputType"]:checked').value;
+        let jsonString = '';
+        let file = sortFilterFileInput.files[0];
+
+        sortFilterLoadButton.disabled = true; sortFilterLoadButton.textContent = 'Loading...';
+
+        try {
+            if (inputType === 'paste') {
+                jsonString = sortFilterJsonInput.value.trim();
+                if (!jsonString) throw new Error("Paste area is empty.");
+            } else { // upload
+                if (!file) throw new Error("No file selected.");
+                jsonString = await readFileAsText(file);
+                sortFilterFileInfo.innerHTML = `<p>Loaded: <strong>${file.name}</strong></p>`;
+            }
+
+            const parsedJson = JSON.parse(jsonString);
+            if (!parsedJson.customModes || !Array.isArray(parsedJson.customModes)) throw new Error("Invalid JSON: Missing or non-array 'customModes'.");
+
+            sortFilterAllModes = sortModes(parsedJson.customModes); // Sort immediately after loading
+
+            if (sortFilterAllModes.length === 0) { showFeedback('No modes found.', 'info'); return; }
+
+            // Populate checklist (already sorted)
+            sortFilterAllModes.forEach((mode, index) => {
+                 if (mode && mode.slug && mode.name) {
+                     const div = document.createElement('div');
+                     const cb = document.createElement('input'); cb.type = 'checkbox'; cb.id = `sf-mode-${index}`; cb.value = mode.slug; cb.checked = true;
+                     const lbl = document.createElement('label'); lbl.htmlFor = cb.id; lbl.textContent = mode.name;
+                     div.append(cb, lbl); filterModeList.appendChild(div);
+                 }
+            });
+            sortFilterChecklistArea.style.display = 'block'; sortFilterGenerateButton.disabled = false;
+            showFeedback(`Loaded and sorted ${sortFilterAllModes.length} modes.`, 'info');
+
+        } catch(err) { showError(`Error loading modes: ${err.message}`); console.error(err); }
+        finally { sortFilterLoadButton.disabled = false; sortFilterLoadButton.textContent = 'Load & Prepare Modes'; }
+    });
+    sortFilterSelectAllButton.addEventListener('click', () => filterModeList.querySelectorAll('input').forEach(cb => cb.checked = true));
+    sortFilterSelectNoneButton.addEventListener('click', () => filterModeList.querySelectorAll('input').forEach(cb => cb.checked = false));
+    sortFilterGenerateButton.addEventListener('click', () => { /* ... filters sortFilterAllModes based on checkboxes, displays sorted & filtered output ... */
+        const selectedSlugs = new Set();
+        filterModeList.querySelectorAll('input:checked').forEach(cb => selectedSlugs.add(cb.value));
+        const finalModes = sortFilterAllModes.filter(mode => mode && mode.slug && selectedSlugs.has(mode.slug)); // Already sorted
+        sortFilterOutputJson.value = JSON.stringify({ customModes: finalModes }, null, 2);
+        sortFilterOutputArea.style.display = 'block';
+        clearFeedback();
+    });
+
+    // --- Combine & Sort Logic ---
+    combineFileInput.addEventListener('change', (e) => { /* ... same as before, update combineFileList, enable combineProcessButton ... */
+        combineSelectedFiles = Array.from(e.target.files);
+        combineFileList.innerHTML = ''; combineOutputArea.style.display = 'none'; clearFeedback();
+        if (combineSelectedFiles.length > 0) {
+            const list = document.createElement('ul');
+            combineSelectedFiles.forEach(f => list.insertAdjacentHTML('beforeend', `<li>${f.name}</li>`));
+            combineFileList.appendChild(list); combineProcessButton.disabled = false;
+        } else { combineFileList.innerHTML = '<p>No files selected.</p>'; combineProcessButton.disabled = true; }
+    });
+    combineProcessButton.addEventListener('click', async () => { /* ... reads files, validates single mode object, calls sortModes, displays output ... */
+        clearFeedback(); if (combineSelectedFiles.length === 0) { showError('No files selected.'); return; }
+        combineProcessButton.disabled = true; combineProcessButton.textContent = 'Combining...'; combineOutputArea.style.display = 'none';
+        let combinedModes = []; const errors = [];
+
+        const promises = combineSelectedFiles.map(async file => {
+            try {
+                const txt = await readFileAsText(file); const json = JSON.parse(txt);
+                if (json && typeof json === 'object' && json.slug && json.name && !json.customModes) return json;
+                else errors.push(`File ${file.name}: Invalid structure. Skipping.`); return null;
+            } catch (err) { errors.push(`File ${file.name}: ${err.message}. Skipping.`); return null; }
+        });
+
+        const results = await Promise.all(promises);
+        combinedModes = results.filter(m => m !== null);
+
+        if (errors.length > 0) showError(errors.join('\n'));
+
+        if (combinedModes.length > 0) {
+            const sortedCombined = sortModes(combinedModes); // Sort combined modes
+            combineOutputJson.value = JSON.stringify({ customModes: sortedCombined }, null, 2);
+            combineOutputArea.style.display = 'block';
+            if (errors.length === 0) showFeedback(`Combined and sorted ${sortedCombined.length} modes successfully.`, 'info');
+        } else if (errors.length === 0) { showError('No valid single mode files found.'); }
+
+        combineProcessButton.disabled = false; combineProcessButton.textContent = 'Combine & Sort Files';
+    });
+
+    // --- Split Logic ---
+    splitFileInput.addEventListener('change', (e) => { /* ... same as before, update splitFileInfo, enable splitProcessButton ... */
+        splitSelectedFile = e.target.files[0];
+        splitFileInfo.innerHTML = splitSelectedFile ? `<p>Selected: <strong>${splitSelectedFile.name}</strong></p>` : '<p>No file selected.</p>';
+        splitProcessButton.disabled = !splitSelectedFile; splitDownloadArea.style.display = 'none'; clearFeedback();
+    });
+    splitProcessButton.addEventListener('click', async () => { /* ... reads file, validates, calls sortModes, stores in splitProcessedSortedModes, populates splitModeListDisplay, shows download area ... */
+        clearFeedback(); if (!splitSelectedFile) { showError('No file selected.'); return; }
+        splitProcessButton.disabled = true; splitProcessButton.textContent = 'Processing...'; splitDownloadArea.style.display = 'none'; splitModeListDisplay.innerHTML = '';
+        splitProcessedSortedModes = [];
+
+        try {
+            const txt = await readFileAsText(splitSelectedFile); const json = JSON.parse(txt);
+            if (!json.customModes || !Array.isArray(json.customModes)) throw new Error("Invalid JSON: Missing 'customModes' array.");
+
+            splitProcessedSortedModes = sortModes(json.customModes); // Sort for download prep
+
+            if (splitProcessedSortedModes.length === 0) { showFeedback('No modes found.', 'info'); return; }
+
+            splitProcessedSortedModes.forEach((mode, i) => {
+                const name = (mode && typeof mode === 'object') ? (mode.name || mode.slug || `Mode ${i}`) : `Invalid Mode ${i}`;
+                splitModeListDisplay.insertAdjacentHTML('beforeend', `<li>${name}</li>`);
+            });
+            splitDownloadArea.style.display = 'block';
+            showFeedback(`Processed and sorted ${splitProcessedSortedModes.length} modes. Ready for download.`, 'info');
+
+        } catch(err) { showError(`Error processing file: ${err.message}`); console.error(err); }
+        finally { splitProcessButton.disabled = false; splitProcessButton.textContent = 'Process File for Splitting'; }
+    });
+    splitDownloadSeparateButton.addEventListener('click', () => { /* ... uses splitProcessedSortedModes, same logic as before ... */
+        if (splitProcessedSortedModes.length === 0) return; clearFeedback();
+        splitProcessedSortedModes.forEach((mode, i) => {
+            if (!mode || typeof mode !== 'object') return;
+            const slug = mode.slug ? mode.slug.replace(/[^a-z0-9_-]/gi, '_') : ''; const fname = `${slug || 'mode_' + i}.json`;
+            const jsonStr = JSON.stringify(mode, null, 2); const blob = new Blob([jsonStr], {type:'application/json'});
+            setTimeout(() => triggerDownload(blob, fname), i * 150);
+        });
+    });
+    splitDownloadZipButton.addEventListener('click', async () => { /* ... uses splitProcessedSortedModes, same logic as before using JSZip ... */
+        if (splitProcessedSortedModes.length === 0 || typeof JSZip === 'undefined') { if(typeof JSZip === 'undefined') showError('JSZip library not loaded.'); return; }
+        clearFeedback(); splitDownloadZipButton.disabled = true; splitDownloadZipButton.textContent = 'Zipping...';
+        try {
+            const zip = new JSZip();
+            splitProcessedSortedModes.forEach((mode, i) => {
+                 if (!mode || typeof mode !== 'object') return;
+                 const slug = mode.slug ? mode.slug.replace(/[^a-z0-9_-]/gi, '_') : ''; const fname = `${slug || 'mode_' + i}.json`;
+                 zip.file(fname, JSON.stringify(mode, null, 2));
+            });
+            const zipBlob = await zip.generateAsync({ type: "blob" }); triggerDownload(zipBlob, "roo_modes_sorted.zip");
+        } catch (err) { showError(`Error creating ZIP: ${err.message}`); console.error(err); }
+        finally { splitDownloadZipButton.disabled = false; splitDownloadZipButton.textContent = 'Download All (ZIP Archive)'; }
+    });
+
+     // --- Copy Button Logic ---
+    copyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            const textarea = document.getElementById(targetId);
+            if (textarea && textarea.value) {
+                navigator.clipboard.writeText(textarea.value).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => button.textContent = originalText, 1500); // Revert after 1.5s
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    showError('Failed to copy text.');
+                });
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
