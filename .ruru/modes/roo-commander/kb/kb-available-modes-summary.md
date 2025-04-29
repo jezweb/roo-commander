@@ -137,8 +137,6 @@ This document provides a summary of available specialist modes for delegation.
 - **dev-react** (⚛️ React Specialist): \[No description provided\]
 - **dev-solidity** (🧱 Solidity Developer): \[No description provided\]
 - **dev-solver** (🧩 Complex Problem Solver): \[No description provided\]
-- **MODE-DEV-JAVA** (☕️ Java Developer): \[No description provided\]
-- **MODE-DEV-KOTLIN** (🟣 Kotlin Developer): \[No description provided\]
 
 ## 🔧 Utility Modes
 
@@ -165,5 +163,8 @@ This document provides a summary of available specialist modes for delegation.
 ## ❓ Other Modes
 
 - **MODE-DEV-GOLANG** (🐿️ Golang Developer): \[No description provided\]
+- **MODE-DEV-JAVA** (☕️ Java Developer): \[No description provided\]
+- **MODE-dev-kotlin** (🟣 Kotlin Developer): \[No description provided\]
+- **MODE-DEV-RUST** (🦀 Rust Developer): \[No description provided\]
 - **MODE-SPEC-BUN** (🐇 Bun Specialist): \[No description provided\]
 - **MODE-SPEC-REPOMIX** (🧬 Repomix Specialist): \[No description provided\]
