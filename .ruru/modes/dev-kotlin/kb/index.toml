@@ -1,0 +1,5 @@
+[[libraries]]
+name = "kotlinx-coroutines"
+description = "Synthesized KB for kotlinx-coroutines from Vertex AI MCP"
+index_file = "kotlinx-coroutines/index.toml"
+last_updated = "2025-04-29"

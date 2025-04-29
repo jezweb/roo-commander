@@ -137,6 +137,8 @@ This document provides a summary of available specialist modes for delegation.
 - **dev-react** (⚛️ React Specialist): \[No description provided\]
 - **dev-solidity** (🧱 Solidity Developer): \[No description provided\]
 - **dev-solver** (🧩 Complex Problem Solver): \[No description provided\]
+- **MODE-DEV-JAVA** (☕️ Java Developer): \[No description provided\]
+- **MODE-DEV-KOTLIN** (🟣 Kotlin Developer): \[No description provided\]
 
 ## 🔧 Utility Modes
 

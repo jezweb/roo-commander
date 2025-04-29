@@ -1,0 +1,11 @@
+[[documents]]
+title = "Kotlinx Coroutines: Basic Setup Summary"
+summary = "A summary indicating that setup details were not found in the provided source, but outlining the typical process."
+tags = ["kotlin", "coroutines", "setup", "installation", "dependency", "summary"]
+file = "synthesized/setup-summary.md"
+
+[[documents]]
+title = "Kotlinx Coroutines: General Summary"
+summary = "A concise overview of the kotlinx-coroutines library, its purpose, and key features based on provided documentation context."
+tags = ["kotlin", "coroutines", "concurrency", "asynchronous", "summary", "overview"]
+file = "synthesized/general-summary.md"
