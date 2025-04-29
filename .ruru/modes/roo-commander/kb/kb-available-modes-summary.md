@@ -4,7 +4,7 @@ title = "Available Modes Summary"
 context_type = "summary"
 target_audience = ["roo-commander"]
 status = "generated"
-last_generated = "2025-04-28"
+last_generated = "2025-04-29"
 +++
 
 # Available Modes Summary
@@ -63,6 +63,7 @@ This document provides a summary of available specialist modes for delegation.
 - **framework-laravel** (🐘 PHP/Laravel Developer): \[No description provided\]
 - **framework-nextjs** (🚀 Next.js Developer): \[No description provided\]
 - **framework-remix** (💿 Remix Developer): \[No description provided\]
+- **framework-spring** (🍃 Java Spring Developer): \[No description provided\]
 - **framework-sveltekit** (🔥 SvelteKit Developer): \[No description provided\]
 - **framework-vue** (💚 Vue.js Developer): \[No description provided\]
 
@@ -134,6 +135,7 @@ This document provides a summary of available specialist modes for delegation.
 - **dev-git** (🦕 Git Manager): \[No description provided\]
 - **dev-python** (🐍 Python Developer): \[No description provided\]
 - **dev-react** (⚛️ React Specialist): \[No description provided\]
+- **dev-solidity** (🧱 Solidity Developer): \[No description provided\]
 - **dev-solver** (🧩 Complex Problem Solver): \[No description provided\]
 
 ## 🔧 Utility Modes
@@ -149,6 +151,7 @@ This document provides a summary of available specialist modes for delegation.
 - **util-senior-dev** (🧑‍💻 Senior Developer): \[No description provided\]
 - **util-typescript** (🔷 TypeScript Specialist): \[No description provided\]
 - **util-vite** (⚡ Vite Specialist): \[No description provided\]
+- **util-workflow-manager** (📜 Workflow Manager): \[No description provided\]
 - **util-writer** (✍️ Technical Writer): \[No description provided\]
 
 ## 🚜 Prime Coordinator Modes
