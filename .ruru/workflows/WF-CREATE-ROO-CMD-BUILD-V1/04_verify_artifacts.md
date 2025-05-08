@@ -19,6 +19,8 @@ delegate_to = "lead-devops" # (String, Optional) Mode responsible for executing 
 inputs = [ # (Array of Strings, Optional) Data/artifacts needed. Can reference outputs from 'depends_on' steps.
     "Output from step WF-CREATE-ROO-CMD-BUILD-V1-03C-RUN-COLLECTION-BUILDS: collection_build_status", # Use status from last build step
     "Output from step WF-CREATE-ROO-CMD-BUILD-V1-03C-RUN-COLLECTION-BUILDS: raw_artifacts_path",
+    "Output from step WF-CREATE-ROO-CMD-BUILD-V1-01-VALIDATE-PARAMS: validated_build_params as build_parameters", # Contains version
+    "Path to project configuration: .ruru/config/project.toml as project_config_path", # Contains repo_name and current_build_codename
 ]
 outputs = [ # (Array of Strings, Optional) Data/artifacts produced by this step.
     "artifacts_verified_status: Success or Failure.",
@@ -33,19 +35,29 @@ template_schema_doc = ".ruru/templates/toml-md/25_workflow_step_standard.md" # (
 
 ## Actions
 
-1.  **Receive Context:** Get `collection_build_status` and `raw_artifacts_path` from the previous step (03c).
+1.  **Receive Context:** Get `collection_build_status`, `raw_artifacts_path`, `build_parameters` (containing `version`), and `project_config_path` from the inputs.
 2.  **Check Prerequisite:** If `collection_build_status` is Failure, immediately skip to the error step (`EE_handle_verify_error.md`).
-3.  **List Artifacts:** List the contents of the `raw_artifacts_path` directory.
-4.  **Verify Key Files:** Check for the presence of essential expected artifacts (e.g., `roo-commander-*.zip`, `kilocode-*.zip`, collection build outputs). The exact list depends on the build process outputs.
-5.  **Basic Integrity Check (Optional):** Perform minimal checks if feasible (e.g., non-zero file size for archives).
-6.  **Set Status:** Set `artifacts_verified_status` to Success if all required artifacts are found (and pass optional checks), otherwise Failure.
-7.  **Prepare Output:** Provide the `artifacts_verified_status`.
+3.  **Read Project Configuration:** Read the `project_config_path` (e.g., `.ruru/config/project.toml`) to extract `github.repo` (as `repo_name`) and `github.current_build_codename` (as `codename`). If `current_build_codename` is not present or empty, treat `codename` as an empty string.
+4.  **Determine Expected Artifact Name:**
+    *   Extract `version` from `build_parameters` (e.g., "v7.2.2"). Remove leading "v" if present for consistency in filename.
+    *   Construct the base artifact name: `{{repo_name}}-{{version_number_only}}`.
+    *   If `codename` is not empty, append `-%{{codename}}` to the base name.
+    *   The final expected artifact name will be `{{constructed_name}}.zip`.
+    *   *Example with codename:* `roo-commander-7.2.2-Wallaby.zip`
+    *   *Example without codename (e.g., for v8):* `roo-commander-8.0.0.zip`
+5.  **List Artifacts:** List the contents of the `raw_artifacts_path` directory.
+6.  **Verify Key Files:** Check for the presence of the dynamically determined `expected_artifact_name`. Also verify other essential artifacts like `kilocode-*.zip` and collection build outputs if applicable.
+7.  **Basic Integrity Check (Optional):** Perform minimal checks if feasible (e.g., non-zero file size for archives).
+8.  **Set Status:** Set `artifacts_verified_status` to Success if all required artifacts are found (and pass optional checks), otherwise Failure.
+9.  **Prepare Output:** Provide the `artifacts_verified_status`, and include the `expected_artifact_name` and `found_artifact_name` (if different and verification failed) in the details for error reporting.
 
 ## Acceptance Criteria
 
 *   Step proceeds only if `collection_build_status` from the previous step was Success.
 *   The `raw_artifacts_path` directory is accessed.
-*   Presence of key expected build artifacts is confirmed.
+*   The `project_config_path` is read successfully.
+*   The `expected_artifact_name` is correctly constructed.
+*   Presence of the dynamically determined `expected_artifact_name` is confirmed.
 *   `artifacts_verified_status` is set accurately.
 
 ## Error Handling

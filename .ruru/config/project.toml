@@ -3,5 +3,6 @@
 [github]
 owner = "jezweb"
 repo = "roo-commander"
+current_build_codename = "Wallaby" # Used for build artifact naming
 
 # Add other project-wide configurations here as needed.

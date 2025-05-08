@@ -66,6 +66,42 @@
       "ui-designer",
       "accessibility-specialist"
     ],
+    "fullstack_php_laravel": [
+      "core",
+      "framework-laravel",
+      "database-specialist",
+      "api-developer",
+      "integration-tester",
+      "containerization-developer",
+      "cicd-specialist",
+      "security-specialist"
+    ],
+    "ai_ml_python": [
+      "core",
+      "python-developer",
+      "spec-huggingface",
+      "spec-openai",
+      "data-specialist"
+    ],
+    "frontend_react_mui": [
+      "core",
+      "react-specialist",
+      "design-mui",
+      "vite-specialist",
+      "integration-tester",
+      "e2e-tester",
+      "ui-designer",
+      "accessibility-specialist"
+    ],
+    "cloud_aws_focused": [
+      "core",
+      "cloud-aws",
+      "infra-specialist",
+      "containerization-developer",
+      "cicd-specialist",
+      "security-specialist",
+      "lead-devops"
+    ],
     "full": [
       "all"
     ]

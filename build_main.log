@@ -1,30 +1,26 @@
-Starting build for v7.1.5 (Wallaby)...
-Staging directory: /tmp/roo-build-v7.1.5-h9kRLi
-Output archive: .builds/roo-commander-v7.1.5-Wallaby.zip
+Starting build for v7.2.2 (Wallaby)...
+Staging directory: /tmp/roo-build-v7.2.2-2GUUvw
+Output archive: .builds/roo-commander-v7.2.2-Wallaby.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
-Creating zip archive: roo-commander-v7.1.5-Wallaby.zip...
-Archive created successfully: 2766400 total bytes
-Build complete: .builds/roo-commander-v7.1.5-Wallaby.zip
-Cleaning up staging directory: /tmp/roo-build-v7.1.5-h9kRLi
+Creating zip archive: roo-commander-v7.2.2-Wallaby.zip...
+Archive created successfully: 2460350 total bytes
+Build complete: .builds/roo-commander-v7.2.2-Wallaby.zip
+Cleaning up staging directory: /tmp/roo-build-v7.2.2-2GUUvw
 Cleanup complete.

@@ -10,7 +10,7 @@ and configuring necessary tools based on validated parameters.
 
 # --- Flow Control ---
 depends_on = ["WF-CREATE-ROO-CMD-BUILD-V1-01-VALIDATE-PARAMS"] # (Array of Strings, Required) step_ids this step needs completed first.
-next_step = "03_run_build.md" # (String, Optional) Filename of the next step on successful completion.
+next_step = "03a_run_main_build.md" # (String, Optional) Filename of the next step on successful completion.
 error_step = "EE_handle_env_error.md" # (String, Optional) Filename to jump to if this step fails.
 
 # --- Execution ---

@@ -9,34 +9,30 @@ Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
 Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt
 Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-core" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-core.md"
 Starting build for coll-core (CollectionBuild)...
-Staging directory: /tmp/roo-build-coll-core-Z51IEE
+Staging directory: /tmp/roo-build-coll-core-hMD172
 Output archive: .builds/roo-commander-coll-core-CollectionBuild.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
 Creating zip archive: roo-commander-coll-core-CollectionBuild.zip...
-Archive created successfully: 2766400 total bytes
+Archive created successfully: 2460350 total bytes
 Build complete: .builds/roo-commander-coll-core-CollectionBuild.zip
-Cleaning up staging directory: /tmp/roo-build-coll-core-Z51IEE
+Cleaning up staging directory: /tmp/roo-build-coll-core-hMD172
 Cleanup complete.
 
 ✅ Build successful for collection: core
@@ -48,34 +44,30 @@ Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
 Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, react-specialist, supabase-developer, tailwind-specialist, vite-specialist, integration-tester, e2e-tester, containerization-developer, cicd-specialist, security-specialist, api-developer, database-specialist
 Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-fullstack_react_supabase" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-fullstack_react_supabase.md"
 Starting build for coll-fullstack_react_supabase (CollectionBuild)...
-Staging directory: /tmp/roo-build-coll-fullstack_react_supabase-llDODq
+Staging directory: /tmp/roo-build-coll-fullstack_react_supabase-jNK07R
 Output archive: .builds/roo-commander-coll-fullstack_react_supabase-CollectionBuild.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
 Creating zip archive: roo-commander-coll-fullstack_react_supabase-CollectionBuild.zip...
-Archive created successfully: 2766400 total bytes
+Archive created successfully: 2460350 total bytes
 Build complete: .builds/roo-commander-coll-fullstack_react_supabase-CollectionBuild.zip
-Cleaning up staging directory: /tmp/roo-build-coll-fullstack_react_supabase-llDODq
+Cleaning up staging directory: /tmp/roo-build-coll-fullstack_react_supabase-jNK07R
 Cleanup complete.
 
 ✅ Build successful for collection: fullstack_react_supabase
@@ -87,34 +79,30 @@ Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
 Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, django-developer, python-developer, database-specialist, integration-tester, containerization-developer, cicd-specialist, security-specialist, api-developer
 Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-fullstack_python_django" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-fullstack_python_django.md"
 Starting build for coll-fullstack_python_django (CollectionBuild)...
-Staging directory: /tmp/roo-build-coll-fullstack_python_django-2Y9UOv
+Staging directory: /tmp/roo-build-coll-fullstack_python_django-iarQz5
 Output archive: .builds/roo-commander-coll-fullstack_python_django-CollectionBuild.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
 Creating zip archive: roo-commander-coll-fullstack_python_django-CollectionBuild.zip...
-Archive created successfully: 2766400 total bytes
+Archive created successfully: 2460350 total bytes
 Build complete: .builds/roo-commander-coll-fullstack_python_django-CollectionBuild.zip
-Cleaning up staging directory: /tmp/roo-build-coll-fullstack_python_django-2Y9UOv
+Cleaning up staging directory: /tmp/roo-build-coll-fullstack_python_django-iarQz5
 Cleanup complete.
 
 ✅ Build successful for collection: fullstack_python_django
@@ -126,37 +114,173 @@ Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
 Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, vuejs-developer, tailwind-specialist, vite-specialist, integration-tester, e2e-tester, ui-designer, accessibility-specialist
 Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-frontend_vue" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-frontend_vue.md"
 Starting build for coll-frontend_vue (CollectionBuild)...
-Staging directory: /tmp/roo-build-coll-frontend_vue-1pSqmd
+Staging directory: /tmp/roo-build-coll-frontend_vue-2fe22Z
 Output archive: .builds/roo-commander-coll-frontend_vue-CollectionBuild.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
 Creating zip archive: roo-commander-coll-frontend_vue-CollectionBuild.zip...
-Archive created successfully: 2766400 total bytes
+Archive created successfully: 2460350 total bytes
 Build complete: .builds/roo-commander-coll-frontend_vue-CollectionBuild.zip
-Cleaning up staging directory: /tmp/roo-build-coll-frontend_vue-1pSqmd
+Cleaning up staging directory: /tmp/roo-build-coll-frontend_vue-2fe22Z
 Cleanup complete.
 
 ✅ Build successful for collection: frontend_vue
+
+Processing collection: fullstack_php_laravel
+Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
+
+--- Starting build for collection: fullstack_php_laravel ---
+Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, framework-laravel, database-specialist, api-developer, integration-tester, containerization-developer, cicd-specialist, security-specialist
+Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-fullstack_php_laravel" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-fullstack_php_laravel.md"
+Starting build for coll-fullstack_php_laravel (CollectionBuild)...
+Staging directory: /tmp/roo-build-coll-fullstack_php_laravel-i4xp46
+Output archive: .builds/roo-commander-coll-fullstack_php_laravel-CollectionBuild.zip
+Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
+  Copying directory: .ruru/modes
+  Copying directory: .ruru/processes
+  Copying directory: .ruru/templates
+  Copying directory: .ruru/workflows
+Creating empty directories...
+  Creating empty dir: .ruru/archive
+  Creating empty dir: .ruru/context
+  Creating empty dir: .ruru/decisions
+  Creating empty dir: .ruru/logs
+  Creating empty dir: .ruru/planning
+  Creating empty dir: .ruru/reports
+  Creating empty dir: .ruru/snippets
+Copying distribution README and CHANGELOG...
+  Copied .ruru/templates/build/README.dist.md to README.md
+Creating zip archive: roo-commander-coll-fullstack_php_laravel-CollectionBuild.zip...
+Archive created successfully: 2460350 total bytes
+Build complete: .builds/roo-commander-coll-fullstack_php_laravel-CollectionBuild.zip
+Cleaning up staging directory: /tmp/roo-build-coll-fullstack_php_laravel-i4xp46
+Cleanup complete.
+
+✅ Build successful for collection: fullstack_php_laravel
+
+Processing collection: ai_ml_python
+Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
+
+--- Starting build for collection: ai_ml_python ---
+Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, python-developer, spec-huggingface, spec-openai, data-specialist
+Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-ai_ml_python" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-ai_ml_python.md"
+Starting build for coll-ai_ml_python (CollectionBuild)...
+Staging directory: /tmp/roo-build-coll-ai_ml_python-Rs3YaW
+Output archive: .builds/roo-commander-coll-ai_ml_python-CollectionBuild.zip
+Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
+  Copying directory: .ruru/modes
+  Copying directory: .ruru/processes
+  Copying directory: .ruru/templates
+  Copying directory: .ruru/workflows
+Creating empty directories...
+  Creating empty dir: .ruru/archive
+  Creating empty dir: .ruru/context
+  Creating empty dir: .ruru/decisions
+  Creating empty dir: .ruru/logs
+  Creating empty dir: .ruru/planning
+  Creating empty dir: .ruru/reports
+  Creating empty dir: .ruru/snippets
+Copying distribution README and CHANGELOG...
+  Copied .ruru/templates/build/README.dist.md to README.md
+Creating zip archive: roo-commander-coll-ai_ml_python-CollectionBuild.zip...
+Archive created successfully: 2460350 total bytes
+Build complete: .builds/roo-commander-coll-ai_ml_python-CollectionBuild.zip
+Cleaning up staging directory: /tmp/roo-build-coll-ai_ml_python-Rs3YaW
+Cleanup complete.
+
+✅ Build successful for collection: ai_ml_python
+
+Processing collection: frontend_react_mui
+Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
+
+--- Starting build for collection: frontend_react_mui ---
+Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, react-specialist, design-mui, vite-specialist, integration-tester, e2e-tester, ui-designer, accessibility-specialist
+Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-frontend_react_mui" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-frontend_react_mui.md"
+Starting build for coll-frontend_react_mui (CollectionBuild)...
+Staging directory: /tmp/roo-build-coll-frontend_react_mui-4U1YnA
+Output archive: .builds/roo-commander-coll-frontend_react_mui-CollectionBuild.zip
+Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
+  Copying directory: .ruru/modes
+  Copying directory: .ruru/processes
+  Copying directory: .ruru/templates
+  Copying directory: .ruru/workflows
+Creating empty directories...
+  Creating empty dir: .ruru/archive
+  Creating empty dir: .ruru/context
+  Creating empty dir: .ruru/decisions
+  Creating empty dir: .ruru/logs
+  Creating empty dir: .ruru/planning
+  Creating empty dir: .ruru/reports
+  Creating empty dir: .ruru/snippets
+Copying distribution README and CHANGELOG...
+  Copied .ruru/templates/build/README.dist.md to README.md
+Creating zip archive: roo-commander-coll-frontend_react_mui-CollectionBuild.zip...
+Archive created successfully: 2460350 total bytes
+Build complete: .builds/roo-commander-coll-frontend_react_mui-CollectionBuild.zip
+Cleaning up staging directory: /tmp/roo-build-coll-frontend_react_mui-4U1YnA
+Cleanup complete.
+
+✅ Build successful for collection: frontend_react_mui
+
+Processing collection: cloud_aws_focused
+Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
+
+--- Starting build for collection: cloud_aws_focused ---
+Modes: roo-commander, code, ask, architect, debug, orchestrator, technical-architect, project-manager, project-onboarding, agent-context-resolver, agent-research, agent-session-summarizer, util-refactor, util-reviewer, util-second-opinion, util-typescript, util-writer, git-manager, complex-problem-solver, bug-fixer, technical-writer, research-context-builder, context-resolver, second-opinion, file-repair-specialist, prime-coordinator, prime-dev, prime-txt, cloud-aws, infra-specialist, containerization-developer, cicd-specialist, security-specialist, lead-devops
+Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-cloud_aws_focused" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-cloud_aws_focused.md"
+Starting build for coll-cloud_aws_focused (CollectionBuild)...
+Staging directory: /tmp/roo-build-coll-cloud_aws_focused-2S2fzK
+Output archive: .builds/roo-commander-coll-cloud_aws_focused-CollectionBuild.zip
+Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
+  Copying directory: .ruru/modes
+  Copying directory: .ruru/processes
+  Copying directory: .ruru/templates
+  Copying directory: .ruru/workflows
+Creating empty directories...
+  Creating empty dir: .ruru/archive
+  Creating empty dir: .ruru/context
+  Creating empty dir: .ruru/decisions
+  Creating empty dir: .ruru/logs
+  Creating empty dir: .ruru/planning
+  Creating empty dir: .ruru/reports
+  Creating empty dir: .ruru/snippets
+Copying distribution README and CHANGELOG...
+  Copied .ruru/templates/build/README.dist.md to README.md
+Creating zip archive: roo-commander-coll-cloud_aws_focused-CollectionBuild.zip...
+Archive created successfully: 2460350 total bytes
+Build complete: .builds/roo-commander-coll-cloud_aws_focused-CollectionBuild.zip
+Cleaning up staging directory: /tmp/roo-build-coll-cloud_aws_focused-2S2fzK
+Cleanup complete.
+
+✅ Build successful for collection: cloud_aws_focused
 
 Processing collection: full
 Collection 'full' is special 'full' type, potentially skipping .roomodes generation if build script handles 'all'.
@@ -166,34 +290,30 @@ Writing to /home/jez/vscode/roo-commander/.ruru/.roomodes
 Modes: all
 Executing: node "/home/jez/vscode/roo-commander/.ruru/scripts/create_build.js" "coll-full" "CollectionBuild" ".ruru/templates/build/README.dist.md" "/home/jez/vscode/roo-commander/.ruru/.tmp/CHANGELOG-full.md"
 Starting build for coll-full (CollectionBuild)...
-Staging directory: /tmp/roo-build-coll-full-snOFK8
+Staging directory: /tmp/roo-build-coll-full-XDGLbO
 Output archive: .builds/roo-commander-coll-full-CollectionBuild.zip
 Copying included files and directories...
+  Copying directory: .roo
+  Copying directory: .ruru/docs/guides
+  Copying directory: .ruru/docs/standards
   Copying directory: .ruru/modes
   Copying directory: .ruru/processes
-  Copying directory: .roo
   Copying directory: .ruru/templates
   Copying directory: .ruru/workflows
-  Copying directory: .ruru/docs
-  Copying file: .roomodes
-  Copying directory: scripts
-  Copying directory: .ruru/scripts
 Creating empty directories...
   Creating empty dir: .ruru/archive
   Creating empty dir: .ruru/context
   Creating empty dir: .ruru/decisions
-  Creating empty dir: .ruru/ideas
   Creating empty dir: .ruru/logs
   Creating empty dir: .ruru/planning
   Creating empty dir: .ruru/reports
   Creating empty dir: .ruru/snippets
-  Creating empty dir: .ruru/tasks
 Copying distribution README and CHANGELOG...
   Copied .ruru/templates/build/README.dist.md to README.md
 Creating zip archive: roo-commander-coll-full-CollectionBuild.zip...
-Archive created successfully: 2766400 total bytes
+Archive created successfully: 2460350 total bytes
 Build complete: .builds/roo-commander-coll-full-CollectionBuild.zip
-Cleaning up staging directory: /tmp/roo-build-coll-full-snOFK8
+Cleaning up staging directory: /tmp/roo-build-coll-full-XDGLbO
 Cleanup complete.
 
 ✅ Build successful for collection: full
