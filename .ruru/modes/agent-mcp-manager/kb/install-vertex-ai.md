@@ -11,7 +11,7 @@ tags = ["kb", "mcp", "vertex-ai", "installation", "configuration", "npm", "mcp.j
 related_context = [
     ".roo/mcp.json",
     ".roo/rules/10-vertex-mcp-usage-guideline.md",
-    ".ruru/modes/agent-mcp-manager/kb/data/01-vertex-ai-mcp-json-example.md" # Added reference to example
+    ".ruru/modes/agent-mcp-manager/kb/data/03-vertex-ai-mcp-json-example.md" # Added reference to example
     ]
 template_schema_doc = ".ruru/templates/toml-md/15_kb_article.README.md"
 relevance = "High: Core setup for Vertex AI integration"
@@ -36,7 +36,7 @@ This command downloads and installs the necessary package into your `node_module
 All configuration for the `vertex-ai-mcp-server` is now managed centrally within the main Roo Commander MCP configuration file: `.roo/mcp.json`.
 
 Locate or add the `vertex-ai-mcp-server` entry within the `servers` object in `.roo/mcp.json`. Configure it according to the example structure provided in the KB article:
-**`.ruru/modes/agent-mcp-manager/kb/data/01-vertex-ai-mcp-json-example.md`**
+**`.ruru/modes/agent-mcp-manager/kb/data/03-vertex-ai-mcp-json-example.md`**
 
 Ensure you replace placeholder values in the example with your actual Google Cloud Platform (GCP) project details and credentials path.
 
