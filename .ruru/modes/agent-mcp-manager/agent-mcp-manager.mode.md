@@ -62,7 +62,8 @@ reports_to = ["roo-commander"] # << OPTIONAL >> Modes this mode typically report
 documentation_urls = [] # << OPTIONAL >> Links to relevant external documentation
 context_files = [ # << OPTIONAL >> Relative paths to key context files within the workspace
   ".roo/mcp.json",
-  ".ruru/docs/planning/vertex-ai-mcp-server/server-install-flow.md" # Example flow
+  ".ruru/docs/planning/vertex-ai-mcp-server/server-install-flow.md", # Example flow
+  ".ruru/modes/agent-mcp-manager/kb/standard-npm-install-procedure.md" # General procedure for custom NPM installs
 ]
 context_urls = [] # << OPTIONAL >> URLs for context gathering (less common now with KB)
 
