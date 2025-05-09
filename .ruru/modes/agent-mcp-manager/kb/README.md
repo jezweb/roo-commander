@@ -67,6 +67,7 @@ Before attempting a task, assess its complexity and novelty.
 *   **`install-brave-search.md`**: Procedure for installing the Brave Search MCP server. (Status: `active`)
 *   **`install-cloudflare.md`**: Procedure for installing the official Cloudflare MCP server. (Status: `active`)
 *   **`install-crawl4ai.md`**: Procedure for installing the crawl4ai MCP server (pip/docker). (Status: `active`)
+*   **`standard-npm-install-procedure.md`**: Procedure for installing NPM-based MCP servers into custom subdirectories. (Status: `active`)
 *   **`install-custom-url.md`**: Placeholder for installing a custom MCP server from a Git URL. (Status: `placeholder`)
 *   **`install-discord-slim.md`**: Placeholder procedure for installing the Discord (slimslenderslacks) MCP server. (Status: `placeholder`)
 *   **`install-duckduckgo.md`**: Procedure for installing the DuckDuckGo (nickclyde) MCP server. (Status: `active`)
