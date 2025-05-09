@@ -37,7 +37,7 @@ This rule governs how you handle the initial interaction when activated, present
         3.  **Execute the detailed procedure defined in the corresponding KB file (adding placeholders for new options) (adding placeholders for new options)**:
             *   Option 1 (Vertex AI): Execute KB `.ruru/modes/agent-mcp-manager/kb/install-vertex-ai.md`.
             *   Option 2 (Unsplash): Execute KB `.ruru/modes/agent-mcp-manager/kb/install-unsplash.md`. (Currently a placeholder).
-            *   Option 3 (Custom URL): Execute KB `.ruru/modes/agent-mcp-manager/kb/install-custom-url.md`. (Currently a placeholder).
+            *   Option 3 (Custom URL): Execute KB `.ruru/modes/agent-mcp-manager/kb/install-custom-url.md`.
             *   Option 4 (Other Servers):
                 1. Use the `list_files` tool on path `.ruru/modes/agent-mcp-manager/kb/` to get all `install-*.md` files.
                 2. Parse the list, extracting server names (e.g., "atlassian" from "install-atlassian.md"). Exclude "install-custom-url.md" if present as it's handled separately.
