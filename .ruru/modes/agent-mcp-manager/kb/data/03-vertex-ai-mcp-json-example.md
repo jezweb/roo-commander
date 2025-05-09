@@ -16,7 +16,7 @@
 
                 // --- Vertex AI Model Config ---
                 "VERTEX_MODEL_ID": "gemini-2.5-pro-exp-03-25", // Or your preferred model
-                "AI_TEMPERATURE": "0.0",
+                "AI_TEMPERATURE": "0.3",
                 "AI_USE_STREAMING": "true",
                 "AI_MAX_OUTPUT_TOKENS": "65535", // Adjust as needed
 
