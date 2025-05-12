@@ -18,7 +18,7 @@ export async function handleInitCommand(): Promise<void> {
 
   // Source paths relative to the compiled JS file in dist/commands/
   // Go up three levels to reach the project root where templates/ should be
-  const templateBaseDir = path.resolve(__dirname, '..', '..', 'templates'); // Go up from dist/commands/ to package root, then into templates
+  const templateBaseDir = path.resolve(__dirname, '..', 'templates'); // Path relative to dist/commands/, assuming templates is in dist/templates/
   const rooSource = path.join(templateBaseDir, '.roo');
   const ruruSource = path.join(templateBaseDir, '.ruru');
 

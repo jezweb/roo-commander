@@ -8,7 +8,7 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "esbuild ./bin/roo-cli.ts --bundle --outfile=dist/bin/roo-cli.js --platform=node --format=esm --external:./package.json",
+    "build": "esbuild ./bin/roo-cli.ts --bundle --outfile=dist/bin/roo-cli.js --platform=node --format=esm --main-fields=module,main --conditions=node --banner:js=\"import { createRequire } from 'module';const require = createRequire(import.meta.url);\" --external:fs-extra --external:chalk --external:inquirer --external:node:* && node ./scripts/copy-templates.mjs",
     "start": "node ./dist/bin/roo-cli.js",
     "dev": "tsc --watch",
     "prepare:publish": "node ./scripts/prepare-publish.mjs",
@@ -33,8 +33,7 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE",
-    "templates"
+    "LICENSE"
   ],
   "dependencies": {
     "commander": "^13.1.0",
