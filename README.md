@@ -92,6 +92,7 @@ The recommended installation method uses the pre-built release:
 This will add/overwrite the necessary hidden configuration folders (`.ruru/modes`, `.roo`, `.ruru/templates`, etc.) and files (`.roomodes`).
 ## Release Notes
 
+*   [v7.3.0](./.ruru/docs/release-notes/v7.3.0.md)
 *   [v7.1.5](./.ruru/docs/release-notes/v7.1.5.md)
 
 ## Basic Usage

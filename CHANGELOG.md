@@ -1,3 +1,10 @@
+# Release Notes - v7.3.0
+
+## Fixes
+
+*   b4466f485d934d0b29bc2efd473c24df3a016f2b: fixes for roo commander github release workflow
+
+---
 # Release Notes: Roo Commander v7.2.0 "Wallaby"
 
 ## 🚀 Features
