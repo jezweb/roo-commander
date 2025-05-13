@@ -7,7 +7,7 @@ This directory stores **useful code snippets, configuration blocks, or commands*
 These artifacts capture key information like decisions, learnings, environment details, research findings, code snippets, errors, etc., providing richer context beyond the main session log.
 
 See the main guidelines document for details on standard artifact types and their purpose:
-[.ruru/docs/standards/session_artifact_guidelines_v1.md](/.ruru/docs/standards/session_artifact_guidelines_v1.md)
+[`.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md)
 
 ## File Naming Convention
 
@@ -22,7 +22,7 @@ Files should generally follow the convention: `SNIPPET-[Topic]-[YYMMDDHHMM].[ext
 
 ## Recommended Templates
 
-If applicable, use the relevant TOML+MD template from `/.ruru/templates/toml-md/` (e.g., `38_session_snippet.md`).
+If applicable, use the relevant TOML+MD template from [` .roo/commander/templates/sessions/artifacts/`](.roo/commander/templates/sessions/artifacts/) (e.g., [`template_00_session_snippet.md`](.roo/commander/templates/sessions/artifacts/snippet/template_00_session_snippet.md)).
 
 ## Usage
 

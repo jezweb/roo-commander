@@ -1,6 +1,6 @@
 # Schema Documentation: MDTM Session Log (`19_mdtm_session.md`)
 
-This document outlines the TOML schema used for MDTM Session Log files, typically named `session_log.md` within a session-specific directory (e.g., `.ruru/sessions/[SESSION_ID]/`).
+This document outlines the TOML schema used for MDTM Session Log files, typically named `session_log.md` within a session-specific directory (e.g., `.roo/commander/sessions/[SESSION_ID]/`).
 
 ## Purpose
 
@@ -55,5 +55,5 @@ The following fields are defined within the `+++` TOML block:
 
 ## Related Context
 
-*   `.roo/rules/11-session-management.md`: Defines the standard Session Management workflow.
-*   `.ruru/modes/roo-commander/kb/12-logging-procedures.md`: Provides details on logging procedures.
+*   `[.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md): Defines the standard Session Management workflow.
+*   `[.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md): Provides details on logging procedures.

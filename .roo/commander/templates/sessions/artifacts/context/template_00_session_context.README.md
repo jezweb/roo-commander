@@ -1,4 +1,4 @@
-# Template: 41_session_context_item.md - Session General Context Item
+# Template: template_00_session_context.md - Session General Context Item
 
 ## 1. Purpose
 

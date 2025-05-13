@@ -1,4 +1,4 @@
-# Template: 33_session_environment.md - Session Environment Detail
+# Template: template_00_session_environment.md - Session Environment Detail
 
 ## 1. Purpose
 

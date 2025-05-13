@@ -1,4 +1,4 @@
-# Template: 32_session_learning.md - Session Learning/Problem/Solution
+# Template: template_00_session__learning.md - Session Learning/Problem/Solution
 
 ## 1. Purpose
 

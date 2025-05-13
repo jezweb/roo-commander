@@ -21,7 +21,7 @@ tags = [
 # Session Log V6
 
 *This section is primarily for **append-only** logging of significant events by the Coordinator and involved modes.*
-*Refer to `.ruru/docs/standards/session_artifact_guidelines_v1.md` for artifact types and naming.*
+*Refer to `[.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md)\` for artifact types and naming.*
 
 ## Log Entries
 

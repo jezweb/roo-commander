@@ -1,4 +1,4 @@
-# Template: 40_session_feature_note.md - Session Feature-Specific Note
+# Template: template_00_session_feature.md - Session Feature-Specific Note
 
 ## 1. Purpose
 

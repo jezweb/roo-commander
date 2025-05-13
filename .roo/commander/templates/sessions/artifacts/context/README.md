@@ -7,7 +7,7 @@ This directory stores **relevant contextual information for the parent session, 
 These artifacts capture key information like decisions, learnings, environment details, research findings, code snippets, errors, etc., providing richer context beyond the main session log.
 
 See the main guidelines document for details on standard artifact types and their purpose:
-[.ruru/docs/standards/session_artifact_guidelines_v1.md](/.ruru/docs/standards/session_artifact_guidelines_v1.md)
+[`.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md)
 
 ## File Naming Convention
 
@@ -22,7 +22,7 @@ Files should generally follow the convention: `CONTEXT-[Topic]-[YYMMDDHHMM].[ext
 
 ## Recommended Templates
 
-If applicable, use the relevant TOML+MD template from `/.ruru/templates/toml-md/` (e.g., `41_session_context_item.md` if a specific template for context items is created). For simple text or data files, a template might not be necessary.
+If applicable, use the relevant TOML+MD template from [` .roo/commander/templates/sessions/artifacts/`](.roo/commander/templates/sessions/artifacts/) (e.g., [`template_00_session_context.md`](.roo/commander/templates/sessions/artifacts/context/template_00_session_context.md) if a specific template for context items is created). For simple text or data files, a template might not be necessary.
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Template: 34_session_doc_snippet.md - Session Documentation Snippet
+# Template: template_00_session_document.md - Session Documentation Snippet
 
 ## 1. Purpose
 

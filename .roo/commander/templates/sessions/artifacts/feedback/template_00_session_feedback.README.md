@@ -1,4 +1,4 @@
-# Template: 39_session_feedback_item.md - Session Feedback Item
+# Template: template_00_session_feedback.md - Session Feedback Item
 
 ## 1. Purpose
 

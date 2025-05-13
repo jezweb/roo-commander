@@ -7,7 +7,7 @@ This directory stores **ideas or tasks noted but explicitly postponed for later 
 These artifacts capture key information like decisions, learnings, environment details, research findings, code snippets, errors, etc., providing richer context beyond the main session log.
 
 See the main guidelines document for details on standard artifact types and their purpose:
-[.ruru/docs/standards/session_artifact_guidelines_v1.md](/.ruru/docs/standards/session_artifact_guidelines_v1.md)
+[`.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md)
 
 ## File Naming Convention
 
@@ -22,7 +22,7 @@ Files should generally follow the convention: `DEFERRED-[Topic]-[YYMMDDHHMM].md`
 
 ## Recommended Templates
 
-If applicable, use the relevant TOML+MD template from `/.ruru/templates/toml-md/` (e.g., `42_session_deferred.md`).
+If applicable, use the relevant TOML+MD template from [` .roo/commander/templates/sessions/artifacts/`](.roo/commander/templates/sessions/artifacts/) (e.g., [`template_00_session_deferred.md`](.roo/commander/templates/sessions/artifacts/deferred/template_00_session_deferred.md)).
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Template: 37_session_qna.md - Session Q&A Log
+# Template: template_00_session_question.md - Session Q&A Log
 
 ## 1. Purpose
 

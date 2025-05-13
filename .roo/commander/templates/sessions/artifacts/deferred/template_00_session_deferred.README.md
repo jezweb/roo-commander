@@ -1,4 +1,4 @@
-# Template: 42_session_deferred.md - Session Deferred Item
+# Template: template_00_session_deferred.md - Session Deferred Item
 
 ## 1. Purpose
 

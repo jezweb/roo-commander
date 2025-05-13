@@ -1,4 +1,4 @@
-# Template: 36_session_blocker.md - Session Blocker/Issue Log
+# Template: template_00_session_blocker.md - Session Blocker/Issue Log
 
 ## 1. Purpose
 

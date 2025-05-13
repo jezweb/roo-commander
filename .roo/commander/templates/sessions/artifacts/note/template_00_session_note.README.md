@@ -1,4 +1,4 @@
-# Template: 31_session_note.md - Session General Note
+# Template: template_00_session_note.md - Session General Note
 
 ## 1. Purpose
 
@@ -30,6 +30,6 @@ The Markdown body is free-form, allowing for flexible content such as:
 ## 4. Usage Guidelines
 
 *   Use this template for miscellaneous notes taken during a session.
-*   Store these notes in the `artifacts/notes/` subdirectory of the relevant session folder (e.g., `.ruru/sessions/[SessionID]/artifacts/notes/`).
+*   Store these notes in the `artifacts/notes/` subdirectory of the relevant session folder (e.g., `.roo/commander/sessions/[SessionID]/artifacts/notes/`).
 *   The `session_log.md` for the session should reference this note in its `related_artifacts` field.
 *   For more structured information like decisions, learnings, or blockers, use their respective dedicated templates.

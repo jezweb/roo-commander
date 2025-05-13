@@ -41,7 +41,7 @@ The following TOML fields provide structured metadata for the session summary:
 *   `identified_next_steps_from_session` (Array of Strings, Optional): List of clear next actions that were identified during or at the end of the original session.
     *   *Example:* `["Schedule review of drafted API documentation.", "Investigate alternative caching libraries."]`
 *   `related_summaries` (Array of Strings, Optional): Paths to other relevant session summary files that might provide preceding or related context.
-    *   *Example:* `[".ruru/sessions/SESSION-InitialAuthDesign-2312200900/summaries/SESSUM-SESSION-InitialAuthDesign-2312200900-231220173000.md"]`
+    *   *Example:* `[".roo/commander/sessions/SESSION-InitialAuthDesign-2312200900/summaries/SESSUM-SESSION-InitialAuthDesign-2312200900-231220173000.md"]`
 *   `tags` (Array of Strings, Optional): Keywords for discoverability and categorization of this summary.
     *   *Example:* `["authentication", "api-design", "documentation", "security"]`
 *   `primary_context_artifacts` (Array of Tables, Optional): Lists key artifacts from the original session that are important for understanding its context. Each table has:
@@ -85,6 +85,6 @@ The Markdown body provides a narrative expansion of the TOML metadata.
 *   The goal is to be concise yet comprehensive enough for effective handoff.
 *   Placeholders like `{{YYYYMMDDHHMMSS}}` and `{{MODE_SLUG}}` should be replaced by the generating agent.
 *   Paths in `primary_context_artifacts` are relative to the *original session's* `artifacts/` directory.
-*   This summary document itself would typically be stored in a `summaries/` subdirectory within the original session's directory (e.g., `.ruru/sessions/[OriginalSessionID]/summaries/[SummaryID].md`).
+*   This summary document itself would typically be stored in a `summaries/` subdirectory within the original session's directory (e.g., `.roo/commander/sessions/[OriginalSessionID]/summaries/[SummaryID].md`).
 
 This structured summary aims to significantly improve knowledge transfer and continuity between work sessions.

@@ -34,7 +34,7 @@ identified_next_steps_from_session = [
     # "Next Step 2: [Description of action item, potential assignee/mode]."
 ]
 related_summaries = [
-    # ".ruru/sessions/SESSION-PreviousRelatedGoal-2401010900/summaries/SESSUM-SESSION-PreviousRelatedGoal-2401010900-240101113000.md"
+    # ".roo/commander/sessions/SESSION-PreviousRelatedGoal-2401010900/summaries/SESSUM-SESSION-PreviousRelatedGoal-2401010900-240101113000.md"
 ]
 tags = [
     # "keyword1", "keyword2", "project-alpha", "user-auth"
