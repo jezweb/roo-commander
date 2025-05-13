@@ -1,97 +1,116 @@
++++
+# --- Basic Metadata ---
+id = "STANDARD-DIRECTORY-STRUCTURE-V2"
+title = "Standard: Roo Commander V8 Directory Structure Overview"
+context_type = "standards_document"
+scope = "Overview and explanation of the standard directory structure for the Roo Commander V8 workspace, anchored at the .roo/ root."
+target_audience = ["all"] # Developers, AI Modes, System Architects
+granularity = "overview"
+status = "active"
+last_updated = "{{YYYYMMDD}}" # Placeholder - To be filled with current date
+version = "2.0"
+tags = ["standards", "directory-structure", "file-organization", "workspace", "core", "v8"]
+related_context = [
+    ".roo/commander/docs/standards/01-naming-conventions.md", # Contains path referencing rules
+    ".roo/commander/docs/reference/00-full-workspace-tree.txt" # The raw tree output
+]
+template_schema_doc = ".roo/commander/templates/docs/template_00_standard_document.README.md" # Assuming a template for standards docs
+# --- Document Specific Fields ---
+# maintainer = "Core Architecture Team"
+# review_cycle = "Quarterly"
++++
+
 # Standard: Roo Commander V8 Directory Structure Overview
 
 ## 1. Objective
 
-This document provides a high-level overview and explanation of the standard directory structure used within the `.roo/commander/` workspace. Understanding this structure is essential for navigating the project, locating specific components (modes, rules, templates, documentation, session data, tasks), and contributing to its development in a consistent manner.
+This document provides a high-level overview and explanation of the standard directory structure used within the Roo Commander V8 workspace. The primary root for this system is the `.roo/` directory at the base of the workspace. Understanding this structure is essential for navigating the project, locating specific components (modes, rules, templates, documentation, session data, tasks), and contributing to its development in a consistent manner.
 
-For a raw, detailed tree view of the entire workspace, please refer to:
-*   `../reference/00-full-workspace-tree.txt`
+All file path references within documentation and system files (e.g., in TOML `related_context` fields or Markdown links) **MUST** adhere to the workspace-root-relative path convention (starting with `.roo/`) as defined in `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)`.
 
-## 2. Top-Level Directory Structure under `.roo/commander/`
+For a raw, detailed tree view of the entire workspace (example generation command: `tree -a -L 4 -I '.git|.DS_Store|node_modules|*.log' > .roo/commander/docs/reference/00-full-workspace-tree.txt`), please refer to:
+*   `[.roo/commander/docs/reference/00-full-workspace-tree.txt](.roo/commander/docs/reference/00-full-workspace-tree.txt)`
 
-The `.roo/commander/` directory is the root for all components related to the Roo Commander V8 system and its managed workflows. Key subdirectories include:
+## 2. Workspace Root (`.roo/`)
 
-*   **`archive/`**
-    *   **Purpose:** Intended for storing older versions of files, deprecated modes or rules, or historical data that is no longer in active use but needs to be retained for reference.
-    *   *(Note: This directory was present in the tree; its specific usage conventions should be defined if actively used.)*
+The `.roo/` directory at the root of the workspace serves as the primary container for all Roo Code system configurations, mode definitions, operational rules, and runtime data specific to this Commander V8 setup.
 
-*   **`builds/`**
-    *   **Purpose:** Likely for storing build artifacts, compiled outputs, or packaged versions of Roo Commander or its components if a build process is implemented.
-    *   *(Note: This directory was present in the tree; its specific usage conventions should be defined if actively used.)*
+*   **`.roo/rules/`**
+    *   **Purpose:** Contains **workspace-wide rules** that apply to ALL modes operating within this Roo Code environment. These are foundational standards.
+    *   **Examples:**
+        *   `[.roo/rules/01-standard-toml-md-format.md](.roo/rules/01-standard-toml-md-format.md)`
+        *   `[.roo/rules/02-mdtm-task-standard.md](.roo/rules/02-mdtm-task-standard.md)`
+        *   `[.roo/rules/03-session-management-standard.md](.roo/rules/03-session-management-standard.md)`
 
-*   **`config/`**
-    *   **Purpose:** Intended for global configuration files that might affect the operation of Roo Commander or multiple modes, beyond individual mode KBs or user preferences.
-    *   *(Note: This directory was present in the tree; its specific usage conventions should be defined if actively used.)*
+*   **`.roo/rules-[mode_slug]/`**
+    *   **Purpose:** Contains rules that are specific to a particular AI mode. Each mode has its own such directory. These rules provide the "instant context" for a mode's core operational logic.
+    *   **Examples:**
+        *   `[.roo/rules-roo-commander/](.roo/rules-roo-commander/)` (for `roo-commander` mode)
+        *   `[.roo/rules-manager-data-product/](.roo/rules-manager-data-product/)` (for `manager-data-product` mode)
 
-*   **`context/`**
-    *   **Purpose:** For storing workspace-level contextual information that might be broadly relevant to many modes, but isn't a formal rule or standard. This could include things like a global project glossary (distinct from mode-specific KBs) or high-level project goals.
-    *   *(Note: This directory was present in the tree; its specific usage conventions should be defined if actively used.)*
+*   **`.roo/commander/`**
+    *   **Purpose:** The root for all components specifically related to the Roo Commander V8 system itself and its managed workflows (e.g., Data Product Design).
 
-*   **`decisions/`**
-    *   **Purpose:** Stores Architecture Decision Records (ADRs). ADRs document significant architectural choices, their context, and consequences.
-    *   **Structure:** Typically contains `.md` files, each representing a single ADR.
+## 3. Key Directories under `.roo/commander/`
+
+The `.roo/commander/` directory further organizes system components:
 
 *   **`docs/`**
-    *   **Purpose:** Contains all human-readable documentation for the Roo Commander V8 system, its architecture, user guides, standards, and developer guides. This is the primary source of information for understanding how the system works and how to use or extend it.
+    *   **Purpose:** Contains all human-readable documentation for the Roo Commander V8 system.
     *   **Key Subdirectories:**
-        *   `architecture/`: Detailed explanations of system components and design philosophy.
-        *   `introduction/`: High-level overviews and goals.
-        *   `reference/`: Supporting reference materials, like the raw workspace tree (`00-full-workspace-tree.txt`).
-        *   `standards/`: Documents defining conventions and best practices for the workspace.
-        *   `user_guides/`: Step-by-step instructions for users.
-
-*   **`mcp-servers/`**
-    *   **Purpose:** Likely for configuration, scripts, or documentation related to any Mode Control Protocol (MCP) servers that Roo Commander might interact with.
-    *   *(Note: This directory was present in the tree; its specific usage conventions should be defined if actively used.)*
+        *   `architecture/`: System design philosophy, component interactions.
+        *   `developer_guides/`: How-to guides for extending and maintaining the system.
+        *   `introduction/`: High-level overview, purpose, and goals.
+        *   `reference/`: Supporting materials, including `00-full-workspace-tree.txt`.
+        *   `standards/`: Definitive documents for conventions, formats, and best practices (like this one, and `01-naming-conventions.md`).
+        *   `user_guides/`: (If applicable) Guides for end-users interacting with `roo-commander`.
 
 *   **`modes/`**
-    *   **Purpose:** This is a critical directory containing the definitions for all AI modes within the Roo Commander V8 ecosystem.
+    *   **Purpose:** Contains the definitions for all AI modes.
     *   **Structure:** Each mode has its own subdirectory named after its slug (e.g., `roo-commander/`, `manager-data-product/`, `data-product-strategist/`).
     *   **Inside each `[mode_slug]/` directory:**
-        *   `[mode_slug].mode.md`: The core definition file for the mode (TOML frontmatter for configuration, Markdown for documentation).
-        *   `kb/`: The mode's dedicated Knowledge Base, containing its operational logic, prompts, procedures, references, examples, skills, and wisdom. (See `docs/architecture/06_knowledge_base_philosophy.md` for KB structure).
-        *   `rules-[mode_slug]/` (Located at `.roo/rules-[mode_slug]/` as per our discussion, but conceptually linked here): Contains rules specific to this mode's operation.
-
-*   **`scripts/`**
-    *   **Purpose:** For utility scripts that might assist with development, maintenance, or operation of the Roo Commander system (e.g., scripts to validate TOML, generate documentation, etc.).
+        *   `[mode_slug].mode.md`: The core TOML+Markdown definition file for the mode.
+        *   `kb/`: The mode's dedicated Knowledge Base.
+            *   `README.md`: Index for the KB.
+            *   `prompts/`, `procedures/`, `reference/`, `examples/`, `skills/`, `wisdom/`: Standard subdirectories for organizing KB content. (See `[.roo/commander/docs/standards/05-kb-structuring-best-practices.md](.roo/commander/docs/standards/05-kb-structuring-best-practices.md)`).
 
 *   **`sessions/`**
-    *   **Purpose:** Stores all data related to individual work sessions initiated by `roo-commander`. This is key for traceability and context preservation.
+    *   **Purpose:** Stores all data related to individual work sessions initiated by `roo-commander`.
     *   **Structure:** Each session gets its own subdirectory: `SESSION-[Goal]-[Timestamp]/`.
     *   **Inside each session directory:**
-        *   `session_log.md`: The main log for the session.
-        *   `artifacts/`: A subdirectory containing all notes, generated design documents, and other files related to the session, organized into further subdirectories (e.g., `notes/`, `design_outputs/`, `learnings/`).
+        *   `session_log.md`: The main TOML+Markdown log for the session.
+        *   `artifacts/`: Subdirectory for all notes, design documents, and other files related to the session, organized into further standard subdirectories (e.g., `notes/`, `design_outputs/`, `learnings/`). (See `[.roo/rules/03-session-management-standard.md](.roo/rules/03-session-management-standard.md)`).
 
 *   **`tasks/`**
-    *   **Purpose:** The central repository for all Markdown-Driven Task Management (MDTM) files. These tasks define work delegated between modes.
-    *   **Structure:** May contain subdirectories to organize tasks (e.g., by project, by Manager mode, or by status).
-    *   **Naming:** `TASK-[PREFIX]-[Timestamp].md`.
+    *   **Purpose:** Central repository for all MDTM (Markdown-Driven Task Management) files.
+    *   **Structure:** May contain subdirectories to organize tasks (e.g., by project, by Manager mode `[manager_slug]/`, or by status).
+    *   **Naming:** `TASK-[PREFIX_CAPS]-[Timestamp].md`. (See `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)`).
 
 *   **`templates/`**
-    *   **Purpose:** Contains all standard TOML+Markdown templates used for creating consistent documents throughout the workspace.
+    *   **Purpose:** Contains all standard TOML+Markdown templates for creating consistent documents.
     *   **Key Subdirectories:**
-        *   `modes/`: Templates for different mode archetypes (`orchestrator`, `manager`, `squad_member`) and their KB READMEs.
-        *   `rules/`: Templates for workspace rules and mode-specific rules.
-        *   `sessions/`: Templates for session logs and various session artifact types.
+        *   `docs/`: Templates for standards documents, developer guides.
+        *   `modes/`: Templates for mode archetypes (`common/kb/`, `orchestrator/`, `manager/`, `squad/`) and their KB READMEs.
+        *   `rules/`: Templates for workspace rules and various types of mode-specific rules.
+        *   `sessions/`: Templates for session logs and session artifact types.
         *   `tasks/`: Template for the generic MDTM task file.
-        *   `design_artifacts/` (Proposed location): Templates for the specific outputs of the `data-product-*` squad (e.g., `template_product_strategy.md`).
+        *   `design_artifacts/`: Templates for specific outputs of design squads (e.g., `data_product/`).
 
-*   **`tmp/`**
-    *   **Purpose:** For temporary files generated during operations that do not need to be version controlled or persisted long-term.
-    *   *(Note: This directory was present in the tree; ensure it's in `.gitignore` if not already.)*
-
-## 3. Workspace Root (`.roo/`)
-
-*   The `.roo/` directory itself is the root of this specific "Commander" configuration.
-*   **`rules/` (within `.roo/` but outside `.roo/commander/`)**
-    *   **Purpose:** Contains **workspace-wide rules** that apply to ALL modes operating within this Roo Code environment, not just those specific to the `commander` setup. Our core standards like TOML+MD format, MDTM usage, and Session Management reside here.
-*   **`rules-[mode_slug]/` (e.g., `.roo/rules-roo-commander/`, `.roo/rules-manager-data-product/`)**
-    *   **Purpose:** Contains rules that are specific to a particular mode. This allows for mode-specific operational logic to be defined separately from its core `.mode.md` definition.
+*   **Other Potential Top-Level Directories under `.roo/commander/` (as seen in tree):**
+    *   **`archive/`**: For historical/deprecated files.
+    *   **`builds/`**: For build outputs.
+    *   **`config/`**: For global system configurations.
+    *   **`context/`**: For workspace-level shared context (not mode-specific KBs).
+    *   **`decisions/`**: For Architecture Decision Records (ADRs).
+    *   **`mcp-servers/`**: For MCP server related configurations/documentation.
+    *   **`scripts/`**: For utility scripts.
+    *   **`tmp/`**: For temporary, non-versioned files (should be in `.gitignore`).
+    *   *(The specific usage conventions for these directories should be further defined if they become actively used parts of the core workflow.)*
 
 ## 4. General Principles
 
-*   **Clarity:** Directory and file names should be descriptive and follow consistent conventions (see `docs/standards/01-naming-conventions.md`).
-*   **Modularity:** The structure is designed to support the modular "Orchestrator - Manager - Squad" architecture, with modes and their knowledge clearly encapsulated.
-*   **Discoverability:** README files within key directories serve as indexes to help navigate the structure.
+*   **Clarity & Consistency:** Directory and file names **MUST** be descriptive and follow `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)`.
+*   **Modularity:** The structure supports the "Orchestrator -> Manager -> Squad" architecture.
+*   **Discoverability:** `README.md` files within key directories (especially KBs) and this document serve as primary guides.
 
 This directory structure provides a scalable and organized foundation for Roo Commander V8 and its associated components.

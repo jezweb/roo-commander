@@ -11,8 +11,8 @@ Unlike previous iterations that might have attempted to handle diverse tasks dir
 The primary responsibilities of `roo-commander` can be broken down as follows:
 
 ### 2.1. Initial User Interaction & Goal Clarification
-*   **Greeting and Options:** `roo-commander` initiates the conversation by greeting the user and presenting a focused set of primary actions (e.g., "Start New Design/Workflow Session," "Manage Existing Sessions," "Help"). These options are defined in its Knowledge Base (KB) file: `kb/prompts/00-initial-options.md`.
-*   **Intent Understanding:** Based on the user's selection, `roo-commander` determines the high-level objective. If the user selects to start a new workflow that requires a Manager mode, `roo-commander` consults its KB (`kb/reference/00-available-managers-summary.md`) to identify which Manager is suitable.
+*   **Greeting and Options:** `roo-commander` initiates the conversation by greeting the user and presenting a focused set of primary actions (e.g., "Start New Design/Workflow Session," "Manage Existing Sessions," "Help"). These options are defined in its Knowledge Base (KB) file: `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`.
+*   **Intent Understanding:** Based on the user's selection, `roo-commander` determines the high-level objective. If the user selects to start a new workflow that requires a Manager mode, `roo-commander` consults its KB (`.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`) to identify which Manager is suitable.
 
 ### 2.2. Session Management
 `roo-commander` is the primary steward of work sessions, adhering to the workspace standard defined in `.roo/rules/03-session-management-standard.md`. This includes:
@@ -26,7 +26,7 @@ The primary responsibilities of `roo-commander` can be broken down as follows:
     *   Delegation of top-level MDTM tasks to Manager modes (including the Task ID).
     *   Creation of significant session artifacts (with their relative paths).
     *   Status updates or critical errors reported by Manager modes.
-*   **Lifecycle Management:** Handling user commands (via `kb/procedures/02-handle-session-mgmt-commands.md`) to:
+*   **Lifecycle Management:** Handling user commands (via `.roo/commander/modes/roo-commander/kb/procedures/02-handle-session-mgmt-commands.md`) to:
     *   List active/paused sessions.
     *   Resume a paused session (re-establishing context).
     *   Summarize a session (currently by pointing to its log and key artifacts).
@@ -34,7 +34,7 @@ The primary responsibilities of `roo-commander` can be broken down as follows:
 
 ### 2.3. Delegation to Manager Modes
 This is a critical function for enabling complex workflows:
-*   **Manager Identification:** Based on the user's chosen workflow (e.g., "Data Product Design PoC"), `roo-commander` identifies the appropriate Manager mode slug (e.g., `manager-data-product`) by consulting its KB (`kb/reference/00-available-managers-summary.md`).
+*   **Manager Identification:** Based on the user's chosen workflow (e.g., "Data Product Design PoC"), `roo-commander` identifies the appropriate Manager mode slug (e.g., `manager-data-product`) by consulting its KB (`.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`).
 *   **Top-Level MDTM Task Creation:** It creates a single, high-level MDTM task for the selected Manager mode. This task:
     *   Uses the standard generic task template (`.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`).
     *   Encapsulates the overall user objective for that workflow.
@@ -55,10 +55,10 @@ This is a critical function for enabling complex workflows:
 ## 3. Interaction Flow Example (Initiating Data Product Design)
 
 1.  **User:** Interacts with `@roo-commander`.
-2.  **`roo-commander`:** Presents initial options (from `kb/prompts/00-initial-options.md`).
+2.  **`roo-commander`:** Presents initial options (from `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`).
 3.  **User:** Selects "🚀 Start New Design / Workflow Session..."
-4.  **`roo-commander`:** (Following `kb/procedures/01-initiate-manager-delegation.md`)
-    *   Consults `kb/reference/00-available-managers-summary.md`.
+4.  **`roo-commander`:** (Following `.roo/commander/modes/roo-commander/kb/procedures/01-initiate-manager-delegation.md`)
+    *   Consults `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`.
     *   Presents "📊 Data Product Design PoC" (and any other available Manager workflows) as an option.
 5.  **User:** Selects "📊 Data Product Design PoC".
 6.  **`roo-commander`:**
@@ -78,7 +78,7 @@ This is a critical function for enabling complex workflows:
 
 ## 5. Limitations
 
-*   Its ability to handle diverse workflows is directly tied to the configured Manager modes listed in its `kb/reference/00-available-managers-summary.md`.
+*   Its ability to handle diverse workflows is directly tied to the configured Manager modes listed in its `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`.
 *   It does not perform deep error diagnosis within Manager-controlled workflows; it relies on Managers to report critical issues.
 
 By fulfilling these roles and responsibilities, `roo-commander` acts as a stable and predictable entry point to the more complex, domain-specific capabilities offered by the various Manager and Squad modes in the Roo Commander V8 ecosystem.

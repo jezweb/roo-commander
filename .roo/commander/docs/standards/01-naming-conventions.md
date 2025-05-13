@@ -1,119 +1,125 @@
++++
+# --- Basic Metadata ---
+id = "STANDARD-NAMING-CONVENTIONS-V2" # Updated version
+title = "Standard: Naming & Path Referencing Conventions for Roo Commander V8" # Updated title
+context_type = "standards_document"
+scope = "Defines all standard naming conventions for files, folders, TOML IDs, tags, and the mandatory convention for referencing file paths across the Roo Commander V8 workspace."
+target_audience = ["all"] # Developers, AI Modes, System Architects
+granularity = "standard"
+status = "active"
+last_updated = "{{YYYYMMDD}}"
+version = "2.0" # Incremented due to significant path referencing addition
+tags = ["standards", "conventions", "naming", "paths", "file-structure", "ids", "tags", "core"]
+related_context = [
+    ".roo/commander/docs/standards/00-directory-structure.md"
+]
+template_schema_doc = ".roo/commander/templates/docs/template_00_standard_document.README.md" # Assuming a template for standards docs
++++
+
 # Standard: Naming & Path Referencing Conventions for Roo Commander V8
 
 ## 1. Objective
 
-To establish clear, consistent, and descriptive naming and path referencing conventions for all key entities within the Roo Commander V8 workspace. This includes mode slugs, file names, TOML IDs, tags, internal document links, and other identifiable components. Adherence to these conventions is vital for maintainability, discoverability, AI parsing accuracy, and ease of understanding for both human developers and AI modes.
+To establish clear, consistent, and descriptive naming conventions for all key entities and a mandatory standard for file path referencing within the Roo Commander V8 workspace. Adherence to these conventions is vital for maintainability, discoverability, interoperability, and ease of understanding for both human developers and AI modes.
 
-## 2. Guiding Principles for Naming & Paths
+## 2. Guiding Principles for Naming
 
-*   **Clarity over Brevity (Generally):** Names and paths should be descriptive enough to convey meaning without requiring external lookup.
-*   **Consistency:** Use the same patterns and conventions across similar types of entities and references.
-*   **Avoid Ambiguous Acronyms:** Spell out terms unless an acronym is universally understood (e.g., MDTM, PoC, KB, ID, AI, API, UI, UX) and ideally listed in a project glossary if one exists. For new or internal acronyms, prefer full names initially.
-*   **Machine-Friendliness (for slugs/IDs/paths):** Use formats that are easy for systems to parse (e.g., kebab-case, snake_case, no spaces in critical identifiers or paths).
-*   **Human Readability (for titles/tags/docs):** Use formats that are easy for humans to read and understand.
-*   **Unambiguity for AI:** Structure names and paths to minimize potential misinterpretation by AI modes.
+*   **Clarity over Brevity (Generally):** Names should be descriptive enough to convey meaning without requiring external lookup.
+*   **Consistency:** Use the same patterns and conventions across similar types of entities.
+*   **Avoid Ambiguous Acronyms:** Spell out terms where possible. If an acronym is well-established and unambiguous (e.g., "MDTM", "PoC", "KB", "ID", "AI", "UX", "UI", "API", "URL", "CRUD"), it may be used. All other acronyms should be explicitly defined if their use is unavoidable. Prefer full words.
+*   **Machine-Friendliness (for slugs/IDs):** Use formats easy for systems to parse (e.g., kebab-case, no spaces).
+*   **Human Readability (for titles/tags):** Use formats easy for humans to read.
 
-## 3. Specific Naming Conventions
+## 3. Standard: File Path Referencing (CRITICAL)
 
-*(This section remains largely as we discussed before, focusing on names of entities)*
+**3.1. Mandatory Workspace-Root-Relative Paths:**
+*   All file and directory path references within TOML frontmatter (e.g., in fields like `related_context`, `template_schema_doc`, `input_artifacts`, `output_artifacts`) and within Markdown content (e.g., Markdown links `[]()`) **MUST** be specified as **workspace-root-relative paths, anchored to the `.roo/` directory.**
+*   This means paths should always begin with `.roo/`.
 
-### 3.1. Mode Slugs (Mode `id` in `.mode.md`)
+**3.2. Examples of Correct Path Referencing:**
+*   `.roo/commander/modes/manager-data-product/manager-data-product.mode.md`
+*   `.roo/rules/01-standard-toml-md-format.md`
+*   `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`
+*   `.roo/commander/sessions/SESSION-Example-20250719-100000/artifacts/notes/NOTE-MyNote-20250719-100500.md`
+
+**3.3. Forbidden Path Navigation:**
+*   Paths **MUST NOT** use relative navigation like `../` or `./` (unless `./` refers to the workspace root itself, which is less clear than starting with `.roo/`). The use of `../` is strictly forbidden in path references stored in files.
+*   The only exception for `./` is if a script or tool running *from* a specific directory needs to reference a file *within that same directory* for its immediate operation, but stored references should still prefer the `.roo/` anchor.
+
+**3.4. Rationale for Strict Path Referencing:**
+*   **Unambiguity:** Ensures a single, clear way to locate any file from any other file.
+*   **AI & Tooling Reliability:** Provides stable and easily parsable paths for AI modes and automated tools, significantly reducing errors in file resolution.
+*   **Maintainability:** If a referencing document is moved, its links to other workspace files (using `.roo/` anchored paths) remain valid. If a target document is moved, only direct references to it need updating.
+*   **Portability:** If the entire `.roo/` structure is moved to a different parent directory, internal links remain consistent.
+
+## 4. Specific Naming Conventions
+
+*(This section details conventions for different entity types, as previously drafted, ensuring all example paths now adhere to the `.roo/` anchored standard where applicable for cross-references.)*
+
+### 4.1. Mode Slugs (Mode `id` in `.mode.md`)
 *   **Format:** `kebab-case` (all lowercase, words separated by hyphens).
-*   **Content:** Clearly indicate role and primary domain.
-*   **Prefixes (Recommended):**
-    *   Orchestrator: e.g., `roo-commander`
-    *   Managers: `manager-[domain]` (e.g., `manager-data-product`)
-    *   Squad Members: `[squad_name_prefix]-[specialization]` (e.g., `data-product-strategist`)
-    *   Utility/Service: `util-[function]` or `service-[function]`
-*   **Examples:** `roo-commander`, `manager-data-product`, `data-product-strategist`
+*   **Content:** Descriptive. Prefer full words.
+*   **Prefixes (Recommended):** `manager-[domain]`, `data-product-[specialization]`, `util-[function]`.
+*   **Examples:** `roo-commander`, `manager-data-product`, `data-product-strategist`.
 
-### 3.2. Mode Definition Files
+### 4.2. Mode Definition Files
 *   **Format:** `[mode_slug].mode.md`
 *   **Location:** `.roo/commander/modes/[mode_slug]/[mode_slug].mode.md`
+*   **Example:** `.roo/commander/modes/manager-data-product/manager-data-product.mode.md`
 
-### 3.3. Mode-Specific Rule Files
-*   **Format:** `[NN]-[mode_slug_lc_parts_hyphenated]-[rule_description_kebab_case].md`
-    *   `NN`: Two-digit number for ordering (e.g., `00-`, `01-`).
-    *   `[mode_slug_lc_parts_hyphenated]`: e.g., `manager-data-product` (not an acronym).
+### 4.3. Mode-Specific Rule Files
+*   **Format:** `[NN]-[mode_slug_lc]-[rule_description].md` (e.g., `00-manager-data-product-core-principles.md`).
 *   **Location:** `.roo/rules-[mode_slug]/`
-*   **Examples:**
-    *   `.roo/rules-roo-commander/00-roo-commander-core-principles.md`
-    *   `.roo/rules-manager-data-product/01-manager-data-product-squad-orchestration.md`
+*   **Example:** `.roo/rules-manager-data-product/00-manager-data-product-core-principles.md`
 
-### 3.4. Mode Knowledge Base (KB) Files
-*   **KB Root File:** `README.md` (in `.roo/commander/modes/[mode_slug]/kb/README.md`)
+### 4.4. Mode Knowledge Base (KB) Files
+*   **KB Root File:** `README.md`
+*   **Location:** `.roo/commander/modes/[mode_slug]/kb/README.md`
 *   **KB Subdirectory Names:** `prompts/`, `procedures/`, `reference/`, `examples/`, `skills/`, `wisdom/` (all lowercase).
-*   **KB Content Files:** `[NN]-[descriptive-name-kebab-case].[ext]` (typically `.md`).
+*   **KB Content Files:** `[NN]-[descriptive-name].md` (kebab-case).
 *   **Examples:**
     *   `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`
     *   `.roo/commander/modes/manager-data-product/kb/procedures/01-main-data-product-orchestration-flow.md`
 
-### 3.5. TOML IDs (within frontmatter)
-*   **Format:** `ALL-UPPERCASE_SNAKE_CASE_OR_KEBAB-CASE-V[Version]`
-*   **Content:** Unique within its category, often prefixed by type.
-*   **Examples:** `WORKSPACE-RULE-TOML-MD-FORMAT-V1`, `MDP-RULE-SQUAD-ORCH-V1`, `KB-INDEX-ROO-COMMANDER`, `TASK-MDP-20250716-103000`.
+### 4.5. TOML IDs (within frontmatter)
+*   **Format:** `ALL-UPPERCASE_SEPARATED_BY_HYPHENS_OR_UNDERSCORES-V[Version]`
+*   **Content:** Unique within its category. Include type prefix and version.
+*   **Examples:** `WORKSPACE-RULE-NAMING-CONVENTIONS-V2`, `MDP-RULE-SQUAD-ORCH-V1`.
 
-### 3.6. File Titles (in TOML `title` field)
+### 4.6. File Titles (in TOML `title` field)
 *   **Format:** Title Case. Human-readable and descriptive.
-*   **Examples:** `"Workspace Standard: TOML+Markdown Document Format"`, `"Manager Data Product: Rule - Core Operational Principles & KB Usage"`.
+*   **Examples:** `"Standard: Naming & Path Referencing Conventions for Roo Commander V8"`.
 
-### 3.7. MDTM Task Files
+### 4.7. MDTM Task Files
 *   **Filename Format:** `TASK-[TEAM_PREFIX_CAPS]-[YYYYMMDD-HHMMSS].md`
-    *   `[TEAM_PREFIX_CAPS]`: Short, uppercase prefix for assigned mode/team (e.g., `RC`, `MDP`, `DPSTRAT`).
-*   **Location:** `.roo/commander/tasks/` (potentially within organizational subdirectories).
+*   **Location:** `.roo/commander/tasks/` (subdirectories for organization encouraged).
+*   **TOML `id`:** Matches filename core.
 
-### 3.8. Session Log Files & Directories
-*   **Directory Format:** `SESSION-[SanitizedGoal_PascalCase]-[YYYYMMDD-HHMMSS]`
-*   **Log Filename:** `session_log.md`.
+### 4.8. Session Log Files & Directories
+*   **Directory Format:** `SESSION-[SanitizedGoal]-[YYYYMMDD-HHMMSS]`
+*   **Location:** `.roo/commander/sessions/`
+*   **Log Filename:** `session_log.md` (inside session directory).
+*   **TOML `id` (in `session_log.md`):** Matches session directory name.
 
-### 3.9. Session Artifact Files
-*   **Filename Format:** `[TYPE_PREFIX_CAPS]-[Topic_PascalCase_Or_Kebab-case]-[YYMMDDHHMMSS].[ext]`
-    *   `[TYPE_PREFIX_CAPS]`: e.g., `NOTE`, `LEARNING`, `STRATEGY`.
-*   **Location:** Within `[SessionDirectory]/artifacts/[type_subdir]/`.
+### 4.9. Session Artifact Files
+*   **Filename Format:** `[TYPE_PREFIX_CAPS]-[Topic_Kebab]-[YYMMDDHHMMSS].[ext]`
+*   **Location:** Within `[SessionDirectory]/artifacts/[artifact_type_subdir]/`.
 
-### 3.10. Tags (in TOML `tags` array)
+### 4.10. Tags (in TOML `tags` array)
 *   **Format:** `kebab-case` (all lowercase).
-*   **Content:** Descriptive keywords. Include type-specific tags.
+*   **Content:** Descriptive keywords.
 
-### 3.11. Template Files
-*   **Location:** `.roo/commander/templates/` with archetype/type subdirectories.
-*   **Filename Format:** `template_[NN]_[archetype_or_type]_[description_snake_case].[ext]`
-*   **Examples:** `template_00_orchestrator_mode.mode.md`, `template_00_mdtm_task_generic.md`.
+### 4.11. Template Files
+*   **Location:** `.roo/commander/templates/` (with archetype/type subdirectories).
+*   **Filename Format:** `template_[NN]_[type]_[description].md`.
 
-## 4. Path Referencing Conventions (CRITICAL)
+## 5. Versioning of Standards & Rules
+*   Rule and Standard documents themselves **MUST** have a `version` field in their TOML frontmatter (e.g., `"1.0"`, `"1.1"`, `"2.0"`).
+*   Increment appropriately based on Semantic Versioning principles (MAJOR for breaking changes, MINOR for additions, PATCH for fixes).
+*   Update `last_updated` field with each modification.
 
-To ensure clarity, maintainability, and correct interpretation by AI modes and tools, all file path references within documents **MUST** adhere to the following:
-
-*   **4.1. Use Workspace-Root-Relative Paths:**
-    *   All file and directory paths specified within TOML frontmatter (e.g., in `related_context`, `template_schema_doc`, `input_artifacts`, `output_artifacts` arrays) and within Markdown content (e.g., in links `[]()`) **MUST** be relative to the workspace root and **MUST** start with `.roo/`.
-    *   **Correct Example:** `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`
-    *   **Correct Example:** `[Link to MDTM Standard](.roo/rules/02-mdtm-task-standard.md)`
-
-*   **4.2. Forbidden Navigation:**
-    *   Paths **MUST NOT** use `../` to navigate up the directory tree from the file containing the reference. This creates ambiguity and fragility. Always start paths from the `.roo/` root.
-    *   **Incorrect Example:** `../../templates/tasks/some_template.md` (Avoid this)
-
-*   **4.3. Exception for Internal KB Cross-References (Use with Caution):**
-    *   Within a specific mode's Knowledge Base files (i.e., files located under `.roo/commander/modes/[mode_slug]/kb/`), links to *other files within that same mode's KB* **MAY** use paths relative to that mode's KB root.
-    *   **Example (inside `.roo/commander/modes/manager-data-product/kb/README.md`):**
-        *   Permissible: `[Main Orchestration Flow](procedures/01-main-data-product-orchestration-flow.md)`
-    *   **Rationale:** The mode itself is the primary consumer and understands its own KB structure.
-    *   **Best Practice for Robustness:** Even for internal KB links, using the full workspace-root-relative path (e.g., `.roo/commander/modes/manager-data-product/kb/procedures/01-main-data-product-orchestration-flow.md`) is never wrong and is safer if these KB files might be processed by external tools or for easier human navigation when reading the raw file. **Prefer full `.roo/` anchored paths where ambiguity might arise.**
-
-*   **4.4. Verification:**
-    *   Before finalizing any document containing file paths, double-check that all paths adhere to this workspace-root-relative standard (starting with `.roo/`), especially for any paths intended for AI mode consumption.
-
-## 5. Versioning of Standards
-
-*   This Naming Conventions document (and other standards) will have a version number in its TOML `id` and `version` fields.
-*   Significant changes to conventions will result in a new version of this document.
-
-## 6. Rationale for Conventions
-
+## 6. Rationale for Naming Conventions
 Consistent naming and path referencing are crucial for:
-*   **Discoverability:** Easy location of files and understanding of their purpose.
-*   **Automation & AI Processing:** Reliable parsing and processing by AI modes and scripts.
-*   **Maintainability:** Reducing ambiguity and cognitive load for developers.
-*   **System Stability:** Minimizing errors due to incorrect path resolution or inconsistent naming.
+*   **Discoverability, Automation, Maintainability, Clarity for AI & Humans.**
 
-This standard should be applied to all new files created and used as a guideline when refactoring or interacting with existing files.
+This standard **MUST** be applied to all new files and used as a guideline when refactoring.
