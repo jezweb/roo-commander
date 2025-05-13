@@ -1,0 +1,185 @@
+
+├── README.md
+└── .roo
+    ├── commander
+    │   ├── archive
+    │   ├── builds
+    │   ├── config
+    │   ├── context
+    │   ├── decisions
+    │   ├── docs
+    │   │   ├── architecuture
+    │   │   │   ├── 01_orchestrator_role.md
+    │   │   │   ├── 02_manager_modes.md
+    │   │   │   ├── 03_squad_modes.md
+    │   │   │   ├── 04_mdtm_integration.md
+    │   │   │   ├── 05_session_management_overview.md
+    │   │   │   ├── 06_knowledge_base_philosophy.md
+    │   │   │   └── README.md
+    │   │   ├── introduction
+    │   │   │   ├── 01_purpose_and_goals.md
+    │   │   │   ├── 02_key_benefits.md
+    │   │   │   └── README.md
+    │   │   ├── README.md
+    │   │   ├── reference
+    │   │   │   └── 00-full-workspace-tree.txt
+    │   │   ├── standards
+    │   │   │   └── roo-commander-version-naming-convention.md
+    │   │   └── user_guides
+    │   │       ├── 02_managing_sessions.md
+    │   │       ├── 03_understanding_outputs_and_artifacts.md
+    │   │       ├── manager-data-product
+    │   │       │   └── 01_getting_started_with_data_product_design.md
+    │   │       └── README.md
+    │   ├── mcp-servers
+    │   ├── modes
+    │   │   ├── manager-data-product
+    │   │   │   ├── kb
+    │   │   │   │   ├── procedures
+    │   │   │   │   ├── prompts
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── reference
+    │   │   │   │   └── workflows
+    │   │   │   └── manager-data-product.mode.md
+    │   │   └── roo-commander
+    │   │       ├── kb
+    │   │       │   ├── procedures
+    │   │       │   │   └── 01-initiate-manager-delegation.md
+    │   │       │   ├── prompts
+    │   │       │   │   └── 00-initial-options.md
+    │   │       │   ├── README.md
+    │   │       │   └── reference
+    │   │       │       └── 00-available-managers-summary.md
+    │   │       └── roo-commander.mode.md
+    │   ├── scripts
+    │   ├── sessions
+    │   ├── tasks
+    │   ├── templates
+    │   │   ├── modes
+    │   │   │   ├── common
+    │   │   │   │   └── kb
+    │   │   │   │       ├── examples
+    │   │   │   │       ├── procedures
+    │   │   │   │       ├── prompts
+    │   │   │   │       ├── reference
+    │   │   │   │       ├── skills
+    │   │   │   │       ├── template_00_mode_kb_readme.md
+    │   │   │   │       ├── template_00_mode_kb_readme.README.md
+    │   │   │   │       └── wisdom
+    │   │   │   ├── manager
+    │   │   │   │   ├── kb
+    │   │   │   │   │   ├── examples
+    │   │   │   │   │   ├── procedures
+    │   │   │   │   │   ├── prompts
+    │   │   │   │   │   ├── reference
+    │   │   │   │   │   ├── skills
+    │   │   │   │   │   ├── template_01_manager_orchestration_flow.md
+    │   │   │   │   │   ├── template_01_manager_orchestration_flow.README.md
+    │   │   │   │   │   ├── template_02_manager_squad_composition.md
+    │   │   │   │   │   ├── template_02_manager_squad_composition.README.md
+    │   │   │   │   │   └── wisdom
+    │   │   │   │   ├── template_00_manager.md
+    │   │   │   │   └── template_00_manager.README.md
+    │   │   │   ├── orchestrator
+    │   │   │   │   ├── kb
+    │   │   │   │   │   ├── examples
+    │   │   │   │   │   ├── procedures
+    │   │   │   │   │   ├── prompts
+    │   │   │   │   │   ├── reference
+    │   │   │   │   │   ├── skills
+    │   │   │   │   │   └── wisdom
+    │   │   │   │   ├── template_00_orchestrator.mode.md
+    │   │   │   │   └── template_00_orchestrator.README.md
+    │   │   │   └── squad
+    │   │   │       ├── kb
+    │   │   │       │   ├── examples
+    │   │   │       │   ├── procedures
+    │   │   │       │   ├── prompts
+    │   │   │       │   ├── reference
+    │   │   │       │   ├── skills
+    │   │   │       │   └── wisdom
+    │   │   │       ├── template_00_squad.mode.md
+    │   │   │       └── template_00_squad.README.md
+    │   │   ├── rules
+    │   │   │   ├── mode_specific
+    │   │   │   │   ├── common
+    │   │   │   │   │   ├── template_00_mode_core_principles_rule.md
+    │   │   │   │   │   ├── template_00_mode_core_principles_rule.README.md
+    │   │   │   │   │   ├── template_00_mode_specific_rule.md
+    │   │   │   │   │   └── template_00_mode_specific_rule.README.md
+    │   │   │   │   ├── manager
+    │   │   │   │   │   ├── template_01_manager_squad_orchestration_rule.md
+    │   │   │   │   │   └── template_01_manager_squad_orchestration_rule.README.md
+    │   │   │   │   ├── orchestrator
+    │   │   │   │   └── squad
+    │   │   │   └── workspace
+    │   │   │       ├── template_00_workspace_rule.md
+    │   │   │       └── template_00_workspace_rule.README.md
+    │   │   ├── sessions
+    │   │   │   ├── artifacts
+    │   │   │   │   ├── blocker
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_blocker.md
+    │   │   │   │   │   └── template_00_session_blocker.README.md
+    │   │   │   │   ├── context
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_context.md
+    │   │   │   │   │   └── template_00_session_context.README.md
+    │   │   │   │   ├── deferred
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_deferred.md
+    │   │   │   │   │   └── template_00_session_deferred.README.md
+    │   │   │   │   ├── document
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_document.md
+    │   │   │   │   │   └── template_00_session_document.README.md
+    │   │   │   │   ├── environment
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_environment.md
+    │   │   │   │   │   └── template_00_session_environment.README.md
+    │   │   │   │   ├── feature
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_feature.md
+    │   │   │   │   │   └── template_00_session_feature.README.md
+    │   │   │   │   ├── feedback
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_feedback.md
+    │   │   │   │   │   └── template_00_session_feedback.README.md
+    │   │   │   │   ├── learning
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session__learning.md
+    │   │   │   │   │   └── template_00_session_learning.README.md
+    │   │   │   │   ├── note
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_note.md
+    │   │   │   │   │   └── template_00_session_note.README.md
+    │   │   │   │   ├── question
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_question.md
+    │   │   │   │   │   └── template_00_session_question.README.md
+    │   │   │   │   ├── research
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_research.md
+    │   │   │   │   │   └── template_00_session_research.README.md
+    │   │   │   │   ├── snippet
+    │   │   │   │   │   ├── README.md
+    │   │   │   │   │   ├── template_00_session_snippet.md
+    │   │   │   │   │   └── template_00_session_snippet.README.md
+    │   │   │   │   └── summary
+    │   │   │   │       ├── template_00_session_summary.md
+    │   │   │   │       └── template_00_session_summary.README.md
+    │   │   │   ├── template_00_mdtm_session_generic.md
+    │   │   │   └── template_00_mdtm_session_generic.README.md
+    │   │   └── tasks
+    │   │       ├── template_00_mdtm_task_generic.md
+    │   │       └── template_00_mdtm_task_generic.README.md
+    │   └── tmp
+    ├── rules
+    │   ├── 01-standard-toml-md-format.md
+    │   ├── 02-mdtm-task-standard.md
+    │   └── 03-session-management-standard.md
+    ├── rules-manager-product-data
+    │   ├── 00-manager-product-data-core-principles.md
+    │   └── 01-manager-data-product-squad-orchestration.md
+    └── rules-roo-commander
+        └── 99-rc-kb-lookup.md
