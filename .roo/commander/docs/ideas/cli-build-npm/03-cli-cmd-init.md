@@ -7,8 +7,8 @@ updated_date = "2025-04-24"
 version = "1.0"
 tags = ["plan", "cli", "init", "command", "boilerplate", "fs-extra"]
 related_docs = [
-    ".ruru/docs/whitepapers/cli-build-npm/00-cli-build-plan.md",
-    ".ruru/docs/whitepapers/cli-build-npm/02-cli-core-structure.md"
+    ".roo/commander/docs/ideas/cli-build-npm/00-cli-build-plan.md",
+    ".roo/commander/docs/ideas/cli-build-npm/02-cli-core-structure.md"
 ]
 objective = "Implement the logic for the `roo init` command to copy the default `.roo`/`.ruru` configuration boilerplate into the user's current working directory."
 +++

@@ -11,7 +11,7 @@ This guide is for developers and system architects who need to:
 
 All system templates are centrally located in: `.roo/commander/templates/`
 
-An overview of all available templates can be found in `[./04_template_overview.md](./04_template_overview.md)`.
+An overview of all available templates can be found in `[.roo/commander/docs/developer_guides/04_template_overview.md](.roo/commander/docs/developer_guides/04_template_overview.md)`.
 
 ## 2. Why Templates are Critical
 
@@ -26,7 +26,7 @@ An overview of all available templates can be found in `[./04_template_overview.
 When you need to create a new document that follows a standard structure (e.g., a new MDTM task, a new mode's KB README, a new skill article for a mode's KB):
 
 1.  **Identify the Correct Template:**
-    *   Consult the `[./04_template_overview.md](./04_template_overview.md)` to find the appropriate template for the type of document you need to create. This overview lists templates and their purposes.
+    *   Consult the `[.roo/commander/docs/developer_guides/04_template_overview.md](.roo/commander/docs/developer_guides/04_template_overview.md)` to find the appropriate template for the type of document you need to create. This overview lists templates and their purposes.
     *   Templates are organized into subdirectories within `.roo/commander/templates/` by category (e.g., `modes/`, `rules/`, `tasks/`, `sessions/`, `design_artifacts/`). Mode KB article templates are further organized under `modes/common/kb/`.
 2.  **Review the Template's Schema Documentation (`.README.md`):**
     *   **Crucially, every template `.md` file has an accompanying `.[template_name].README.md` file in the same directory.** This README file is the **schema documentation** for that template.
@@ -38,7 +38,7 @@ When you need to create a new document that follows a standard structure (e.g., 
     *   **Thoroughly read this README before using the template.**
 3.  **Copy and Rename the Template `.md` File:**
     *   Copy the template `.md` file (e.g., `template_00_mdtm_task_generic.md`) to the correct location in the workspace where your new document instance will reside (e.g., into `.roo/commander/tasks/` for a new task).
-    *   Rename the file according to the established naming conventions (see `[../standards/01-naming-conventions.md](../standards/01-naming-conventions.md)`).
+    *   Rename the file according to the established naming conventions (see `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)`).
 4.  **Populate the New File:**
     *   Open your newly copied and renamed file.
     *   Fill in the TOML frontmatter fields according to the schema defined in the template's README. Pay close attention to required fields and correct data types.
@@ -68,14 +68,14 @@ If the existing templates in `.roo/commander/templates/` do not adequately cover
     *   **Markdown Body:** Define the standard sections, headings, and placeholder content for the Markdown part of documents created from this template.
 4.  **Create the Schema Documentation (`.README.md` file) for the New Template:**
     *   For every new template `.md` file, you **MUST** create a corresponding `.README.md` file in the same directory (e.g., `template_my_new_type.README.md`).
-    *   **Use an existing template README as a model** (e.g., copy `template_00_workspace_rule.README.md` and adapt it).
+    *   **Use an existing template README as a model** (e.g., copy `.roo/commander/templates/rules/workspace/template_00_workspace_rule.README.md` and adapt it).
     *   This README **MUST** detail:
         *   The purpose of the new template.
         *   How to use it.
         *   A comprehensive **TOML Frontmatter Schema** section, listing every TOML field defined in your new template, its data type, purpose, if it's required/optional, and an example.
         *   An explanation of the **Markdown Body Structure**.
 5.  **Update Template Overview:**
-    *   Add your new template and a brief description to the main `[./04_template_overview.md](./04_template_overview.md)` document so others can discover and use it.
+    *   Add your new template and a brief description to the main `[.roo/commander/docs/developer_guides/04_template_overview.md](.roo/commander/docs/developer_guides/04_template_overview.md)` document so others can discover and use it.
 6.  **Review & Test:**
     *   Have the new template and its README reviewed.
     *   Create a few example instances of documents using the new template to ensure it works as expected and is easy to use.
@@ -89,6 +89,6 @@ If the existing templates in `.roo/commander/templates/` do not adequately cover
     *   Increment the `version` in the template's TOML if the change is significant.
     *   Update the `last_updated` date.
 *   **Impact Analysis:** Consider the impact of template changes on existing documents created from older versions of that template. Major structural changes might require a new version of the template rather than modifying the old one in a breaking way.
-*   **Deprecation:** If a template is no longer needed, mark its `status` as `"deprecated"` in its TOML and update the `04_template_overview.md`. Consider moving it to an `archive/` subfolder within `templates/`.
+*   **Deprecation:** If a template is no longer needed, mark its `status` as `"deprecated"` in its TOML and update the `.roo/commander/docs/developer_guides/04_template_overview.md`. Consider moving it to an `archive/` subfolder within `templates/`.
 
 Adherence to these guidelines for creating and managing templates will ensure the Roo Commander V8 system remains built on a foundation of clear, consistent, and well-documented structures.

@@ -9,14 +9,14 @@ status = "draft"
 last_updated = "2025-04-25" # Use current date
 tags = ["planning", "release-notes", "changelog", "git", "mdtm", "source-of-truth"]
 related_context = [
-    "./PLAN-RELEASE-NOTES-WHITEPAPER.md",
-    "./PLAN-RELEASE-NOTES-MCP-WORKFLOW.md",
-    "./PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md",
-    "../enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md",
-    ".roo/rules/07-git-commit-standard-simplified.md",
-    ".roo/rules/04-mdtm-workflow-initiation.md"
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md)",
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-MCP-WORKFLOW.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-MCP-WORKFLOW.md)",
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md)",
+    "[.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md](.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md)",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules/07-git-commit-standard-simplified.md",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules/04-mdtm-workflow-initiation.md"
     ]
-template_schema_doc = ".ruru/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
 +++
 
 # Planning: Release Notes Source of Truth Analysis

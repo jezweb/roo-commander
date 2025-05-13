@@ -7,12 +7,12 @@ updated_date = "2025-04-24"
 version = "1.0"
 tags = ["plan", "cli", "npm", "roocommander", "build"]
 related_docs = [
-    ".ruru/docs/whitepapers/cli-build-npm/01-cli-project-setup.md",
-    ".ruru/docs/whitepapers/cli-build-npm/02-cli-core-structure.md",
-    ".ruru/docs/whitepapers/cli-build-npm/03-cli-cmd-init.md",
-    ".ruru/docs/whitepapers/cli-build-npm/04-cli-cmd-install-mcp.md",
-    ".ruru/docs/whitepapers/cli-build-npm/05-cli-build-test.md",
-    ".ruru/docs/whitepapers/cli-build-npm/06-cli-docs-publish.md"
+    ".roo/commander/docs/ideas/cli-build-npm/01-cli-project-setup.md",
+    ".roo/commander/docs/ideas/cli-build-npm/02-cli-core-structure.md",
+    ".roo/commander/docs/ideas/cli-build-npm/03-cli-cmd-init.md",
+    ".roo/commander/docs/ideas/cli-build-npm/04-cli-cmd-install-mcp.md",
+    ".roo/commander/docs/ideas/cli-build-npm/05-cli-build-test.md",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/docs/ideas/cli-build-npm/06-cli-docs-publish.md"
 ]
 objective = "Outline the phases and sub-tasks required to develop, build, and prepare the `roocommander` CLI tool for npm publishing, using Roo Commander itself for implementation where possible."
 +++
@@ -26,22 +26,22 @@ This document outlines the high-level plan for building the `roocommander` CLI t
 **Phases:**
 
 1.  **Project Setup:** Initialize the Node.js project structure, `package.json`, TypeScript configuration, and essential directories.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/01-cli-project-setup.md`
+    *   **Details:** See `[.roo/commander/docs/ideas/cli-build-npm/01-cli-project-setup.md](.roo/commander/docs/ideas/cli-build-npm/01-cli-project-setup.md)`
 
 2.  **Core CLI Structure:** Implement the basic CLI entry point, argument parsing, and command registration framework using `commander.js`. Install core dependencies.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/02-cli-core-structure.md`
+    *   **Details:** See `[.roo/commander/docs/ideas/cli-build-npm/02-cli-core-structure.md](.roo/commander/docs/ideas/cli-build-npm/02-cli-core-structure.md)`
 
 3.  **Implement `init` Command:** Develop the logic for the `roo init` command to copy the boilerplate `.roo`/`.ruru` configuration files into a user's project.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/03-cli-cmd-init.md`
+    *   **Details:** See `[.roo/commander/docs/ideas/cli-build-npm/03-cli-cmd-init.md](.roo/commander/docs/ideas/cli-build-npm/03-cli-cmd-init.md)`
 
 4.  **Implement `install-mcp` Command:** Develop the interactive logic for installing and configuring specific MCP servers (starting with Vertex AI). This involves cloning, dependency installation, prompting, `.env` creation, and `.roo/mcp.json` modification.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/04-cli-cmd-install-mcp.md`
+    *   **Details:** See `[.roo/commander/docs/ideas/cli-build-npm/04-cli-cmd-install-mcp.md](.roo/commander/docs/ideas/cli-build-npm/04-cli-cmd-install-mcp.md)`
 
 5.  **Build & Basic Testing Setup:** Configure build scripts in `package.json` and outline the approach for future testing.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/05-cli-build-test.md`
+    *   **Details:** See `[.roo/commander/docs/ideas/cli-build-npm/05-cli-build-test.md](.roo/commander/docs/ideas/cli-build-npm/05-cli-build-test.md)`
 
 6.  **Documentation & Publishing Prep:** Create the README for the CLI tool and outline the steps required for publishing to npm.
-    *   **Details:** See `.ruru/docs/whitepapers/cli-build-npm/06-cli-docs-publish.md`
+    *   **Details:** See `BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/docs/ideas/cli-build-npm/06-cli-docs-publish.md`
 
 **Execution:**
 

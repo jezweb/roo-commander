@@ -22,7 +22,7 @@ The system revolves around a few key components, governed by the workspace stand
 
 ### 2.2. Session Log (`session_log.md`)
 *   **Location:** Directly within the Session Directory (e.g., `SESSION-DataProductPoC_Alpha-20250715-103000/session_log.md`).
-*   **Format:** A TOML+Markdown file based on `template_00_mdtm_session_generic.md`.
+*   **Format:** A TOML+Markdown file based on `.roo/commander/templates/sessions/template_00_mdtm_session_generic.md`.
 *   **Purpose:** This is the central, chronological narrative of the session. It records:
     *   **Session Metadata (TOML):** Unique `id` (SessionID), `title` (goal), `status` (Active, Paused, Completed, Error), `start_time`, `end_time`, `coordinator` mode (`roo-commander`).
     *   **Links to MDTM Tasks (TOML `related_tasks`):** IDs of top-level MDTM tasks initiated by `roo-commander` during this session (e.g., the main task assigned to a Manager mode).

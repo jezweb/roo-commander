@@ -20,7 +20,7 @@ This directory contains planning documents related to enhancing Roo Commander's 
 3.  **[PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md](./PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md)**
     *   Details the workflow for **Option B (Local Files)**.
     *   Relies on `dev-git` for `git log` and `prime-txt` for file creation.
-    *   Proposes a structure and TOML schema for a new release notes template (`.ruru/templates/toml-md/18_release_notes.md`).
+    *   Proposes a structure and TOML schema for a new release notes template (`BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/18_release_notes.md`).
     *   Outlines mode responsibilities and considerations like template finalization and file location.
 
 4.  **[PLAN-RELEASE-NOTES-SOURCE-OF-TRUTH.md](./PLAN-RELEASE-NOTES-SOURCE-OF-TRUTH.md)**
@@ -31,14 +31,14 @@ This directory contains planning documents related to enhancing Roo Commander's 
     *   Explores triggering mechanisms: Manual, Semi-Automated (within a broader workflow), Fully Automated (via CI/CD).
     *   **Recommendation:** Start with **Manual Trigger**, then integrate into a **Semi-Automated** "Prepare Release" workflow. Full automation is a long-term consideration requiring external tooling.
 
-6.  **[WF-RELEASE-NOTES-HYBRID-001.md](../../workflows/WF-RELEASE-NOTES-HYBRID-001.md)**
+6.  **[BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/workflows/WF-RELEASE-NOTES-HYBRID-001.md](../../workflows/WF-RELEASE-NOTES-HYBRID-001.md)**
     *   A draft workflow file implementing the **Hybrid Approach (Option C)** and the **Hybrid Source of Truth**.
     *   Includes steps for input validation, Git history query, commit parsing, summarization (linking MDTM tasks), local file generation, and optional GitHub Release push via MCP.
 
 ## Next Steps (Based on Planning)
 
-*   Refine the draft workflow (`WF-RELEASE-NOTES-HYBRID-001.md`).
-*   Finalize and create the release notes template (`.ruru/templates/toml-md/18_release_notes.md`).
+*   Refine the draft workflow (`BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/workflows/WF-RELEASE-NOTES-HYBRID-001.md`).
+*   Finalize and create the release notes template (`BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/18_release_notes.md`).
 *   Implement necessary Git standards (rules for commits, tags).
 *   Implement the workflow logic, potentially involving updates to `dev-git`, `agent-context-resolver`, and coordination modes, plus integration with the GitHub MCP server when available.
 

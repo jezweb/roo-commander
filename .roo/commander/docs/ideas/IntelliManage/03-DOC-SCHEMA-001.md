@@ -6,7 +6,7 @@ doc_version = "1.0"
 content_version = 1.0
 audience = ["developers", "architects", "contributors", "ai_modes"]
 last_reviewed = "2025-04-28" # Use current date
-template_schema_doc = ".ruru/templates/toml-md/09_documentation.README.md" # Assuming this is the schema doc template
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/documentation/09_documentation.README.md" # Assuming this is the schema doc template
 tags = ["intellimanage", "architecture", "schema", "toml", "specification", "artifacts", "configuration"]
 related_docs = ["DOC-ARCH-001", "DOC-FS-SPEC-001"] # Link to Architecture & File System docs
 +++
@@ -68,7 +68,7 @@ Where "Enum" is specified as a type, use one of the following standard values un
 
 ## 4. Artifact Schemas (TOML Frontmatter in `.md` Files)
 
-These schemas define the metadata expected within the `+++` block of the corresponding artifact files located in `.ruru/projects/[project_slug]/[artifact_type]/`.
+These schemas define the metadata expected within the `+++` block of the corresponding artifact files located in `.roo/commander/projects/[project_slug]/[artifact_type]/`.
 
 ### 4.1. Initiative Schema (`initiatives/*.md`)
 
@@ -164,7 +164,7 @@ feature_id = "FEAT-..."   # String, Required. ID of the parent Feature.
 
 ## 5. Configuration File Schemas (`.toml` Files)
 
-### 5.1. Workspace Configuration (`.ruru/projects/projects_config.toml` - Optional)
+### 5.1. Workspace Configuration (`.roo/commander/projects/projects_config.toml` - Optional)
 
 ```toml
 # Optional: List of project slugs managed in this workspace for discoverability.
@@ -179,7 +179,7 @@ feature_id = "FEAT-..."   # String, Required. ID of the parent Feature.
 #   priority_levels = ["P0", "P1", "P2", "P3"]
 ```
 
-### 5.2. Project Configuration (`.ruru/projects/[project_slug]/project_config.toml` - Required)
+### 5.2. Project Configuration (`.roo/commander/projects/[project_slug]/project_config.toml` - Required)
 
 ```toml
 # --- Project Configuration ---

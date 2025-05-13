@@ -45,8 +45,8 @@ The `.roo/` directory at the root of the workspace serves as the primary contain
 *   **`.roo/rules-[mode_slug]/`**
     *   **Purpose:** Contains rules that are specific to a particular AI mode. Each mode has its own such directory. These rules provide the "instant context" for a mode's core operational logic.
     *   **Examples:**
-        *   `[.roo/rules-roo-commander/](.roo/rules-roo-commander/)` (for `roo-commander` mode)
-        *   `[.roo/rules-manager-data-product/](.roo/rules-manager-data-product/)` (for `manager-data-product` mode)
+        *   `[BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules-roo-commander/](.roo/rules-roo-commander/)` (for `roo-commander` mode)
+        *   `[BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules-manager-data-product/](.roo/rules-manager-data-product/)` (for `manager-data-product` mode)
 
 *   **`.roo/commander/`**
     *   **Purpose:** The root for all components specifically related to the Roo Commander V8 system itself and its managed workflows (e.g., Data Product Design).
@@ -72,7 +72,7 @@ The `.roo/commander/` directory further organizes system components:
         *   `[mode_slug].mode.md`: The core TOML+Markdown definition file for the mode.
         *   `kb/`: The mode's dedicated Knowledge Base.
             *   `README.md`: Index for the KB.
-            *   `prompts/`, `procedures/`, `reference/`, `examples/`, `skills/`, `wisdom/`: Standard subdirectories for organizing KB content. (See `[.roo/commander/docs/standards/05-kb-structuring-best-practices.md](.roo/commander/docs/standards/05-kb-structuring-best-practices.md)`).
+            *   `prompts/`, `procedures/`, `reference/`, `examples/`, `skills/`, `wisdom/`: Standard subdirectories for organizing KB content. (See `[BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/docs/standards/05-kb-structuring-best-practices.md](.roo/commander/docs/standards/05-kb-structuring-best-practices.md)`).
 
 *   **`sessions/`**
     *   **Purpose:** Stores all data related to individual work sessions initiated by `roo-commander`.

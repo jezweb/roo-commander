@@ -9,11 +9,11 @@ status = "draft"
 last_updated = "2025-04-25" # Use current date
 tags = ["planning", "release-notes", "changelog", "trigger", "automation", "workflow"]
 related_context = [
-    "./PLAN-RELEASE-NOTES-WHITEPAPER.md",
-    "./PLAN-RELEASE-NOTES-MCP-WORKFLOW.md",
-    "./PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md"
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md)",
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-MCP-WORKFLOW.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-MCP-WORKFLOW.md)",
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-LOCAL-WORKFLOW.md)"
     ]
-template_schema_doc = ".ruru/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
 +++
 
 # Planning: Release Notes Generation Triggering Mechanisms

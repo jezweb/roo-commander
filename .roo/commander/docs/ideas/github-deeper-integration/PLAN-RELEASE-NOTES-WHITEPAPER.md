@@ -9,12 +9,12 @@ status = "draft"
 last_updated = "2025-04-25" # Use current date
 tags = ["planning", "release-notes", "changelog", "github", "automation", "workflow", "mcp", "user-feature"] # Added tag
 related_context = [
-    "../enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md",
-    "../enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md",
-    ".roo/rules/07-git-commit-standard-simplified.md",
-    "./github-official-mcp-integration.md" # Added reference to MCP doc
+    "[.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md](.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md)",
+    "[.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md](.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md)",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules/07-git-commit-standard-simplified.md",
+    "[.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md](.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md)" # Added reference to MCP doc
     ]
-template_schema_doc = ".ruru/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base for planning doc structure
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base for planning doc structure
 +++
 
 # Whitepaper: Standardized Release Notes / Changelog Generation
@@ -44,7 +44,7 @@ Currently, there is no standardized process for documenting changes (features, f
     *   Workflow definition (`.ruru/workflows/`).
     *   Enhanced Git querying (via `dev-git` or MCP).
     *   Summarization logic (potentially `agent-context-resolver` or similar).
-    *   GitHub MCP tools for release creation/updates (see `./github-official-mcp-integration.md`).
+    *   GitHub MCP tools for release creation/updates (see `[.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md](.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md)`).
     *   Standardized Git tagging rule/process.
 
 ### Option B: Local File Generation
@@ -70,14 +70,14 @@ Currently, there is no standardized process for documenting changes (features, f
 *   **Source of Truth:** Release notes should derive from a combination of Git commit messages (following Conventional Commits) and completed MDTM tasks. Need to define the merging/prioritization logic. *(User agrees with combination approach)*.
 *   **Summarization Detail:** How detailed should the automated summary be? Aim for concise yet informative (more than a sentence, less than a page per release), using good Markdown formatting (lists, links) and potentially Mermaid diagrams if applicable. Manual refinement should be minimized, perhaps tied to a confidence score based on clarity of source data (commits, tasks). Consider summarizing file changes as additional context. *(Refined based on feedback)*.
 *   **Triggering Mechanism:** How should release notes generation be triggered? Should support both manual invocation (e.g., via command/prompt) and automated triggering integrated into workflows (e.g., on tag creation, pre-release build step). *(Refined based on feedback)*.
-*   **GitHub MCP Capabilities:** Refer to the capabilities outlined in `.ruru/planning/github-deeper-integration/github-official-mcp-integration.md`. The workflow needs to utilize tools for querying commits, creating/updating releases, etc. *(Updated based on feedback)*.
+*   **GitHub MCP Capabilities:** Refer to the capabilities outlined in `.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md`. The workflow needs to utilize tools for querying commits, creating/updating releases, etc. *(Updated based on feedback)*.
 *   **Error Handling:** How to handle missing task references, non-standard commits, or MCP failures? Options include: flagging items for manual review, attempting summarization based on available data (e.g., commit message only), consulting an external model (e.g., Vertex AI MCP) for interpretation, asking the user, or improving coordinator checks on MDTM task completion status before generation. *(Expanded based on feedback)*.
 *   **Template Design:** What metadata and structure are needed for the local release notes template (Option B/C)? Research GitHub release note standards/best practices (potentially using Vertex AI MCP's `explain_topic_with_docs` or `answer_query_websearch` tools) to inform the design. *(Updated based on feedback)*.
 
 ## 5. Next Steps (Proposal)
 
 1.  Confirm Option C (Hybrid) as the target approach.
-2.  Detail the specific capabilities required from the GitHub MCP server based on `.ruru/planning/github-deeper-integration/github-official-mcp-integration.md`.
+2.  Detail the specific capabilities required from the GitHub MCP server based on `.roo/commander/docs/ideas/github-deeper-integration/github-official-mcp-integration.md`.
 3.  Draft the workflow logic for both local generation and optional GitHub push.
 4.  Define the TOML+MD template for local release notes files, incorporating research findings.
 5.  Identify and plan implementation tasks for required enhancements to existing modes (e.g., `dev-git`, context agents, coordinators).

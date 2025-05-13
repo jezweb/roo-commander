@@ -6,7 +6,7 @@ doc_version = "1.0"
 content_version = 1.0
 audience = ["developers", "architects", "contributors"]
 last_reviewed = "2025-04-28" # Use current date
-template_schema_doc = ".ruru/templates/toml-md/09_documentation.README.md"
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/documentation/09_documentation.README.md"
 tags = ["intellimanage", "architecture", "principles", "overview", "documentation"]
 related_docs = ["<path_to_whitepaper.md>"] # Link to the White Paper
 +++
@@ -44,7 +44,7 @@ graph TD
         UI[Interaction Layer (Chat, Commands, UI Views)]
         CE[Core Logic Engine]
         AIE[AI Engine]
-        FS[File System Store (.ruru/projects/)]
+        FS[File System Store (.roo/commander/projects/)]
         IL[Integration Layer (Git, GitHub)]
     end
 
@@ -75,13 +75,13 @@ graph TD
 *   **Interaction Layer:** Provides the interface (chat commands, potential future UI elements like tree views or boards) for users to manage projects.
 *   **Core Logic Engine:** The central hub responsible for parsing commands, CRUD operations on artifacts, managing state transitions, enforcing hierarchy, validating data based on schemas, and orchestrating interactions between other components.
 *   **AI Engine:** Handles AI-specific tasks like natural language understanding, artifact generation, automated linking, status inference, reporting, visualization generation, and providing guidance. It interacts with external LLM services.
-*   **File System Store:** The canonical source of truth, storing all project artifacts as TOML+MD files within the `.ruru/projects/` directory structure. Managed via Git.
+*   **File System Store:** The canonical source of truth, storing all project artifacts as TOML+MD files within the `.roo/commander/projects/` directory structure. Managed via Git.
 *   **Integration Layer:** Manages communication with external systems like Git (parsing commit messages) and GitHub (syncing issues, labels, milestones).
 
 ## 4. Key Component Details 🧩
 
 *   **File System Store:**
-    *   Located at `.ruru/projects/`.
+    *   Located at `.roo/commander/projects/`.
     *   Contains subdirectories for each project managed within the workspace.
     *   Each project directory contains standard subdirectories (e.g., `initiatives`, `epics`, `features`, `tasks`, `decisions`, `reports`).
     *   Artifacts use the TOML+MD format, adhering to defined schemas.

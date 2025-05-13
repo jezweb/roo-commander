@@ -6,7 +6,7 @@ doc_version = "1.0"
 content_version = 1.0
 audience = ["developers", "architects", "contributors", "ai_modes"]
 last_reviewed = "2025-04-28" # Use current date
-template_schema_doc = ".ruru/templates/toml-md/09_documentation.README.md" # Assuming this is the schema doc template
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/documentation/09_documentation.README.md" # Assuming this is the schema doc template
 tags = ["intellimanage", "architecture", "specification", "crud", "linking", "core-functionality", "multi-project"]
 related_docs = ["DOC-ARCH-001", "DOC-FS-SPEC-001", "DOC-SCHEMA-001"] # Link to Architecture, File System, Schema docs
 +++
@@ -31,7 +31,7 @@ These specifications guide the implementation of the **Core Logic Engine** compo
 
 All operations are performed within the context of a specific project (`[project_slug]`) identified by the Core Logic Engine.
 
-### 3.1. Initiatives (`.ruru/projects/[project_slug]/initiatives/`)
+### 3.1. Initiatives (`.roo/commander/projects/[project_slug]/initiatives/`)
 
 *   **Create (`!pm create initiative ...`)**
     *   **Trigger:** User command, AI suggestion.
@@ -69,7 +69,7 @@ All operations are performed within the context of a specific project (`[project
         3.  (Optional) Log the deletion or update related links if feasible.
     *   **Output:** Confirmation of deletion/archival.
 
-### 3.2. Epics (`.ruru/projects/[project_slug]/epics/`)
+### 3.2. Epics (`.roo/commander/projects/[project_slug]/epics/`)
 
 *   **Create (`!pm create epic ...`)**
     *   **Trigger:** User command, AI suggestion.
@@ -83,7 +83,7 @@ All operations are performed within the context of a specific project (`[project
 *   **Delete (`!pm delete epic EPIC-ID`)**
     *   **Process:** Similar to Initiative Delete. **Confirmation Required.** (Consider archival).
 
-### 3.3. Features (`.ruru/projects/[project_slug]/features/`)
+### 3.3. Features (`.roo/commander/projects/[project_slug]/features/`)
 
 *   **Create (`!pm create feature --epic EPIC-ID ...`)**
     *   **Trigger:** User command, AI suggestion.
@@ -97,7 +97,7 @@ All operations are performed within the context of a specific project (`[project
 *   **Delete (`!pm delete feature FEAT-ID`)**
     *   **Process:** Similar to Epic Delete. **Confirmation Required.** (Consider archival).
 
-### 3.4. Tasks / Stories / Bugs (`.ruru/projects/[project_slug]/tasks/`)
+### 3.4. Tasks / Stories / Bugs (`.roo/commander/projects/[project_slug]/tasks/`)
 
 *   **Create (`!pm create task --feature FEAT-ID ...`, `!pm create bug ...`)**
     *   **Trigger:** User command, AI suggestion.

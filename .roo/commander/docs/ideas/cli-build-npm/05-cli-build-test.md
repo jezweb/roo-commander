@@ -7,8 +7,8 @@ updated_date = "2025-05-03"
 version = "1.0"
 tags = ["plan", "cli", "build", "test", "jest", "typescript", "npm"]
 related_docs = [
-    ".ruru/docs/whitepapers/cli-build-npm/00-cli-build-plan.md",
-    ".ruru/docs/whitepapers/cli-build-npm/04-cli-cmd-install-mcp.md"
+    ".roo/commander/docs/ideas/cli-build-npm/00-cli-build-plan.md",
+    ".roo/commander/docs/ideas/cli-build-npm/04-cli-cmd-install-mcp.md"
 ]
 objective = "Configure build scripts in `package.json`, install basic testing dependencies (Jest), create initial test configuration, and add a placeholder test."
 +++
@@ -79,4 +79,4 @@ objective = "Configure build scripts in `package.json`, install basic testing de
     *   CWD: `cli/`
     *   Action: Execute command. Verify both build and the placeholder test pass successfully (check exit code and output). If errors occur, delegate fixes.
 
-**Completion:** Proceed to Phase 6 (`06-cli-docs-publish.md`).
+**Completion:** Proceed to Phase 6 (`BROKEN_LINK_NEEDS_MANUAL_REVIEW_06-cli-docs-publish.md`).

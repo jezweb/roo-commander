@@ -22,11 +22,11 @@ All Manager modes, regardless of their specific domain, share a common set of re
 ### 3.1. MDTM Task Ingestion and Planning
 *   **Receive Primary Task:** A Manager is activated when it receives a high-level MDTM task from `roo-commander` (or potentially another higher-level Manager in future, more complex hierarchies).
 *   **Understand Objective:** It must thoroughly analyze this primary MDTM task, including its overall goal, acceptance criteria, and any `input_artifacts`.
-*   **Consult its KB:** Crucially, a Manager consults its own Knowledge Base (KB), particularly its main orchestration procedure (e.g., `kb/procedures/01-main-orchestration-flow.md`), to determine the standard sequence of operations and the Squad members required for the given objective.
+*   **Consult its KB:** Crucially, a Manager consults its own Knowledge Base (KB), particularly its main orchestration procedure (e.g., `.roo/commander/modes/manager-data-product/kb/procedures/01-main-data-product-orchestration-flow.md`), to determine the standard sequence of operations and the Squad members required for the given objective.
 *   **Plan Sub-Tasks:** Based on its KB and the primary task, it plans a sequence of MDTM sub-tasks necessary to achieve the overall goal.
 
 ### 3.2. Squad Sub-Task Creation and Delegation
-*   **Utilize Generic Task Template:** For each step or phase in its managed workflow, the Manager creates a new, specific MDTM sub-task for the appropriate Squad Member mode using the workspace standard `template_00_mdtm_task_generic.md`.
+*   **Utilize Generic Task Template:** For each step or phase in its managed workflow, the Manager creates a new, specific MDTM sub-task for the appropriate Squad Member mode using the workspace standard `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`.
 *   **Define Sub-Task Details:** The Manager ensures each sub-task has:
     *   A clear `title`, `description`, and `acceptance_criteria`.
     *   A detailed `checklist` for the Squad Member to follow.
@@ -73,7 +73,7 @@ The `manager-data-product` is the first implemented Manager mode in Roo Commande
     *   `data-product-simdata-designer`
     *   `data-product-poc-interface-architect`
     *   `data-product-poc-documenter`
-*   **Orchestration Flow (defined in its KB: `procedures/01-main-orchestration-flow.md`):**
+*   **Orchestration Flow (defined in its KB: `.roo/commander/modes/manager-data-product/kb/procedures/01-main-data-product-orchestration-flow.md`):**
     1.  Creates and delegates an MDTM sub-task to `data-product-strategist` to define the product strategy.
     2.  Takes the output `product_strategy.md` and uses it as input for an MDTM sub-task delegated to `data-product-ideator`.
     3.  Continues this sequential delegation through each squad member, managing the flow of artifacts (strategy doc -> ideation doc -> persona docs -> data schema -> interface design).

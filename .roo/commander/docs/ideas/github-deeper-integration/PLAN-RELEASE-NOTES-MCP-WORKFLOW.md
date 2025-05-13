@@ -9,18 +9,18 @@ status = "draft"
 last_updated = "2025-04-25" # Use current date
 tags = ["planning", "release-notes", "changelog", "github", "automation", "workflow", "mcp"]
 related_context = [
-    "./PLAN-RELEASE-NOTES-WHITEPAPER.md",
-    "../enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md",
-    "../enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md",
-    ".roo/rules/07-git-commit-standard-simplified.md",
-    ".roo/rules/10-git-tagging-standard.md" # Assumes this rule will be created
+    "[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md)",
+    "[.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md](.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-OVERVIEW.md)",
+    "[.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md](.roo/commander/docs/ideas/enhanced-git-integration/CTX-GIT-INTEGRATION-IMPL-GUIDE.md)",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules/07-git-commit-standard-simplified.md",
+    "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/rules/10-git-tagging-standard.md" # Assumes this rule will be created
     ]
-template_schema_doc = ".ruru/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/toml-md/17_feature_proposal.README.md" # Using feature proposal as a base
 +++
 
 # Planning: GitHub MCP Release Notes Workflow (Option A)
 
-This document details the proposed workflow and requirements for generating release notes directly into GitHub Releases using a dedicated GitHub MCP server, as outlined in Option A of the `PLAN-RELEASE-NOTES-WHITEPAPER.md`.
+This document details the proposed workflow and requirements for generating release notes directly into GitHub Releases using a dedicated GitHub MCP server, as outlined in Option A of the `[.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md](.roo/commander/docs/ideas/github-deeper-integration/PLAN-RELEASE-NOTES-WHITEPAPER.md)`.
 
 ## 1. Workflow Overview
 

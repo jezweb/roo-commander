@@ -18,7 +18,7 @@ Each mode's KB resides in a dedicated subdirectory:
 
 Within this `kb/` directory, a standard set of subfolders is recommended to organize different types of knowledge. While not all modes will utilize every subfolder (especially simpler Squad Members), this structure provides a consistent framework:
 
-*   **`README.md` (KB Index):** The entry point to the mode's KB. It provides an overview of the KB's contents and links to key documents within the subfolders. (Template: `template_00_mode_kb_readme.md`)
+*   **`README.md` (KB Index):** The entry point to the mode's KB. It provides an overview of the KB's contents and links to key documents within the subfolders. (Template: `.roo/commander/templates/modes/common/kb/template_00_mode_kb_readme.md`)
 *   **`prompts/`:** Stores structured text for dynamic prompts the mode uses, especially for `ask_followup_question` interactions.
 *   **`procedures/`:** Contains detailed, step-by-step operational logic and workflows specific to how the mode executes its core functions.
 *   **`reference/`:** Holds lists, mappings, summaries of external information, or pointers to data the mode needs to consult.

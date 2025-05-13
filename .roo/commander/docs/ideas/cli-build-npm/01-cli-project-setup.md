@@ -6,7 +6,7 @@ created_date = "2025-04-24"
 updated_date = "2025-04-24"
 version = "1.0"
 tags = ["plan", "cli", "setup", "npm", "typescript"]
-related_docs = [".ruru/docs/whitepapers/cli-build-npm/00-cli-build-plan.md"]
+related_docs = [".roo/commander/docs/ideas/cli-build-npm/00-cli-build-plan.md"]
 objective = "Initialize the basic Node.js project structure, package.json, and TypeScript configuration for the `roocommander` CLI tool."
 +++
 

@@ -22,7 +22,7 @@ MDTM is utilized at each level of delegation:
 
 1.  **Trigger:** The user expresses a high-level goal that maps to a workflow managed by a specific Manager mode (e.g., "Design a Data Product PoC" -> `manager-data-product`).
 2.  **Task Creation by Orchestrator:**
-    *   `roo-commander` creates a **top-level MDTM task** using `template_00_mdtm_task_generic.md`.
+    *   `roo-commander` creates a **top-level MDTM task** using `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`.
     *   **`title`**: Describes the overall user objective (e.g., "Orchestrate: Design Data Product PoC for Project Alpha - Session: SESSION-XYZ").
     *   **`assigned_to`**: The slug of the target Manager mode (e.g., `manager-data-product`).
     *   **`coordinator`**: `"roo-commander"`.
@@ -36,7 +36,7 @@ MDTM is utilized at each level of delegation:
 
 1.  **Trigger:** The Manager mode, processing its own primary MDTM task, determines that a specific phase of its workflow needs to be executed by a Squad Member.
 2.  **Sub-Task Creation by Manager:**
-    *   The Manager mode creates one or more **MDTM sub-tasks** for its Squad Members, again using `template_00_mdtm_task_generic.md`.
+    *   The Manager mode creates one or more **MDTM sub-tasks** for its Squad Members, again using `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`.
     *   **`title`**: Describes the specific goal for the Squad Member (e.g., "Define Product Strategy for Project Alpha PoC").
     *   **`assigned_to`**: The slug of the target Squad Member mode (e.g., `data-product-strategist`).
     *   **`coordinator`**: The Manager mode's *own primary MDTM Task ID*. This links the sub-task back to the Manager's overall objective.

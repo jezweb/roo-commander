@@ -7,8 +7,8 @@ updated_date = "2025-05-03"
 version = "1.0"
 tags = ["plan", "cli", "install-mcp", "command", "mcp", "git", "npm", "env", "json"]
 related_docs = [
-    ".ruru/docs/whitepapers/cli-build-npm/00-cli-build-plan.md",
-    ".ruru/docs/whitepapers/cli-build-npm/03-cli-cmd-init.md"
+    ".roo/commander/docs/ideas/cli-build-npm/00-cli-build-plan.md",
+    ".roo/commander/docs/ideas/cli-build-npm/03-cli-cmd-init.md"
 ]
 objective = "Implement the logic for the `roo install-mcp <server-name>` command. This involves cloning the server repository, installing dependencies, prompting for configuration, creating `.env` files, and updating the user's `.roo/mcp.json`."
 +++

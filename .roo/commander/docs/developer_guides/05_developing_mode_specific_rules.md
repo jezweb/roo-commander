@@ -7,8 +7,8 @@ This guide is for developers creating or maintaining AI modes within the Roo Com
 Mode-Specific Rules reside in a dedicated directory for each mode (e.g., `.roo/rules-roo-commander/`, `.roo/rules-manager-data-product/`) and provide the "instant context" that shapes a mode's behavior when it's activated.
 
 **Prerequisites:**
-*   Understanding of Workspace Rules (see `[../standards/README.md](../standards/README.md)` for an index).
-*   Familiarity with the TOML+Markdown format (`[../standards/02-toml-md-document-format.md](../standards/02-toml-md-document-format.md)`).
+*   Understanding of Workspace Rules (see `BROKEN_LINK_NEEDS_MANUAL_REVIEW_[../standards/README.md](../standards/README.md)` for an index).
+*   Familiarity with the TOML+Markdown format (`[.roo/commander/docs/standards/02-toml-md-document-format.md](.roo/commander/docs/standards/02-toml-md-document-format.md)`).
 *   Knowledge of the mode archetype (Orchestrator, Manager, Squad Member) for which you are developing rules.
 
 ## 2. Purpose of Mode-Specific Rules
@@ -29,7 +29,7 @@ While a mode's `.mode.md` file defines its identity, system prompt, and metadata
     *   `[mode_slug_prefix]`: A short, lowercase prefix for the mode (e.g., `rc-` for `roo-commander`, `mdp-` for `manager-data-product`).
     *   `[description]`: Kebab-case description of the rule's content.
     *   **Example:** `00-mdp-core-principles.md`, `01-mdp-squad-orchestration.md`.
-    *   Refer to `[../standards/01-naming-conventions.md](../standards/01-naming-conventions.md)` for full details.
+    *   Refer to `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)` for full details.
 
 ## 4. Key Rule Templates
 
@@ -38,22 +38,22 @@ The following templates, located in `.roo/commander/templates/rules/`, should be
 *   **`template_00_mode_core_principles_rule.md`**:
     *   **Purpose:** **MANDATORY for EVERY mode.** Used to create the `00-[mode_slug]-core-principles.md` file.
     *   **Content:** Defines the mode's fundamental operational tenets AND how it consults and utilizes its own Knowledge Base (KB). This single rule replaces the need for a separate KB lookup rule file per mode.
-    *   **Schema Doc:** `template_00_mode_core_principles_rule.README.md`
+    *   **Schema Doc:** `.roo/commander/templates/rules/mode_specific/common/template_00_mode_core_principles_rule.README.md`
 
 *   **`template_01_manager_squad_orchestration_rule.md`**:
     *   **Purpose:** **MANDATORY for Manager archetype modes.** Used to create the `01-[manager_slug]-squad-orchestration.md` file.
     *   **Content:** Defines the generic procedure for how a Manager mode orchestrates its specialist squad using MDTM sub-tasks, relying on its KB for the specific sequence and details.
-    *   **Schema Doc:** `template_01_manager_squad_orchestration_rule.README.md`
+    *   **Schema Doc:** `.roo/commander/templates/rules/mode_specific/manager/template_01_manager_squad_orchestration_rule.README.md`
 
 *   **`template_00_mode_specific_rule.md`** (Generic template for *other* rules):
     *   **Purpose:** A generic template for any *additional* operational rules a mode might need beyond its core principles or standard archetype-specific rules (like squad orchestration for Managers). Use this if a mode has other complex, distinct procedures that warrant their own rule file.
-    *   **Schema Doc:** `template_00_mode_specific_rule.README.md`
+    *   **Schema Doc:** `.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.README.md`
 
 ## 5. Developing the `00-[mode_slug]-core-principles.md` Rule
 
 This is the most important rule file for any mode.
 
-1.  **Copy Template:** Start with `template_00_mode_core_principles_rule.md`.
+1.  **Copy Template:** Start with `.roo/commander/templates/rules/mode_specific/common/template_00_mode_core_principles_rule.md`.
 2.  **Rename:** Save as `00-[mode_slug]-core-principles.md` in the mode's `rules-[mode_slug]/` directory.
 3.  **Populate TOML:**
     *   `id`: e.g., `[MODE_SLUG_UPPERCASE]-RULE-CORE-PRINCIPLES-V1`
@@ -61,7 +61,7 @@ This is the most important rule file for any mode.
     *   `target_audience`: `["[mode_slug]"]`
     *   `tags`: Include `"[mode_slug_tag]"`, `"core-principles"`, `"kb-lookup"`, and its archetype (e.g., `"manager"`, `"squad-member"`).
     *   `related_context`: Link to its `.mode.md` file and its KB `README.md`. Also link to key workspace rules it must adhere to (e.g., MDTM standard, Session Management standard).
-    *   `template_schema_doc`: `".roo/commander/templates/rules/template_00_mode_core_principles_rule.README.md"`
+    *   `template_schema_doc`: `".roo/commander/templates/rules/mode_specific/common/template_00_mode_core_principles_rule.README.md"`
 4.  **Customize Markdown Body:**
     *   **Section 3 (Core Operational Principles):** This is where you define 3-7 critical, high-level principles specific to *this mode's role and responsibilities*. These should be derived from its system prompt in its `.mode.md` file.
         *   *Example for a Squad Member:* Focus on MDTM task adherence, primary artifact delivery, quality of output, communication with its Manager.
@@ -72,8 +72,8 @@ This is the most important rule file for any mode.
 
 1.  **Identify Need:** Determine if the mode requires procedural logic complex enough to warrant its own rule file beyond the core principles. For Manager modes, the squad orchestration logic is a prime candidate.
 2.  **Select Template:**
-    *   For Manager squad orchestration: Use `template_01_manager_squad_orchestration_rule.md`.
-    *   For other unique procedures: Use the generic `template_00_mode_specific_rule.md`.
+    *   For Manager squad orchestration: Use `.roo/commander/templates/rules/mode_specific/manager/template_01_manager_squad_orchestration_rule.md`.
+    *   For other unique procedures: Use the generic `.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.md`.
 3.  **Rename & Populate:** Follow similar steps as for the core principles rule, ensuring TOML fields and Markdown content are specific to the rule's purpose for that mode.
     *   The `01-[manager_slug]-squad-orchestration.md` rule, for instance, will detail the generic *process* of a manager using its KB to plan, create MDTM sub-tasks, delegate, monitor, and report, while its KB procedure (`kb/procedures/01-main-...-orchestration-flow.md`) contains the *specific sequence* for its domain.
 

@@ -9,9 +9,9 @@ Examples of Manager modes include `manager-data-product` (for designing Data Pro
 By following this guide, you can create new Manager modes that integrate seamlessly into the Roo Commander V8 architecture, adhering to established standards for definition, knowledge base structure, and interaction patterns.
 
 **Prerequisites:**
-*   Familiarity with the overall Roo Commander V8 architecture, particularly the roles of Orchestrators, Managers, and Squads. (See `[../../architecture/README.md](../../architecture/README.md)`)
-*   Understanding of the TOML+Markdown format used for mode definitions and other artifacts. (See `[../../standards/02-toml-md-document-format.md](../../standards/02-toml-md-document-format.md)`)
-*   Knowledge of the MDTM task standard. (See `[../../standards/03-mdtm-task-files.md](../../standards/03-mdtm-task-files.md)`)
+*   Familiarity with the overall Roo Commander V8 architecture, particularly the roles of Orchestrators, Managers, and Squads. (See `[.roo/commander/docs/architecuture/README.md](.roo/commander/docs/architecuture/README.md)`)
+*   Understanding of the TOML+Markdown format used for mode definitions and other artifacts. (See `[.roo/commander/docs/standards/02-toml-md-document-format.md](.roo/commander/docs/standards/02-toml-md-document-format.md)`)
+*   Knowledge of the MDTM task standard. (See `[.roo/commander/docs/standards/03-mdtm-task-files.md](.roo/commander/docs/standards/03-mdtm-task-files.md)`)
 
 ## 2. Design Principles for Manager Modes
 
@@ -37,7 +37,7 @@ Let's assume you are creating a new Manager mode with the slug `manager-new-doma
 ### Step 3.2: Define the Mode (`.mode.md` file)
 
 1.  **Copy the Manager Template:**
-    *   Copy `[.roo/commander/templates/modes/template_00_mode_manager.mode.md](../../templates/modes/template_00_mode_manager.mode.md)`
+    *   Copy `[.roo/commander/templates/modes/manager/template_00_manager.md](.roo/commander/templates/modes/manager/template_00_manager.md)`
     *   To: `.roo/commander/modes/manager-new-domain/manager-new-domain.mode.md`
 2.  **Populate TOML Frontmatter:** Open `manager-new-domain.mode.md` and carefully fill in the TOML fields:
     *   `id`: `"manager-new-domain"` (must match slug)
@@ -63,15 +63,15 @@ Let's assume you are creating a new Manager mode with the slug `manager-new-doma
 ### Step 3.3: Create Mode-Specific Rules
 
 1.  **KB Lookup Rule (Mandatory):**
-    *   Copy `[.roo/commander/templates/rules/template_00_mode_kb_lookup_rule.md](../../templates/rules/template_00_mode_kb_lookup_rule.md)`
+    *   Copy `BROKEN_LINK_NEEDS_MANUAL_REVIEW_[.roo/commander/templates/rules/template_00_mode_kb_lookup_rule.md](../../templates/rules/template_00_mode_kb_lookup_rule.md)`
     *   To: `.roo/commander/modes/manager-new-domain/rules-manager-new-domain/99-mnd-kb-lookup.md` (using a short prefix like `mnd` for "manager-new-domain").
     *   Edit this file, replacing placeholders like `[Mode Name]`, `[mode_slug]`, and ensuring `target_audience` is `["manager-new-domain"]`. The core logic of the KB lookup rule template should generally suffice.
 2.  **Core Principles Rule (Recommended):**
-    *   Copy `[.roo/commander/templates/rules/template_00_mode_specific_rule.md](../../templates/rules/template_00_mode_specific_rule.md)`
+    *   Copy `[.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.md](.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.md)`
     *   To: `.roo/commander/modes/manager-new-domain/rules-manager-new-domain/00-mnd-core-principles.md`.
     *   Edit this to define any core operational principles specific to this Manager (e.g., how it prioritizes sub-tasks, its error handling philosophy within its squad).
 3.  **Main Orchestration Logic Rule (Crucial):**
-    *   Copy `[.roo/commander/templates/rules/template_00_mode_specific_rule.md](../../templates/rules/template_00_mode_specific_rule.md)`
+    *   Copy `[.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.md](.roo/commander/templates/rules/mode_specific/common/template_00_mode_specific_rule.md)`
     *   To: `.roo/commander/modes/manager-new-domain/rules-manager-new-domain/01-mnd-squad-orchestration.md`.
     *   **This rule is vital.** It will instruct the Manager mode to consult and follow its primary KB procedure for orchestrating its squad.
     *   **Content Example for `01-mnd-squad-orchestration.md`:**
@@ -83,7 +83,7 @@ Let's assume you are creating a new Manager mode with the slug `manager-new-doma
 This is where the Manager's unique orchestration logic is defined. Create the following in `.roo/commander/modes/manager-new-domain/kb/`:
 
 1.  **`README.md` (KB Index - Mandatory):**
-    *   Use `[.roo/commander/templates/modes/kb/template_00_mode_kb_readme.md](../../templates/modes/kb/template_00_mode_kb_readme.md)` as a basis.
+    *   Use `[.roo/commander/templates/modes/common/kb/template_00_mode_kb_readme.md](.roo/commander/templates/modes/common/kb/template_00_mode_kb_readme.md)` as a basis.
     *   Customize it for `manager-new-domain`. It **must** link to `procedures/01-main-orchestration-flow.md` and `reference/00-squad-composition.md`.
 2.  **`procedures/01-main-orchestration-flow.md` (MANDATORY):**
     *   **This is the heart of your Manager mode.**
@@ -101,7 +101,7 @@ This is where the Manager's unique orchestration logic is defined. Create the fo
 3.  **`reference/00-squad-composition.md` (MANDATORY):**
     *   List the mode slugs, names, and primary roles/outputs of each Squad Member mode that this Manager directs.
 4.  **Optional KB Subdirectories (`examples/`, `skills/`, `wisdom/`, `prompts/`):**
-    *   Populate these as needed, following the guidelines in `[../../standards/05-kb-structuring-best-practices.md](../../standards/05-kb-structuring-best-practices.md)`.
+    *   Populate these as needed, following the guidelines in `[.roo/commander/docs/standards/05-kb-structuring-best-practices.md](.roo/commander/docs/standards/05-kb-structuring-best-practices.md)`.
     *   `examples/` is highly recommended to show a sample input MDTM task it expects and a sample sub-task it creates.
 
 ### Step 3.5: Update Orchestrator (`roo-commander`) Awareness

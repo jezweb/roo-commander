@@ -10,7 +10,7 @@ In the Roo Commander V8 ecosystem, many important files like tasks, session logs
 **Why this format?**
 It gives us the best of both worlds: data that AI modes and tools can easily understand and process (the TOML part), and rich, formatted text that humans can easily read and write (the Markdown part).
 
-This standard is formally defined in the workspace rule: `[.roo/rules/01-standard-toml-md-format.md](.././/rules/01-standard-toml-md-format.md)`. This guide provides a more user-friendly explanation.
+This standard is formally defined in the workspace rule: `[.roo/rules/01-standard-toml-md-format.md](.roo/rules/01-standard-toml-md-format.md)`. This guide provides a more user-friendly explanation.
 
 ## 2. The Basic Structure: `+++` is Key!
 

@@ -57,4 +57,4 @@ This serves as a blueprint and a demonstration of how other complex workflows ca
 *   Progress and tasks are tracked using **MDTM files** stored in `.roo/commander/tasks/`.
 *   All session-related notes, key outputs, and logs are stored in `.roo/commander/sessions/[SESSION_ID]/`.
 
-This overview provides the foundational understanding of Roo Commander V8. For more detailed information, please refer to the specific sections within this documentation, particularly the [System Architecture](./../architecture/README.md) documents.
+This overview provides the foundational understanding of Roo Commander V8. For more detailed information, please refer to the specific sections within this documentation, particularly the [System Architecture]([.roo/commander/docs/architecture/README.md](.roo/commander/docs/architecture/README.md)) documents.

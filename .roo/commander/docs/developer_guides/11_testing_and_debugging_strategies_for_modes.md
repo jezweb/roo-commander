@@ -13,7 +13,7 @@ This guide provides strategies and best practices for:
 **Prerequisites:**
 *   A working Roo Code development environment.
 *   Deep understanding of the mode being tested, its `.mode.md` definition, its specific rules (`rules-[mode_slug]/`), and its KB content (`kb/`).
-*   Familiarity with MDTM task structure (`[../standards/03-mdtm-task-files.md](../standards/03-mdtm-task-files.md)`) and Session Logs (`[../standards/04-session-logs-and-artifacts.md](../standards/04-session-logs-and-artifacts.md)`).
+*   Familiarity with MDTM task structure (`[.roo/commander/docs/standards/03-mdtm-task-files.md](.roo/commander/docs/standards/03-mdtm-task-files.md)`) and Session Logs (`[.roo/commander/docs/standards/04-session-logs-and-artifacts.md](.roo/commander/docs/standards/04-session-logs-and-artifacts.md)`).
 
 ## 2. General Testing Principles
 
@@ -30,7 +30,7 @@ This guide provides strategies and best practices for:
 Squad Member modes are the easiest to test in isolation as they have a very defined input (an MDTM task) and expected outputs.
 
 1.  **Prepare a Test MDTM Task:**
-    *   Manually create an MDTM task file (using `template_00_mdtm_task_generic.md`) that simulates what its Manager would assign.
+    *   Manually create an MDTM task file (using `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`) that simulates what its Manager would assign.
     *   **Key considerations for the test task:**
         *   Set `assigned_to` to your Squad Member's slug.
         *   Set `coordinator` to a test/dummy value (e.g., "test-harness-manual").
@@ -82,7 +82,7 @@ Testing `roo-commander` focuses on its initial interaction, session management, 
 
 1.  **Test Initial Prompts:**
     *   Start a new conversation with `@roo-commander`.
-    *   Does it present the correct initial options based on its `kb/prompts/00-initial-options.md`?
+    *   Does it present the correct initial options based on its `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`?
 2.  **Test Session Management Workflow:**
     *   Select the "Manage Sessions" option.
     *   Test each sub-option (Start New, List, Resume, Summarize, End) by following the prompts.
@@ -93,7 +93,7 @@ Testing `roo-commander` focuses on its initial interaction, session management, 
         *   Session log entries are made by `roo-commander`.
 3.  **Test Manager Delegation Workflow:**
     *   Select the option to start a new managed workflow (e.g., "Start Data Product Design Session").
-    *   If multiple Managers are configured in `kb/reference/00-available-managers-summary.md`, does it correctly prompt you to choose one?
+    *   If multiple Managers are configured in `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`, does it correctly prompt you to choose one?
     *   Verify:
         *   It initiates a session if one isn't active (or confirms using the current one).
         *   It creates a top-level MDTM task for the correct Manager mode in `.roo/commander/tasks/`.

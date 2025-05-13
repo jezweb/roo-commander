@@ -16,7 +16,7 @@ related_context = [
     ".roo/rules/", # Location of workspace rules
     ".roo/commander/docs/standards/" # Location of standards documents
 ]
-template_schema_doc = ".roo/commander/templates/docs/template_00_developer_guide.README.md" # Assuming a template for dev guides
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/docs/template_00_developer_guide.README.md" # Assuming a template for dev guides
 # --- Document Specific Fields ---
 # review_cycle = "As needed, or annually"
 # approval_process = "Review by core architecture team"
@@ -58,7 +58,7 @@ Workspace rules define mandatory operational behaviors for all modes. Changes to
     *   Discuss this proposal with the core development/architecture team for review and approval before implementation.
 3.  **Drafting/Editing the Rule File:**
     *   **Creating a New Rule:**
-        *   Use the `[.roo/commander/templates/rules/template_00_workspace_rule.md](.roo/commander/templates/rules/template_00_workspace_rule.md)` as the basis.
+        *   Use the `[.roo/commander/templates/rules/workspace/template_00_workspace_rule.md](.roo/commander/templates/rules/workspace/template_00_workspace_rule.md)` as the basis.
         *   Assign a new sequential number and a descriptive name following conventions in `[.roo/commander/docs/standards/01-naming-conventions.md](.roo/commander/docs/standards/01-naming-conventions.md)` (e.g., `04-new-workspace-standard.md`).
         *   Carefully define the rule's `id`, `title`, `scope`, `target_audience`, `granularity`, `tags`, and the rule definition itself. Ensure all path references are workspace-root-relative (e.g., starting with `.roo/`).
     *   **Modifying an Existing Rule:**
@@ -78,7 +78,7 @@ Workspace rules define mandatory operational behaviors for all modes. Changes to
     *   If possible, conduct tests to verify that modes still behave as expected or correctly adopt the new rule.
 7.  **Communication & Documentation:**
     *   Clearly announce significant rule changes to all developers and stakeholders.
-    *   Update any overarching system documentation (e.g., the main project `README.md`, architectural overviews in `[.roo/commander/docs/architecture/](.roo/commander/docs/architecture/)`) if they are affected by the rule change.
+    *   Update any overarching system documentation (e.g., the main project `README.md`, architectural overviews in `[.roo/commander/docs/architecuture/](.roo/commander/docs/architecuture/)`) if they are affected by the rule change.
 8.  **Version Control:** Commit changes with clear, detailed messages explaining the purpose and scope of the rule update. Reference the proposal/ADR if one was created.
 
 ## 4. Process for Updating Standards Documents (in `[.roo/commander/docs/standards/](.roo/commander/docs/standards/)`)

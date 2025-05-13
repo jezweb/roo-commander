@@ -32,7 +32,7 @@ All Squad Member modes, despite their varied specializations, share a common set
 ### 3.2. Specialized Task Execution
 *   **Follow Checklist:** Methodically execute the steps outlined in its MDTM task's `checklist`.
 *   **Apply Expertise:** Utilize its specialized knowledge (potentially guided by its own minimal KB, particularly `skills/` or `wisdom/` sections if developed) to perform its designated function (e.g., strategic analysis, persona development, data modeling).
-*   **Create Primary Output Artifact:** Generate its primary deliverable, which is typically a structured TOML+Markdown document using a predefined template (e.g., `data-product-strategist` uses `template_product_strategy.md`). This artifact is saved to a designated location within the active session's `artifacts/` directory (e.g., `artifacts/design_outputs/[ProductName]/[artifact_name].md`), as specified or implied by its MDTM task.
+*   **Create Primary Output Artifact:** Generate its primary deliverable, which is typically a structured TOML+Markdown document using a predefined template (e.g., `data-product-strategist` uses `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_product_strategy.md`). This artifact is saved to a designated location within the active session's `artifacts/` directory (e.g., `artifacts/design_outputs/[ProductName]/[artifact_name].md`), as specified or implied by its MDTM task.
 
 ### 3.3. MDTM Task File Updates (Mandatory)
 As a Squad Member works on its assigned MDTM task, it **MUST** continuously update its task file:
@@ -55,32 +55,32 @@ The `manager-data-product` directs a squad of specialist modes to execute the Da
 *   **`data-product-strategist`:**
     *   **Receives:** MDTM task from `manager-data-product` with the high-level PoC goal.
     *   **Executes:** Collaborates (conceptually, or via prompts if user interaction is funneled through it) to define vision, objectives, target audience.
-    *   **Produces:** `product_strategy.md` (using `template_product_strategy.md`).
+    *   **Produces:** `product_strategy.md` (using `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_product_strategy.md`).
     *   **Updates MDTM Task:** Logs progress, links output, sets status to "Done".
 *   **`data-product-ideator`:**
     *   **Receives:** MDTM task with `product_strategy.md` as input.
     *   **Executes:** Brainstorms PoC features, defines scope, outlines initial data needs.
-    *   **Produces:** `poc_ideation.md` (using `template_poc_ideation.md`).
+    *   **Produces:** `poc_ideation.md` (using `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_poc_ideation.md`).
     *   **Updates MDTM Task.**
 *   **`data-product-ux-persona-architect`:**
     *   **Receives:** MDTM task with `poc_ideation.md` as input.
     *   **Executes:** Develops detailed user personas.
-    *   **Produces:** One or more `user_persona_[name].md` files (using `template_user_persona.md`).
+    *   **Produces:** One or more `user_persona_[name].md` files (using `.roo/commander/modes/data-product-ux-persona-architect/kb/reference/01-template_user_persona.md`).
     *   **Updates MDTM Task.**
 *   **`data-product-simdata-designer`:**
     *   **Receives:** MDTM task with `poc_ideation.md` and persona documents as input.
     *   **Executes:** Defines data schema, describes/generates simulated data.
-    *   **Produces:** `simulated_data_schema.md` (using `template_simulated_data_schema.md`) and the associated data file (e.g., `.csv`).
+    *   **Produces:** `simulated_data_schema.md` (using `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_simulated_data_schema.md`) and the associated data file (e.g., `.csv`).
     *   **Updates MDTM Task.**
 *   **`data-product-poc-interface-architect`:**
     *   **Receives:** MDTM task with personas and data schema/sample data as input.
     *   **Executes:** Designs conceptual UI/UX for the PoC.
-    *   **Produces:** `poc_interface_design.md` (using `template_poc_interface_design.md`).
+    *   **Produces:** `poc_interface_design.md` (using `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_poc_interface_design.md`).
     *   **Updates MDTM Task.**
 *   **`data-product-poc-documenter`:**
     *   **Receives:** MDTM task with ALL previous artifacts as input.
     *   **Executes:** Consolidates inputs into the final PoC plan.
-    *   **Produces:** `data_product_poc_plan.md` (using `template_data_product_poc_plan.md`).
+    *   **Produces:** `data_product_poc_plan.md` (using `BROKEN_LINK_NEEDS_MANUAL_REVIEW_template_data_product_poc_plan.md`).
     *   **Updates MDTM Task.**
 
 This sequential execution, managed by `manager-data-product`, ensures each specialist contributes its expertise to build a comprehensive final deliverable.

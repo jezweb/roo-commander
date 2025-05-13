@@ -6,7 +6,7 @@ doc_version = "1.0"
 content_version = 1.0
 audience = ["developers", "architects", "contributors", "ai_modes"]
 last_reviewed = "2025-04-28" # Use current date
-template_schema_doc = ".ruru/templates/toml-md/09_documentation.README.md"
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/documentation/09_documentation.README.md"
 tags = ["intellimanage", "architecture", "file-system", "specification", "structure", "naming-convention", "multi-project"]
 related_docs = ["DOC-ARCH-001"] # Link to the Architecture document
 +++
@@ -15,38 +15,39 @@ related_docs = ["DOC-ARCH-001"] # Link to the Architecture document
 
 ## 1. Introduction / Overview 🎯
 
-This document specifies the standard file system structure and naming conventions for the **IntelliManage** project management framework. Adherence to this structure is crucial for ensuring consistency, enabling automated tooling (including AI agents), facilitating navigation, and supporting multi-project workspaces within the `.ruru/` directory.
+This document specifies the standard file system structure and naming conventions for the **IntelliManage** project management framework. Adherence to this structure is crucial for ensuring consistency, enabling automated tooling (including AI agents), facilitating navigation, and supporting multi-project workspaces within the `.roo/commander/` directory.
 
 This specification details the organization of project artifacts (Initiatives, Epics, Features, Tasks, etc.), configuration files, and supporting documents.
 
 ## 2. Core Principles 💡
 
-*   **Centralized Location:** All IntelliManage artifacts reside within a dedicated `.ruru/projects/` directory at the workspace root.
+*   **Centralized Location:** All IntelliManage artifacts reside within a dedicated `.roo/commander/projects/` directory at the workspace root.
 *   **Multi-Project Support:** The structure explicitly supports managing multiple distinct projects within a single workspace.
 *   **Hierarchical Organization:** Directory structure mirrors the conceptual hierarchy of work items (Initiative -> Epic -> Feature -> Task).
 *   **Discoverability:** Consistent naming conventions make it easy for both humans and AI to locate specific artifacts.
 *   **Version Controlled:** The entire structure lives within the project's Git repository.
-*   **Separation of Concerns:** Project management artifacts are kept separate from source code (`src/`), Roo mode configurations (`.ruru/modes/`, `.roo/`), and general documentation (`docs/`).
+*   **Separation of Concerns:** Project management artifacts are kept separate from source code (`src/`), Roo mode configurations (`.roo/commander/modes/`, `.roo/`), and general documentation (`docs/`).
 
-## 3. Workspace Root Structure (`.ruru/projects/`) 🌳
+## 3. Workspace Root Structure (`.roo/commander/projects/`) 🌳
 
-The primary IntelliManage directory resides within the `.ruru` folder at the workspace root.
+The primary IntelliManage directory resides within the `.roo/commander` folder at the workspace root.
 
 ```
 WORKSPACE_ROOT/
-├── .ruru/
-│   ├── projects/             # 👈 **Main IntelliManage Directory**
-│   │   ├── projects_config.toml # Optional: Workspace-level config (lists projects)
-│   │   ├── [project_slug_1]/   # 👈 Project 1 Directory
-│   │   │   └── ... (See Project Directory Structure below)
-│   │   ├── [project_slug_2]/   # 👈 Project 2 Directory
-│   │   │   └── ...
-│   │   └── ...                 # Other project directories
-│   │
-│   ├── modes/                # (Roo Code Modes)
-│   ├── processes/            # (Roo Code Processes)
-│   ├── templates/            # (Roo Code Templates)
-│   └── ...                   # (Other .ruru subdirectories)
+├── .roo/
+│   ├── commander/
+│   │   ├── projects/             # 👈 **Main IntelliManage Directory**
+│   │   │   ├── projects_config.toml # Optional: Workspace-level config (lists projects)
+│   │   │   ├── [project_slug_1]/   # 👈 Project 1 Directory
+│   │   │   │   └── ... (See Project Directory Structure below)
+│   │   │   ├── [project_slug_2]/   # 👈 Project 2 Directory
+│   │   │   │   └── ...
+│   │   │   └── ...                 # Other project directories
+│   │   │
+│   │   ├── modes/                # (Roo Code Modes)
+│   │   ├── BROKEN_LINK_NEEDS_MANUAL_REVIEW_processes/            # (Roo Code Processes)
+│   │   ├── templates/            # (Roo Code Templates)
+│   │   └── ...                   # (Other .roo/commander subdirectories)
 │
 ├── .roo/                     # (Roo Code Rules)
 │   └── ...
@@ -57,16 +58,16 @@ WORKSPACE_ROOT/
 └── ...                       # (Other workspace files)
 ```
 
-*   **`.ruru/projects/`**: The root directory for all IntelliManage data.
+*   **`.roo/commander/projects/`**: The root directory for all IntelliManage data.
 *   **`projects_config.toml` (Optional):** A workspace-level configuration file. Can be used to list all managed projects within the workspace, define global tags, or set workspace-wide defaults. Its presence helps tools and AI discover the managed projects.
 *   **`[project_slug]/`**: A subdirectory for each distinct project being managed. The `[project_slug]` should be lowercase, use hyphens or underscores, and be unique within the workspace (e.g., `frontend-app`, `backend-api`, `shared-library`).
 
-## 4. Project Directory Structure (`.ruru/projects/[project_slug]/`) 📂
+## 4. Project Directory Structure (`.roo/commander/projects/[project_slug]/`) 📂
 
 Each project subdirectory follows a standardized internal structure:
 
 ```
-.ruru/projects/[project_slug]/
+.roo/commander/projects/[project_slug]/
 ├── initiatives/          # Contains Initiative artifacts (.md)
 │   └── INIT-001_example-initiative.md
 ├── epics/                # Contains Epic artifacts (.md)
@@ -139,8 +140,9 @@ Consistency in file naming is essential for identification and linking.
 ## 6. Example Structure 🌳
 
 ```
-.ruru/
-└── projects/
+.roo/
+└── commander/
+    └── projects/
     ├── projects_config.toml
     ├── frontend-app/
     │   ├── epics/
@@ -170,7 +172,7 @@ Consistency in file naming is essential for identification and linking.
 
 ## 7. Rationale & Considerations 🤔
 
-*   **`.ruru` Location:** Keeps IntelliManage artifacts grouped with other Roo Code configurations (modes, rules), making the workspace structure cleaner from the user's perspective compared to a root-level `.project` folder.
+*   **`.roo/commander` Location:** Keeps IntelliManage artifacts grouped with other Roo Code configurations (modes, rules), making the workspace structure cleaner from the user's perspective compared to a root-level `.project` folder.
 *   **Multi-Project:** The `projects/[project_slug]/` structure provides clear separation and allows for project-specific configuration and artifact organization.
 *   **Standard Subdirectories:** Using consistent subdirectory names (`epics`, `features`, `tasks`, etc.) simplifies navigation and tooling.
 *   **Naming Convention:** The `TYPE-ID_description.md` format provides immediate identification of artifact type, a unique reference, and a hint of the content.
@@ -180,7 +182,7 @@ Consistency in file naming is essential for identification and linking.
 
 *   **Archive Directory:** Consider adding an `archive/` subdirectory within each project folder to move completed or closed items, mirroring the active structure.
 *   **Cross-Project Linking:** Define a clear convention for linking artifacts across different project slugs (e.g., using a `project_slug:TYPE-ID` format in `depends_on` fields).
-*   **Template Directory:** A `.ruru/projects/_templates/` directory could hold templates specific to IntelliManage artifacts.
+*   **Template Directory:** A `.roo/commander/projects/_templates/` directory could hold templates specific to IntelliManage artifacts.
 
 ---
 

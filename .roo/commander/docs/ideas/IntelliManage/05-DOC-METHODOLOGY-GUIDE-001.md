@@ -6,7 +6,7 @@ doc_version = "1.0"
 content_version = 1.0
 audience = ["developers", "project_managers", "architects", "contributors", "ai_modes"]
 last_reviewed = "2025-04-28" # Use current date
-template_schema_doc = ".ruru/templates/toml-md/09_documentation.README.md" # Assuming this is the schema doc template
+template_schema_doc = "BROKEN_LINK_NEEDS_MANUAL_REVIEW_.roo/commander/templates/documentation/09_documentation.README.md" # Assuming this is the schema doc template
 tags = ["intellimanage", "architecture", "specification", "methodology", "scrum", "kanban", "agile", "workflow"]
 related_docs = ["DOC-ARCH-001", "DOC-FS-SPEC-001", "DOC-SCHEMA-001", "DOC-FUNC-SPEC-001"] # Link to Arch, FS, Schema, CRUD docs
 +++
@@ -21,13 +21,13 @@ IntelliManage leverages its core functionalities (hierarchical artifacts, TOML+M
 
 ## 2. Core Configuration: `project_config.toml` ⚙️
 
-The primary control for methodology implementation resides in the `project_config.toml` file located within each project's directory (e.g., `.ruru/projects/[project_slug]/project_config.toml`).
+The primary control for methodology implementation resides in the `project_config.toml` file located within each project's directory (e.g., `.roo/commander/projects/[project_slug]/project_config.toml`).
 
 The key field is:
 
 *   **`methodology` (String, Required):** Specifies the methodology to be used for this project.
     *   **Allowed Values:** `"Scrum"`, `"Kanban"`, `"Custom"`, `"None"` (case-sensitive).
-    *   **Default:** If omitted, the system may fall back to a workspace default defined in `.ruru/projects/projects_config.toml` or default to `"None"`.
+    *   **Default:** If omitted, the system may fall back to a workspace default defined in `.roo/commander/projects/projects_config.toml` or default to `"None"`.
 
 Other fields within `project_config.toml` are used to configure specifics for the chosen methodology (see relevant sections below).
 
@@ -80,7 +80,7 @@ When `methodology = "Kanban"` is set in `project_config.toml`:
         ```
     *   **WIP Limits:** Defined optionally in `project_config.toml` per status column. The Core Logic Engine or AI Engine can *monitor* the number of items in each status and *warn* the user or prevent status changes if WIP limits are exceeded. Direct enforcement is difficult in a purely file-based system.
     *   **Flow Management:** Focus is on moving items smoothly through statuses. Cycle Time and Lead Time metrics can be calculated if status change timestamps are logged (consider adding `status_change_log = [{ status = "...", timestamp = "..." }, ...]` to artifact TOML).
-    *   **Policies:** Explicit policies (e.g., Definition of Done for a status) can be documented in project READMEs or specific `.ruru/projects/[project_slug]/docs/` files.
+    *   **Policies:** Explicit policies (e.g., Definition of Done for a status) can be documented in project READMEs or specific `.roo/commander/projects/[project_slug]/docs/` files.
 *   **AI Assistance (Kanban):**
     *   **Board Visualization:** Generate textual or graphical representations of the Kanban board based on artifact statuses.
     *   **Flow Metrics:** Calculate Cycle Time and Lead Time (requires timestamped status changes).

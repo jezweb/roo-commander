@@ -10,7 +10,7 @@ To enhance token efficiency, precision, and consistency, the Roo Commander V8 sy
 *   MDTM Task descriptions and log entries
 *   Session Log entries
 
-This guide provides an overview of the symbolic language, its purpose, where to find the definitive glossary, and best practices for its application. The formal proposal for this system can be found in `[../../../proposals/PLAN-SYMOPT-001_Symbolic_Prompt_Optimization_v2.md](../../../proposals/PLAN-SYMOPT-001_Symbolic_Prompt_Optimization_v2.md)`.
+This guide provides an overview of the symbolic language, its purpose, where to find the definitive glossary, and best practices for its application. The formal proposal for this system can be found in `[.roo/commander/docs/ideas/symbolic-prompt-optimization/PLAN-SYMOPT-001_Symbolic_Prompt_Optimization_v2.md](.roo/commander/docs/ideas/symbolic-prompt-optimization/PLAN-SYMOPT-001_Symbolic_Prompt_Optimization_v2.md)`.
 
 **This guide assumes the symbolic language and its glossary are actively being implemented or are in use.**
 
@@ -25,7 +25,7 @@ This guide provides an overview of the symbolic language, its purpose, where to 
 
 All symbols, their meanings, and basic syntax conventions are defined in the **Foundation Glossary document**:
 
-*   **Primary Glossary:** `[.roo/commander/docs/ideas/PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md](../../../proposals/PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md)`
+*   **Primary Glossary:** `[.roo/commander/docs/ideas/symbolic-prompt-optimization/PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md](.roo/commander/docs/ideas/symbolic-prompt-optimization/PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md)`
     *   *(Note: This path might eventually move to a more permanent location like `docs/standards/06-symbolic-language-glossary.md` once fully adopted).*
 
 **Developers and AI modes MUST refer to this glossary as the single source of truth for all symbol definitions and usage patterns.**
@@ -79,7 +79,7 @@ The symbolic language is expected to evolve.
 
 1.  **Proposal:** If a new recurring concept or action is identified as a good candidate for symbolization, or if an existing symbol needs refinement, propose the change. This might involve creating/updating an entry in a "Proposed Symbols" section of the glossary or a separate discussion document.
 2.  **Review:** Discuss the proposal with the team/architects to ensure clarity, avoid conflicts, and assess tokenization benefits.
-3.  **Glossary Update:** Once approved, the `PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md` (or its successor) **MUST** be updated.
+3.  **Glossary Update:** Once approved, the `.roo/commander/docs/ideas/symbolic-prompt-optimization/PLAN-SYMOPT-GLOSSARY-001_Foundation_Glossary_v2.md` (or its successor) **MUST** be updated.
 4.  **Communication:** Announce the new/updated symbol to developers.
 5.  **Refactoring (Optional but Recommended):** Gradually refactor existing rules, KBs, and prompts to incorporate the new/updated symbol where appropriate.
 

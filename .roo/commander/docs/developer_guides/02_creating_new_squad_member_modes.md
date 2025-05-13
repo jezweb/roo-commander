@@ -9,9 +9,9 @@ Examples of Squad Member modes include `data-product-strategist`, `data-product-
 Creating effective Squad Member modes is key to building out the specialized capabilities of any Manager-led workflow. This guide will walk you through the process using the standard templates and adhering to architectural best practices.
 
 **Prerequisites:**
-*   Familiarity with the overall Roo Commander V8 architecture, especially the roles of Managers and Squads. (See `[../../architecture/README.md](../../architecture/README.md)`)
-*   Understanding of the TOML+Markdown format. (See `[../../standards/02-toml-md-document-format.md](../../standards/02-toml-md-document-format.md)`)
-*   Detailed knowledge of the MDTM task standard, as Squad Members are primarily driven by these tasks. (See `[../../standards/03-mdtm-task-files.md](../../standards/03-mdtm-task-files.md)`)
+*   Familiarity with the overall Roo Commander V8 architecture, especially the roles of Managers and Squads. (See `[.roo/commander/docs/architecuture/README.md](.roo/commander/docs/architecuture/README.md)`)
+*   Understanding of the TOML+Markdown format. (See `[.roo/commander/docs/standards/02-toml-md-document-format.md](.roo/commander/docs/standards/02-toml-md-document-format.md)`)
+*   Detailed knowledge of the MDTM task standard, as Squad Members are primarily driven by these tasks. (See `[.roo/commander/docs/standards/03-mdtm-task-files.md](.roo/commander/docs/standards/03-mdtm-task-files.md)`)
 *   Knowledge of the Manager mode this Squad Member will report to and the overall workflow it participates in.
 
 ## 2. Design Principles for Squad Member Modes
@@ -38,7 +38,7 @@ Let's assume you are creating a new Squad Member mode with the slug `[squad-name
 ### Step 3.2: Define the Mode (`.mode.md` file)
 
 1.  **Copy the Squad Member Template:**
-    *   Copy `[.roo/commander/templates/modes/template_00_mode_squad_member.mode.md](../../templates/modes/template_00_mode_squad_member.mode.md)`
+    *   Copy `[.roo/commander/templates/modes/squad/template_00_squad.mode.md](.roo/commander/templates/modes/squad/template_00_squad.mode.md)`
     *   To: `.roo/commander/modes/data-product-new-specialist/data-product-new-specialist.mode.md`
 2.  **Populate TOML Frontmatter:** Open `data-product-new-specialist.mode.md` and carefully fill in the TOML fields:
     *   `id`: `"data-product-new-specialist"` (must match slug)
@@ -65,7 +65,7 @@ Let's assume you are creating a new Squad Member mode with the slug `[squad-name
 ### Step 3.3: Create Mode-Specific Rules (Minimal for Squad Members)
 
 1.  **KB Lookup Rule (Mandatory):**
-    *   Copy `[.roo/commander/templates/rules/template_00_mode_kb_lookup_rule.md](../../templates/rules/template_00_mode_kb_lookup_rule.md)`
+    *   Copy `BROKEN_LINK_NEEDS_MANUAL_REVIEW_[.roo/commander/templates/rules/template_00_mode_kb_lookup_rule.md](../../templates/rules/template_00_mode_kb_lookup_rule.md)`
     *   To: `.roo/commander/modes/data-product-new-specialist/rules-data-product-new-specialist/99-dpns-kb-lookup.md` (using a short prefix like `dpns`).
     *   Edit this file, replacing placeholders like `[Mode Name]`, `[mode_slug]`, and ensuring `target_audience` is `["data-product-new-specialist"]`. The template's core logic for KB lookup should generally suffice.
 2.  **Other Rules (Usually Not Needed):** Most Squad Members will not require additional complex operational rules beyond their system prompt and the instructions in their MDTM tasks. If highly specific, reusable logic is needed, consider if it belongs in a KB `procedure/` or `skill/` first.
@@ -75,10 +75,10 @@ Let's assume you are creating a new Squad Member mode with the slug `[squad-name
 A Squad Member's KB might be lean initially, with much of its guidance coming from the MDTM task checklist. However, setting up the standard structure is good practice. Create the following in `.roo/commander/modes/data-product-new-specialist/kb/`:
 
 1.  **`README.md` (KB Index - Mandatory):**
-    *   Use `[.roo/commander/templates/modes/kb/template_00_mode_kb_readme.md](../../templates/modes/kb/template_00_mode_kb_readme.md)` as a basis.
+    *   Use `[.roo/commander/templates/modes/common/kb/template_00_mode_kb_readme.md](.roo/commander/templates/modes/common/kb/template_00_mode_kb_readme.md)` as a basis.
     *   Customize it for `data-product-new-specialist`. It might be very brief, perhaps just stating the mode's core function and pointing to its primary output artifact template if it has one.
 2.  **Optional KB Subdirectories (`examples/`, `skills/`, `wisdom/`, `reference/`, `procedures/`, `prompts/`):**
-    *   Populate these as needed, following the guidelines in `[../../standards/05-kb-structuring-best-practices.md](../../standards/05-kb-structuring-best-practices.md)`.
+    *   Populate these as needed, following the guidelines in `[.roo/commander/docs/standards/05-kb-structuring-best-practices.md](.roo/commander/docs/standards/05-kb-structuring-best-practices.md)`.
     *   **`skills/` and `wisdom/` are the most likely candidates for content** if the Squad Member has deep, reusable domain expertise or techniques that aren't suitable for a simple checklist item.
         *   Example for `data-product-strategist`: `kb/skills/defining_smart_objectives.md`.
     *   `examples/` can be useful to show a sample MDTM task it handles well, or an example of its output artifact.

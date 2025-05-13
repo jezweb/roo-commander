@@ -16,7 +16,7 @@ Please select a guide below to learn more:
 1.  **[Creating New Manager Modes](./01_creating_new_manager_modes.md)**
     *   A comprehensive guide on how to design, define, and implement a new "Manager" mode. This includes structuring its `.mode.md` file, developing its core orchestration logic within its Knowledge Base (especially the `procedures/01-main-orchestration-flow.md`), and defining its squad composition.
     *   **Covers:**
-        *   Using the `template_00_mode_manager.mode.md`.
+        *   Using the `.roo/commander/templates/modes/manager/template_00_manager.md`.
         *   Designing the Manager's primary MDTM task contract.
         *   Structuring the Manager's KB for orchestrating its squad.
         *   Best practices for Manager mode development.
@@ -24,7 +24,7 @@ Please select a guide below to learn more:
 2.  **[Creating New Squad Member Modes](./02_creating_new_squad_member_modes.md)**
     *   Step-by-step instructions for developing new specialist "Squad Member" modes. This guide focuses on defining their specific expertise, their interaction with MDTM sub-tasks assigned by a Manager, and the creation of their primary output artifacts.
     *   **Covers:**
-        *   Using the `template_00_mode_squad_member.mode.md`.
+        *   Using the `.roo/commander/templates/modes/squad/template_00_squad.mode.md`.
         *   Defining the Squad Member's role and primary deliverable.
         *   Structuring its (potentially minimal) KB, including `skills/` and `wisdom/` for its expertise.
         *   How Squad Members update their MDTM tasks and report completion.
@@ -32,9 +32,9 @@ Please select a guide below to learn more:
 3.  **[Extending `roo-commander`'s Knowledge Base for New Managers](./03_extending_roo_commander_kb.md)**
     *   Explains the necessary updates to `roo-commander`'s Knowledge Base when a new Manager mode (and its associated high-level workflow) is introduced to the system.
     *   **Covers:**
-        *   Updating `roo-commander/kb/reference/00-available-managers-summary.md`.
-        *   Potentially updating `roo-commander/kb/prompts/00-initial-options.md` if the new Manager workflow needs to be a top-level option.
-        *   Ensuring `roo-commander/kb/procedures/01-initiate-manager-delegation.md` can correctly route to the new Manager.
+        *   Updating `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md`.
+        *   Potentially updating `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md` if the new Manager workflow needs to be a top-level option.
+        *   Ensuring `.roo/commander/modes/roo-commander/kb/procedures/01-initiate-manager-delegation.md` can correctly route to the new Manager.
 
 4.  **[Overview of System Templates](./04_template_overview.md)**
     *   A reference guide to all the standard TOML+Markdown templates used within the Roo Commander V8 ecosystem. This includes templates for mode definitions (Orchestrator, Manager, Squad Member), rules (Workspace, Mode-Specific, KB Lookup), Knowledge Base READMEs, MDTM tasks, session logs, and session artifacts.

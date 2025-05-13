@@ -6,7 +6,7 @@ Each AI mode within the Roo Commander V8 system (Orchestrators, Managers, and Sq
 
 A well-structured KB is crucial for a mode's effectiveness, consistency, maintainability, and future extensibility (e.g., for Retrieval Augmented Generation - RAG). This document outlines best practices for organizing content within the standard KB subdirectories.
 
-The architectural overview of KBs can be found in `[../architecture/06_knowledge_base_philosophy.md](../architecture/06_knowledge_base_philosophy.md)`.
+The architectural overview of KBs can be found in `[.roo/commander/docs/architecture/06_knowledge_base_philosophy.md](.roo/commander/docs/architecture/06_knowledge_base_philosophy.md)`.
 
 ## 2. General Principles for KB Content
 
@@ -14,7 +14,7 @@ The architectural overview of KBs can be found in `[../architecture/06_knowledge
 *   **Modularity:** Break down complex information into smaller, focused articles or procedures.
 *   **Actionability:** Information should be directly usable by the mode to perform its tasks or make decisions.
 *   **Discoverability:** Use clear filenames and ensure the mode's KB `README.md` (index) accurately reflects the KB's content and structure.
-*   **TOML+Markdown Standard:** All `.md` files within the KB should adhere to the `[.roo/rules/01-standard-toml-md-format.md](.././/rules/01-standard-toml-md-format.md)`, allowing for metadata like `id`, `title`, `tags`, etc.
+*   **TOML+Markdown Standard:** All `.md` files within the KB should adhere to the `[.roo/rules/01-standard-toml-md-format.md](.roo/rules/01-standard-toml-md-format.md)`, allowing for metadata like `id`, `title`, `tags`, etc.
 *   **Tool Agnosticism:** When writing procedures or skills, focus on the *objective* and the *logical steps*, rather than prescribing specific tool names, unless a tool is absolutely intrinsic to that specific skill or procedure.
 
 ## 3. Standard KB Subdirectory Structure & Content Guidelines
@@ -28,7 +28,7 @@ The following subdirectories provide a standard organization for a mode's KB. No
     *   Brief overview of the KB's purpose for *this specific mode*.
     *   Explanation of how *this mode* is intended to use its KB (referencing its KB Lookup Rule).
     *   A structured list of the other subdirectories (`prompts/`, `procedures/`, etc.) and key documents within them, with brief descriptions.
-    *   Use template: `[.roo/commander/templates/modes/kb/template_00_mode_kb_readme.md](.././/templates/modes/kb/template_00_mode_kb_readme.md)`.
+    *   Use template: `[.roo/commander/templates/modes/kb/template_00_mode_kb_readme.md](.roo/commander/templates/modes/kb/template_00_mode_kb_readme.md)`.
 
 ### 3.2. `prompts/`
 *   **Purpose:** To store structured text snippets or templates used by the mode to dynamically construct prompts, especially for user interactions via `ask_followup_question` or for formulating messages to other modes.

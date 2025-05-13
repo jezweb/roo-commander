@@ -7,7 +7,7 @@ As the Roo Commander V8 ecosystem grows, new "Manager" modes will be developed t
 This guide outlines the specific files within `roo-commander`'s KB (`.roo/commander/modes/roo-commander/kb/`) that need to be modified when a new Manager mode and its associated workflow are introduced.
 
 **Assumptions:**
-*   You have already created and tested your new Manager mode (e.g., `manager-new-workflow`) and its associated squad, following the guide `[./01_creating_new_manager_modes.md](./01_creating_new_manager_modes.md)`.
+*   You have already created and tested your new Manager mode (e.g., `manager-new-workflow`) and its associated squad, following the guide `[.roo/commander/docs/developer_guides/01_creating_new_manager_modes.md](.roo/commander/docs/developer_guides/01_creating_new_manager_modes.md)`.
 *   Your new Manager mode is capable of receiving a top-level MDTM task and orchestrating its workflow.
 
 ## 2. Key `roo-commander` KB Files to Update
@@ -36,7 +36,7 @@ This is the most critical step to make `roo-commander` aware of your new Manager
         *   **Typical High-Level Goal for Manager:** "Execute weekly system maintenance routine for production environment."
     ```
 4.  **Impact:**
-    *   The procedure `roo-commander/kb/procedures/01-initiate-manager-delegation.md` consults this summary file. By adding your new Manager here, `roo-commander` will now be able to:
+    *   The procedure `.roo/commander/modes/roo-commander/kb/procedures/01-initiate-manager-delegation.md` consults this summary file. By adding your new Manager here, `roo-commander` will now be able to:
         *   Present "[User-friendly name for the new workflow]" as an option to the user if it presents a list of workflows.
         *   Correctly identify `[slug-of-your-new-manager-mode]` as the target for delegation if that workflow is chosen.
 
@@ -53,7 +53,7 @@ If you want the new Manager's workflow to be a very prominent, top-level option 
         2.  📂 Manage Existing Work Sessions...
         3.  ❓ Help / About this Commander
         ```
-    *   **Option A (Keep it under "Start New Design / Workflow Session..."):** This is the default and usually preferred way. No change is needed in `00-initial-options.md`. `roo-commander` will discover your new workflow via the `00-available-managers-summary.md` when the user selects option 1. This keeps the initial menu lean.
+    *   **Option A (Keep it under "Start New Design / Workflow Session..."):** This is the default and usually preferred way. No change is needed in `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`. `roo-commander` will discover your new workflow via the `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md` when the user selects option 1. This keeps the initial menu lean.
     *   **Option B (Add as a new top-level option):** If the new workflow is fundamentally different and deserves its own top-level entry, you could add it. *This should be done sparingly to avoid cluttering the initial prompt.*
         *   Example (if adding):
             ```markdown
@@ -63,9 +63,9 @@ If you want the new Manager's workflow to be a very prominent, top-level option 
             4.  ❓ Help / About this Commander
             ```
 3.  **Impact:**
-    *   If you choose Option B, `roo-commander`'s main initialization rule (`.roo/commander/modes/roo-commander/rules-roo-commander/01-rc-initialization-delegation.md`) might need a slight adjustment to its logic to directly trigger the `01-initiate-manager-delegation.md` procedure with your new Manager pre-selected if this new top-level option is chosen. However, the current design of `01-initiate-manager-delegation.md` (where it presents options from the summary file) is more scalable.
+    *   If you choose Option B, `roo-commander`'s main initialization rule (`.roo/commander/modes/roo-commander/rules-roo-commander/01-rc-initialization-delegation.md`) might need a slight adjustment to its logic to directly trigger the `.roo/commander/modes/roo-commander/kb/procedures/01-initiate-manager-delegation.md` procedure with your new Manager pre-selected if this new top-level option is chosen. However, the current design of `.roo/commander/modes/roo-commander/kb/procedures/01-initiate-manager-delegation.md` (where it presents options from the summary file) is more scalable.
 
-**Recommendation:** For most new Manager workflows, **Option A (no change to `00-initial-options.md`) is preferred.** Simply updating `reference/00-available-managers-summary.md` is usually sufficient to make `roo-commander` aware and capable of offering the new workflow when the user indicates they want to start *a* new workflow.
+**Recommendation:** For most new Manager workflows, **Option A (no change to `.roo/commander/modes/roo-commander/kb/prompts/00-initial-options.md`) is preferred.** Simply updating `.roo/commander/modes/roo-commander/kb/reference/00-available-managers-summary.md` is usually sufficient to make `roo-commander` aware and capable of offering the new workflow when the user indicates they want to start *a* new workflow.
 
 ### Step 2.3: Update `roo-commander`'s `.mode.md` (Delegate List)
 

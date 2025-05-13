@@ -7,8 +7,8 @@ updated_date = "2025-04-24"
 version = "1.0"
 tags = ["plan", "cli", "core", "commanderjs", "typescript"]
 related_docs = [
-    ".ruru/docs/whitepapers/cli-build-npm/00-cli-build-plan.md",
-    ".ruru/docs/whitepapers/cli-build-npm/01-cli-project-setup.md"
+    ".roo/commander/docs/ideas/cli-build-npm/00-cli-build-plan.md",
+    ".roo/commander/docs/ideas/cli-build-npm/01-cli-project-setup.md"
 ]
 objective = "Set up the main CLI entry point script, install core dependencies like `commander`, and define the basic command registration structure."
 +++
