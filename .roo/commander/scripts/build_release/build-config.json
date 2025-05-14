@@ -1,0 +1,27 @@
+{
+    "sourceRooDir": ".roo",
+    "outputBuildRootDir": ".roo/commander/builds",
+    "packageDirNameTemplate": "roo_commander_v{VERSION}",
+    "foldersToEmptyInPackagedCommanderDir": [
+      "archive",
+      "builds",
+      "config",
+      "context",
+      "decisions",
+      "mcp-servers",
+      "sessions",
+      "tasks",
+      "tmp",
+      "docs/ideas",
+      "docs/todo"
+    ],
+    "rootFilesToCopyToPackage": [
+      "README.md",
+      "LICENSE.txt",
+      "CHANGELOG.md"
+    ],
+    "roomodesSourceFile": ".roo/commander/builds/.roomodes",
+    "roomodesTargetInPackage": ".roo/commander/.roomodes",
+    "createArchive": true,
+    "archiveType": "zip"
+  }

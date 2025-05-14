@@ -18,7 +18,7 @@ related_workspace_rules = [
 ]
 related_tools_or_scripts = [
     ".roo/commander/scripts/build_release/build_config.json", # Assumed config for the script
-    ".roo/commander/scripts/build_release/package_roo_structure.js", # Hypothetical Node.js packaging script
+    ".roo/commander/scripts/build_release/package-release.js", # Hypothetical Node.js packaging script
     ".roo/commander/scripts/build_roomodes-v8.js", # Existing script
     "Git CLI",
     "GitHub CLI (gh)" # Optional, but useful for release creation
@@ -126,8 +126,8 @@ key_outputs_of_sop = [
         *   Copy the project root `README.md`, `LICENSE.txt`, and the just-updated `CHANGELOG.md` into the root of the package directory.
         *   Copy the generated `.roomodes` file (from Step 2.1) into the appropriate location within the packaged `.roo/` structure (e.g., `dist/roo_commander_vX.Y.Z/.roo/commander/.roomodes`).
         *   (Optional) Create a compressed archive (e.g., `.zip` or `.tar.gz`) of the package directory.
-    *   Tool(s) Used: Node.js, custom packaging script (e.g., `package_roo_structure.js`).
-    *   Instruction/Command: `node .roo/commander/scripts/build_release/package_roo_structure.js --version vX.Y.Z` (example command)
+    *   Tool(s) Used: Node.js, custom packaging script (e.g., `package-release.js`).
+    *   Instruction/Command: `node .roo/commander/scripts/build_release/package-release.js --version vX.Y.Z` (example command)
     *   Verification: The package directory (and optional archive) is created correctly with the specified contents.
 
 ### Phase 3: Tagging & GitHub Release
