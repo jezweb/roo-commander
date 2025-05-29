@@ -1,0 +1,75 @@
+/* Version Selector Styles */
+.version-selector {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.version-selector h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #495057;
+}
+
+.version-dropdown select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.version-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.version-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: white;
+}
+
+.version-status.development {
+  background-color: #6c757d; /* Grey */
+}
+
+.version-status.beta {
+  background-color: #fd7e14; /* Orange */
+}
+
+.version-status.rc {
+  background-color: #ffc107; /* Yellow */
+}
+
+.version-status.stable {
+  background-color: #28a745; /* Green */
+}
+
+.version-summary {
+  font-size: 0.9em;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Accessibility - Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

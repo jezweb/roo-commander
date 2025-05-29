@@ -1,0 +1,1 @@
+IMPORTANT: When generating terminal commands with execute_command, always use literal unencoded characters (&&, |, >, etc.) NOT their HTML-encoded equivalents (&amp;&amp;). Example: Use 'command1 && command2' directly. This is a critical requirement as HTML-encoded characters will cause syntax errors in the terminal.

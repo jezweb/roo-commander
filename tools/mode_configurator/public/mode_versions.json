@@ -1,0 +1,44 @@
+[
+  {
+    "version": "latest",
+    "date": "N/A",
+    "summary": "Currently active development version (includes bugfix).",
+    "status": "development",
+    "path": "modes/latest"
+  },
+  {
+    "version": "v2.1.3",
+    "date": "2025-04-02",
+    "summary": "Introduced Project Onboarding mode (Issue #2) and daily strategy logging (Issue #13).",
+    "path": "modes/v2.1.3",
+    "status": "beta"
+  },
+  {
+    "version": "v2.1.2-beta",
+    "date": "2025-04-01",
+    "summary": "Removed Gemini workarounds (Issue #11).",
+    "path": "modes/v2.1.2-gemini-fix-dev",
+    "status": "beta"
+  },
+  {
+    "version": "v2.1.1-standardized-beta",
+    "date": "2025-04-01",
+    "summary": "Completed standardization of instructions (commit a38814c).",
+    "path": "modes/v2.1.1-standardized-beta",
+    "status": "beta"
+  },
+  {
+    "version": "v2.1.0",
+    "date": "2025-04-01",
+    "summary": "Standardized instructions, pre-versioning bugfix.",
+    "path": "modes/v2.1.0",
+    "status": "stable"
+  },
+  {
+    "version": "v2.1.0-snapshot-20250331",
+    "date": "2025-03-31",
+    "summary": "Snapshot from late night 2025-03-31 (commit 548aebb).",
+    "path": "modes/v2.1.0-nightly-20250331",
+    "status": "snapshot"
+  }
+]

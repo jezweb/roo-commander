@@ -1,0 +1,30 @@
+<!-- Version selector component -->
+<div class="version-selector">
+  <h2>Template Version:</h2>
+  <div class="version-dropdown">
+    <label for="version-select" class="sr-only">Select template version</label>
+    <select 
+      id="version-select"
+      v-model="selectedVersion.version" 
+      @change="handleVersionChange($event.target.value)"
+      :disabled="isLoading"
+      aria-label="Select template version"
+    >
+      <option 
+        v-for="version in modeVersions" 
+        :key="version.version" 
+        :value="version.version"
+      >
+        {{ version.version }} 
+        {{ version.status !== 'development' ? `(${version.status})` : '' }}
+        {{ version.date !== 'N/A' ? `- ${version.date}` : '' }}
+      </option>
+    </select>
+  </div>
+  <div class="version-info" v-if="selectedVersion">
+    <div class="version-status" :class="selectedVersion.status">
+      {{ selectedVersion.status.charAt(0).toUpperCase() + selectedVersion.status.slice(1) }}
+    </div>
+    <div class="version-summary">{{ selectedVersion.summary }}</div>
+  </div>
+</div>
