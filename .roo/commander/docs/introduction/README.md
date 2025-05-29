@@ -1,60 +1,97 @@
-# Introduction: Roo Commander V8 & The "Manager + Squad" Philosophy
++++
+# --- Basic Metadata ---
+id = "INTRODUCTION-DIRECTORY-README-V2" # Updated version
+title = "Introduction to Roo Commander"
+context_type = "documentation_index" # Also serves as an overview
+scope = "Provides a high-level introduction to the Roo Commander system, its core philosophy, purpose, benefits, and guides users to more detailed introductory documents."
+target_audience = ["all"] # New users, developers, system architects
+granularity = "overview_and_index"
+status = "active"
+created_date = "20250515"
+last_updated = "20250515"
+version = "2.0" # Incremented due to significant content update
+tags = ["introduction", "readme", "overview", "roo-commander", "architecture-summary", "getting-started"]
+related_context = [
+    ".roo/commander/docs/README.md", # Parent documentation index
+    ".roo/commander/docs/introduction/01_purpose_and_goals.md",
+    ".roo/commander/docs/introduction/02_key_benefits.md",
+    ".roo/commander/docs/architecture/README.md" # For deeper architectural understanding
+]
+template_schema_doc = ".roo/commander/templates/documentation/template_00_directory_readme.md" # Using our directory readme template
+# --- Directory Specific Fields (Optional) ---
+# primary_artifact_type_contained = "Introductory Documents"
+# key_subdirectories_summary = ["N/A - All files are at this level"]
++++
 
-## Welcome to Roo Commander V8
+# Introduction to Roo Commander
 
-Roo Commander V8 represents a significant evolution in intelligent workflow orchestration within the Roo Code environment. It is designed as a lean, adaptable core system that empowers users to tackle complex projects by coordinating specialized AI agents in a structured and traceable manner.
+## 1. Welcome to Roo Commander!
 
-The primary goal of Roo Commander V8 is to move beyond monolithic AI assistance towards a modular, hierarchical system where different AI "modes" take on distinct roles, from high-level coordination to domain-specific management and specialized task execution.
+Welcome to Roo Commander, an intelligent workflow orchestration system designed to help you tackle complex projects by coordinating specialized AI agents in a structured, traceable, and efficient manner.
 
-This document provides an overview of its core philosophy, architecture, and the initial flagship capability focused on Data Product Design.
+The primary goal of Roo Commander is to move beyond monolithic AI assistance towards a modular, hierarchical system where different AI "modes" take on distinct roles – from high-level coordination to domain-specific management and specialized task execution. This introduction will provide you with a high-level overview of its core philosophy and guide you to more detailed information.
 
-## The "Manager + Squad" Philosophy 🧑‍💼➡️🛠️
+All file path references within this documentation adhere to the workspace-root-relative standard, starting with `.roo/`.
 
-The cornerstone of Roo Commander V8's architecture is the **"Manager + Squad"** model. This hierarchical approach is designed to address the challenges of deep delegation and complex task management in AI-assisted workflows:
+## 2. The Core Philosophy: Orchestrator ➡️ Manager ➡️ Squad
 
-1.  **The Orchestrator (`roo-commander`):**
-    *   At the top level, `roo-commander` acts as the primary user-facing **Orchestrator**.
-    *   Its key responsibilities are to understand the user's high-level intent, manage the overall work **Session** (including logs and artifacts for traceability), and delegate broad objectives to the appropriate "Manager" mode.
-    *   `roo-commander` itself does not possess deep domain expertise; instead, it knows *which Manager to call* for a given type of complex task.
+Roo Commander is built upon a hierarchical **"Orchestrator -> Manager -> Squad"** model. This layered approach is designed for modularity, specialization, scalability, and clear delegation:
 
-2.  **Manager Modes (Domain-Specific Orchestrators):**
-    *   Beneath the Orchestrator are **Manager modes**. Each Manager is an expert in a specific domain or complex workflow (e.g., `manager-data-product` for designing Data Product PoCs).
-    *   A Manager receives a high-level goal from `roo-commander` in the form of a **Markdown-Driven Task Management (MDTM)** task.
-    *   Its primary function is to break down this high-level goal into a sequence of smaller, actionable sub-tasks.
-    *   It then delegates these sub-tasks (again, using MDTM) to members of its specialized "Squad."
-    *   The Manager orchestrates the flow of work and information within its squad, monitors progress, handles domain-specific coordination, and reports overall completion or critical issues back to `roo-commander`.
+```mermaid
+graph LR
+    subgraph SystemCore["Roo Commander System"]
+        direction LR
+        A["👤 User"] --> B["👑 Roo Commander (Orchestrator)"];
+        B -- "Delegates High-Level Goal (MDTM Task)" --> C["🧑‍💼 Manager Mode (Domain Orchestrator)"];
+        C -- "Delegates Sub-Tasks (MDTM)" --> D["🛠️ Squad Member(s) (Specialist Executor)"];
+        D -- "Produces Artifact(s)" --> C;
+        C -- "Reports Completion & Final Artifact(s)" --> B;
+        B -- "Manages Session & Reports to User" --> A;
+    end
 
-3.  **Squad Modes (Specialist Workers):**
-    *   At the execution level are **Squad Member modes**. These are highly specialized AI agents focused on performing specific tasks within the domain managed by their Manager.
-    *   For example, the `manager-data-product` has a squad including `data-product-strategist`, `data-product-ideator`, `data-product-ux-persona-architect`, etc.
-    *   Each Squad Member receives a detailed MDTM task from its Manager, executes it (typically producing a specific artifact like a strategy document or a set of personas), updates its MDTM task, and reports completion back to its Manager.
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#lightgrey,stroke:#333,stroke-width:2px
+    style C fill:#lightgrey,stroke:#333,stroke-width:2px
+    style D fill:#lightgrey,stroke:#333,stroke-width:2px
+```
 
-**Benefits of this Philosophy:**
+*   **The Orchestrator (`👑 Roo Commander` (`roo-commander`)):**
+    *   The top-level, user-facing AI mode.
+    *   Manages work **Sessions** (for context and traceability).
+    *   Delegates broad objectives to appropriate "Manager" modes via **MDTM (Markdown-Driven Task Management) tasks**.
+    *   Its detailed operational logic is defined in `[.roo/rules-roo-commander/](.roo/rules-roo-commander/)` and its Knowledge Base (KB) in `[.roo/commander/modes/roo-commander/kb/](.roo/commander/modes/roo-commander/kb/)`.
 
-*   **Modularity & Scalability:** New capabilities (e.g., managing web application development, orchestrating cloud deployments) can be added to the Roo Commander ecosystem by creating new, self-contained "Manager + Squad" units without making `roo-commander` itself overly complex.
-*   **Clear Separation of Concerns:** Each layer (Orchestrator, Manager, Squad) has distinct responsibilities, leading to more focused and maintainable AI modes.
-*   **Effective Deep Delegation:** Addresses the challenge of AI struggling with multi-step, complex tasks by breaking them down hierarchically. `roo-commander` makes one "deep" delegation to a Manager, which then handles further detailed delegations.
-*   **Enhanced Traceability:** The combination of Session logs (managed by `roo-commander`) and hierarchical MDTM tasks (linking Orchestrator to Manager, and Manager to Squad members) provides a comprehensive audit trail of all activities.
-*   **Focused Expertise:** Allows individual AI modes to become true specialists in their narrow domain, leading to higher quality outputs.
+*   **Manager Modes (e.g., `🧑‍💼 Data Product Manager` (`manager-data-product`)):**
+    *   Domain-specific orchestrators that receive a high-level MDTM task.
+    *   Break down this task into a sequence of sub-tasks for their specialized "Squad" members.
+    *   Manage the workflow and artifact flow within their squad.
+    *   Their logic is in `[.roo/rules-[manager_slug]/](.roo/rules-[manager_slug]/)` and `[.roo/commander/modes/[manager_slug]/kb/](.roo/commander/modes/[manager_slug]/kb/)`.
 
-## Initial Implementation: Data Product Design 🚀
+*   **Squad Member Modes (e.g., `📊 Data Product Strategist` (`data-product-strategist`)):**
+    *   Specialist worker AIs that perform specific, well-defined tasks assigned by their Manager.
+    *   Typically produce a defined output artifact.
+    *   Their logic is primarily driven by their MDTM task, supplemented by `[.roo/rules-[squad_member_slug]/](.roo/rules-[squad_member_slug]/)` and `[.roo/commander/modes/[squad_member_slug]/kb/](.roo/commander/modes/[squad_member_slug]/kb/)`.
 
-The first full implementation of this "Manager + Squad" philosophy within Roo Commander V8 is the **Data Product Design workflow**, orchestrated by the `manager-data-product` mode and its dedicated squad. This capability guides users through a structured process to:
+This philosophy allows Roo Commander to handle complex projects with greater precision and modularity.
 
-*   Define a clear strategy for a Data Product Proof of Concept (PoC).
-*   Develop user personas and scope PoC features.
-*   Design simulated data and conceptual interfaces.
-*   Consolidate all findings into a comprehensive PoC Plan.
+## 3. Initial Implementation: Data Product Design
 
-This serves as a blueprint and a demonstration of how other complex workflows can be integrated into the Roo Commander V8 ecosystem in the future.
+The first full implementation of this "Orchestrator -> Manager -> Squad" philosophy within Roo Commander is the **Data Product Design PoC workflow**, orchestrated by the `🧑‍💼 Data Product Manager` (`manager-data-product`) mode and its dedicated squad. This capability guides users through a structured process to define and plan a Data Product Proof of Concept.
 
-## Navigating the System
+## 4. Navigating this Introduction
 
-*   Users primarily interact with **`@roo-commander`**.
-*   `roo-commander` initiates **Sessions** to manage the context of your work.
-*   For complex tasks like Data Product Design, `roo-commander` will delegate to a **Manager** (e.g., `@manager-data-product`).
-*   The Manager will then coordinate its **Squad** of specialists.
-*   Progress and tasks are tracked using **MDTM files** stored in `.roo/commander/tasks/`.
-*   All session-related notes, key outputs, and logs are stored in `.roo/commander/sessions/[SESSION_ID]/`.
+To learn more about Roo Commander, please explore the following documents in this section:
 
-This overview provides the foundational understanding of Roo Commander V8. For more detailed information, please refer to the specific sections within this documentation, particularly the [System Architecture]([.roo/commander/docs/architecture/README.md](.roo/commander/docs/architecture/README.md)) documents.
+*   **`[01_purpose_and_goals.md](./01_purpose_and_goals.md)`**
+    *   **Title:** Purpose and Goals of Roo Commander
+    *   **Purpose:** Delves into the fundamental reasons why Roo Commander was created and the key objectives it aims to achieve.
+
+*   **`[02_key_benefits.md](./02_key_benefits.md)`**
+    *   **Title:** Key Benefits of Using Roo Commander
+    *   **Purpose:** Highlights the main advantages that the Roo Commander system and its architecture offer to users and developers.
+
+For a deeper dive into the system's components and how they interact, please refer to the [System Architecture documentation `[.roo/commander/docs/architecture/README.md](.roo/commander/docs/architecture/README.md)`).
+
+## 5. Getting Started
+
+Users typically start by interacting with `👑 Roo Commander` (`roo-commander`) to define their high-level goal. The system will then guide them through session creation and delegation to the appropriate Manager mode if necessary.

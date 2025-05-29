@@ -12,7 +12,7 @@ const ROOMODES_BUILD_SCRIPT_PATH = path.join(PROJECT_ROOT, '.roo', 'commander', 
 
 async function main() {
     const argv = yargs(hideBin(process.argv))
-        .option('version', {
+        .option('releaseVersion', {
             alias: 'v',
             type: 'string',
             description: 'The release version (e.g., 8.1.0)',
@@ -26,7 +26,7 @@ async function main() {
         .help()
         .argv;
 
-    const version = argv.version;
+    const version = argv.releaseVersion; 
     const skipRoomodesBuild = argv.skipRoomodes;
 
     console.log(`Starting packaging process for version: ${version}`);
@@ -42,7 +42,8 @@ async function main() {
     }
 
     // 2. Define Paths
-    const packageDirName = config.packageDirNameTemplate.replace('{VERSION}', version);
+    // Corrected version string handling from previous step
+    const packageDirName = config.packageDirNameTemplate.replace('{VERSION}', version.startsWith('v') ? version.substring(1) : version);
     const fullPackagePath = path.join(PROJECT_ROOT, config.outputBuildRootDir, packageDirName);
     const sourceRooPath = path.join(PROJECT_ROOT, config.sourceRooDir);
 
@@ -76,8 +77,19 @@ async function main() {
 
         // 5. Copy .roo structure
         const targetRooPathInPackage = path.join(fullPackagePath, config.sourceRooDir);
-        await fs.copy(sourceRooPath, targetRooPathInPackage);
-        console.log(`Copied ${config.sourceRooDir} structure to package.`);
+        await fs.copy(sourceRooPath, targetRooPathInPackage, {
+            filter: (src, dest) => {
+                // sourceRooPath is PROJECT_ROOT + '/.roo'
+                // We want to exclude PROJECT_ROOT + '/.build'
+                const buildsDirToExclude = path.join(sourceRooPath, 'commander', 'builds');
+                
+                if (src.startsWith(buildsDirToExclude)) {
+                    return false; 
+                }
+                return true; 
+            }
+        });
+        console.log(`Copied ${config.sourceRooDir} structure to package (with filter).`);
 
         // 6. Empty specified folders within the packaged .roo/commander
         const packagedCommanderDir = path.join(targetRooPathInPackage, 'commander');
@@ -87,7 +99,10 @@ async function main() {
                 await fs.emptyDir(fullPathToEmpty);
                 console.log(`  Emptied: .roo/commander/${folderToEmpty}`);
             } else {
-                console.warn(`  Warning: Folder to empty not found in package: .roo/commander/${folderToEmpty}`);
+                // If the folder to empty was 'builds', it wouldn't exist due to the filter, which is fine.
+                if (folderToEmpty !== 'builds') { // Only warn if it's not the 'builds' folder we intentionally excluded
+                    console.warn(`  Warning: Folder to empty not found in package: .roo/commander/${folderToEmpty}`);
+                }
             }
         }
 
@@ -105,14 +120,10 @@ async function main() {
 
         // 8. Copy .roomodes file to its final place in the package
         const roomodesTargetInPackagePath = path.join(PROJECT_ROOT, config.roomodesTargetInPackage);
-        // The target path in config is relative to project root for the *source* .roomodes,
-        // but for the *package*, it should be relative to the package's .roo/commander.
-        // Let's adjust: config.roomodesTargetInPackage should be like ".roo/commander/.roomodes"
-        // The actual target will be inside fullPackagePath + config.roomodesTargetInPackage
         const finalRoomodesPathInPackage = path.join(fullPackagePath, config.roomodesTargetInPackage);
 
         if (await fs.pathExists(roomodesSource)) {
-            await fs.ensureDir(path.dirname(finalRoomodesPathInPackage)); // Ensure target dir exists
+            await fs.ensureDir(path.dirname(finalRoomodesPathInPackage)); 
             await fs.copyFile(roomodesSource, finalRoomodesPathInPackage);
             console.log(`Copied .roomodes to ${config.roomodesTargetInPackage} in package.`);
         } else if (!skipRoomodesBuild) {
@@ -126,7 +137,7 @@ async function main() {
             const archivePath = path.join(PROJECT_ROOT, config.outputBuildRootDir, archiveName);
             const output = fs.createWriteStream(archivePath);
             const archive = archiver(config.archiveType, {
-                zlib: { level: 9 } // Sets the compression level.
+                zlib: { level: 9 } 
             });
 
             output.on('close', function () {
@@ -144,11 +155,11 @@ async function main() {
             });
 
             archive.pipe(output);
-            archive.directory(fullPackagePath, false); // Add the package directory itself to the archive root
+            archive.directory(fullPackagePath, false); 
             await archive.finalize();
         }
 
-        console.log(`\nPackaging for v${version} completed successfully!`);
+        console.log(`\nPackaging for ${version} completed successfully!`); // Corrected to use original version string with 'v'
         console.log(`Output located at: ${fullPackagePath}`);
         if (config.createArchive) {
             console.log(`Archive located at: ${path.join(PROJECT_ROOT, config.outputBuildRootDir, `${packageDirName}.${config.archiveType === 'tar' ? 'tar.gz' : 'zip'}`)}`);

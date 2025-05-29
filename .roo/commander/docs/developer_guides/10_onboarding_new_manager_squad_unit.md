@@ -51,7 +51,7 @@ Once the squad members are defined (or at least their roles and expected I/O are
 *   **4.2. Create Manager Mode Files:**
     *   Follow the detailed instructions in **`[.roo/commander/docs/developer_guides/01_creating_new_manager_modes.md](.roo/commander/docs/developer_guides/01_creating_new_manager_modes.md)`**. This includes:
         *   Creating the mode directory: `.roo/commander/modes/[manager_slug]/`
-        *   Creating and populating `[manager_slug].mode.md` (using `.roo/commander/templates/modes/manager/template_00_manager.md`). Ensure its `[metadata].delegate_to` lists all its squad members.
+        *   Creating and populating `[manager_slug].mode.md` (using `.roo/commander/templates/modes/manager/template_00_manager.mode.md`). Ensure its `[metadata].delegate_to` lists all its squad members.
         *   Creating its rule directory: `.roo/rules-[manager_slug]/`
         *   Creating its core principles & KB lookup rule: `00-[manager_slug]-core-principles.md` (using `.roo/commander/templates/rules/mode_specific/common/template_00_mode_core_principles_rule.md`).
         *   Creating its squad orchestration rule: `01-[manager_slug]-squad-orchestration.md` (using `.roo/commander/templates/rules/mode_specific/manager/template_01_manager_squad_orchestration_rule.md`).

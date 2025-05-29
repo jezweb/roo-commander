@@ -7,7 +7,7 @@ const MODE_FILE_PATHS = [
     '.roo/commander/modes/manager-data-product/manager-data-product.mode.md',
     '.roo/commander/modes/data-product-strategist/data-product-strategist.mode.md'
 ];
-const OUTPUT_DIR = '.roo/commander/builds';
+const OUTPUT_DIR = '.';
 const OUTPUT_FILENAME = '.roomodes';
 const DEFAULT_GROUPS = ["read", "edit", "browser", "command", "mcp"];
 

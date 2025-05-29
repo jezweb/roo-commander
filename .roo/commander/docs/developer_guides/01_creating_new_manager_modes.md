@@ -37,7 +37,7 @@ Let's assume you are creating a new Manager mode with the slug `manager-new-doma
 ### Step 3.2: Define the Mode (`.mode.md` file)
 
 1.  **Copy the Manager Template:**
-    *   Copy `[.roo/commander/templates/modes/manager/template_00_manager.md](.roo/commander/templates/modes/manager/template_00_manager.md)`
+    *   Copy `[.roo/commander/templates/modes/manager/template_00_manager.mode.md](.roo/commander/templates/modes/manager/template_00_manager.mode.md)`
     *   To: `.roo/commander/modes/manager-new-domain/manager-new-domain.mode.md`
 2.  **Populate TOML Frontmatter:** Open `manager-new-domain.mode.md` and carefully fill in the TOML fields:
     *   `id`: `"manager-new-domain"` (must match slug)

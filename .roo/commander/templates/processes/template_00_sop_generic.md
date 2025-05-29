@@ -79,7 +79,7 @@ template_schema_doc = ".roo/commander/templates/processes/template_00_sop_generi
 [What are the tangible outputs or the desired end state after successfully completing this SOP?]
 *   *(Corresponds to `key_outputs_of_sop` in TOML)*
     *   Outcome 1: (e.g., "A new version of the software is tagged in Git.")
-    *   Outcome 2: (e.g., "Release artifacts are packaged in `[.roo/commander/builds/[version]/](.roo/commander/builds/[version]/)`.")
+    *   Outcome 2: (e.g., "Release artifacts are packaged in `[.build/[version]/](.build/[version]/)`.")
     *   Outcome 3: (e.g., "`CHANGELOG.md` is updated.")
 
 ## 6. Error Handling & Escalation (General for this SOP)

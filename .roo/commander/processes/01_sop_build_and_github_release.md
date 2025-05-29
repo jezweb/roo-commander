@@ -116,7 +116,7 @@ key_outputs_of_sop = [
     *   Detail: Run the script to generate the `.roomodes` file.
     *   Tool(s) Used: Node.js, `build_roomodes-v8.js` script.
     *   Instruction/Command: `node .roo/commander/scripts/build_roomodes-v8.js`
-    *   Verification: `.roomodes` file is created/updated in `[.roo/commander/builds/](.roo/commander/builds/)`.
+    *   Verification: `.roomodes` file is created/updated in the workspace root (`./.roomodes`).
 
 7.  **Step 2.2: Create Release Package**
     *   Detail: Run the Node.js packaging script. This script should:
@@ -124,7 +124,7 @@ key_outputs_of_sop = [
         *   Copy the entire `.roo/` directory structure into it.
         *   **Crucially, empty the contents** of specified subfolders within the *packaged* `.roo/commander/` directory (e.g., `sessions/`, `tasks/`, `tmp/`, `builds/` (this one might be excluded entirely from the package), `archive/`, `context/` if it's user-specific, etc.) while keeping the folder structure. Refer to `[.roo/commander/scripts/build_release/build_config.json](.roo/commander/scripts/build_release/build_config.json)` for the list of folders to empty/exclude.
         *   Copy the project root `README.md`, `LICENSE.txt`, and the just-updated `CHANGELOG.md` into the root of the package directory.
-        *   Copy the generated `.roomodes` file (from Step 2.1) into the appropriate location within the packaged `.roo/` structure (e.g., `dist/roo_commander_vX.Y.Z/.roo/commander/.roomodes`).
+        *   The `.roomodes` file (generated in Step 2.1 at the workspace root) will be included by the packaging process as defined in `[.roo/commander/scripts/build_release/build_config.json](.roo/commander/scripts/build_release/build_config.json)`.
         *   (Optional) Create a compressed archive (e.g., `.zip` or `.tar.gz`) of the package directory.
     *   Tool(s) Used: Node.js, custom packaging script (e.g., `package-release.js`).
     *   Instruction/Command: `node .roo/commander/scripts/build_release/package-release.js --version vX.Y.Z` (example command)

@@ -6,11 +6,11 @@
 [![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-orange)](https://shields.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt) <!-- Ensure you have a LICENSE.txt file -->
 
-Welcome to Roo Commander V8, a streamlined, intelligent orchestration system designed to manage complex workflows by leveraging specialized AI modes. This iteration introduces the **"Manager + Squad"** architectural pattern, with the initial flagship implementation being the **`manager-data-product`** for guiding the design of Data Product Proofs of Concept (PoCs).
+Welcome to Roo Commander, a streamlined, intelligent orchestration system designed to manage complex workflows by leveraging specialized AI modes. This iteration introduces the **"Manager + Squad"** architectural pattern, with the initial flagship implementation being the **`manager-data-product`** for guiding the design of Data Product Proofs of Concept (PoCs).
 
 ## Purpose & Vision 🎯
 
-The **Roo Commander V8** system aims to:
+The **Roo Commander** system aims to:
 
 *   Provide a **lean, adaptable core orchestrator** (`roo-commander`) responsible for high-level user interaction and session management.
 *   Enable **modular, domain-specific workflow management** through specialized "Manager" modes (e.g., `manager-data-product`).
@@ -23,7 +23,7 @@ The vision is a powerful yet intuitive system that assists users in achieving co
 
 ## Core Architectural Concepts 🏗️
 
-Understanding these concepts is key to using and extending Roo Commander V8:
+Understanding these concepts is key to using and extending Roo Commander:
 
 1.  **Orchestrator (`roo-commander`):** The primary user-facing AI. It initiates sessions, understands high-level user goals, and delegates to the appropriate Manager mode.
 2.  **Manager Modes (e.g., `manager-data-product`):** Domain-specific orchestrators. They receive a high-level objective (as an MDTM task) from `roo-commander` and manage a "squad" of specialist modes to achieve it.
@@ -34,7 +34,7 @@ Understanding these concepts is key to using and extending Roo Commander V8:
 
 ## Key Capabilities (with `manager-data-product`) 💡
 
-Initially, Roo Commander V8, in conjunction with `manager-data-product` and its squad, provides a guided workflow to:
+Initially, Roo Commander, in conjunction with `manager-data-product` and its squad, provides a guided workflow to:
 
 *   Define the **strategy** for a new Data Product PoC.
 *   Brainstorm **ideas and scope** for the PoC.
@@ -46,7 +46,7 @@ Initially, Roo Commander V8, in conjunction with `manager-data-product` and its 
 ## Target Audience 👥
 
 *   **Users of the Data Product Design Workflow:** Product Managers, Data Strategists, UX Designers, Analysts.
-*   **Developers & Maintainers of Roo Commander V8:** Those looking to understand its architecture or extend it with new Manager and Squad modes.
+*   **Developers & Maintainers of Roo Commander:** Those looking to understand its architecture or extend it with new Manager and Squad modes.
 *   **AI Interaction Designers:** Interested in multi-agent orchestration patterns.
 
 ## Getting Started 🏁
@@ -64,7 +64,7 @@ Initially, Roo Commander V8, in conjunction with `manager-data-product` and its 
 
 ## Navigating This Documentation 🗺️
 
-All detailed documentation for Roo Commander V8 and its components can be found within the **`docs/`** subdirectory of this `.roo/commander/` folder.
+All detailed documentation for Roo Commander and its components can be found within the **`docs/`** subdirectory of this `.roo/commander/` folder.
 
 *   **[Introduction](./docs/introduction/README.md):** Purpose, goals, and benefits.
 *   **[Architecture](./docs/architecture/README.md):** Detailed explanation of the Orchestrator, Manager, Squad, MDTM, Session, and KB concepts.

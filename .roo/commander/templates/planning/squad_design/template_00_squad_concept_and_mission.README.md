@@ -40,6 +40,7 @@ Filling out this document helps to clarify the "why" and "what" before diving in
 *   `proposed_managing_mode_slug` (String, Optional but Recommended): The intended slug for the Manager mode of this unit.
 *   `proposed_managing_mode_name` (String, Optional but Recommended): The intended human-friendly name for the Manager mode.
 *   `primary_domain_focus` (String, Optional but Recommended, Multiline): Brief description of the core domain this unit will address.
+*   `proposed_managing_mode_classification` (String, Optional but Recommended): The intended classification for the Manager mode (typically `"manager"`).
 
 ### Strategic Alignment (TOML)
 

@@ -1,79 +1,80 @@
-# Documentation: Template `00_orchestrator_mode_template.md`
+# Documentation: Template `template_00_orchestrator.mode.md`
 
 ## 1. Purpose
 
-This template defines the standard structure for creating top-level **Orchestrator modes** within the Roo Commander V8 ecosystem. Orchestrator modes are the primary user-facing AI agents. Their core responsibilities include:
-*   Handling initial user interaction and understanding high-level user objectives.
-*   Managing the lifecycle of work sessions (initiation, logging, artifact organization).
-*   Delegating entire complex workflows or major objectives to specialized "Manager" modes by creating and assigning a top-level MDTM (Markdown-Driven Task Management) task.
+This template defines the standard structure for creating the `.mode.md` file for **Orchestrator modes** within the Roo Commander ecosystem. Orchestrator modes (like `👑 Roo Commander` (`roo-commander`)) are the primary user-facing AI agents responsible for initial interaction, managing work sessions, and delegating entire complex workflows to specialized "Manager" modes.
 
-The flagship instance of this archetype is `roo-commander` itself.
+This template ensures that Orchestrator mode definitions are consistent and provide all necessary information for both the Roo Code system (to generate the `.roomodes` entry) and for human developers.
 
 ## 2. Usage
 
-1.  **Copy Template:** When creating or defining an Orchestrator mode (primarily for `roo-commander` or a similar top-level agent):
-    *   Copy `.roo/commander/templates/modes/00_orchestrator_mode_template.md` to the mode's directory (e.g., `.roo/commander/modes/roo-commander/roo-commander.mode.md`).
-2.  **Populate TOML Frontmatter in the `.mode.md` file:**
-    *   Fill in all placeholders marked with `[...]` in the copied `.mode.md` file.
-    *   Key fields: `id`, `name`, `version`, `classification` (typically "core" or "executive_orchestrator"), `domain` (e.g., "system-orchestration"), `summary`.
-    *   The `system_prompt` provides a boilerplate for an Orchestrator's core responsibilities (initial interaction, session management, delegation to Managers via MDTM). Customize bracketed placeholders like `[Orchestrator Mode Name]`.
-    *   In `[metadata]`, list the Manager modes it can `delegate_to`.
-3.  **Customize Markdown Body (Mode Documentation) in the `.mode.md` file:**
-    *   Fill in the sections under `# [Orchestrator Mode Name] - Mode Documentation` to describe its specific purpose as a high-level coordinator, its responsibilities, and its general workflow.
-4.  **Knowledge Base (KB) Creation & Structure (CRUCIAL for Orchestrators):**
-    *   Create a `kb/` subdirectory for the mode: `.roo/commander/modes/[orchestrator-mode-slug]/kb/`.
-    *   An Orchestrator mode's KB is critical for its operation and **MUST** follow this standard structure. Not all subdirectories are mandatory if empty, but this organization is recommended:
-        *   **`README.md` (KB Index):**
-            *   **Purpose:** Overview of this Orchestrator's KB. **MUST** link to its core `prompts/00-initial-options.md`, `procedures/01-initiate-manager-delegation.md`, `procedures/02-handle-session-mgmt-commands.md`, and `reference/00-available-managers-summary.md`.
-        *   **`prompts/` (MANDATORY):**
-            *   **`00-initial-options.md`**: Contains the structured text for the initial `ask_followup_question` presented to the user, outlining the main workflows or actions the Orchestrator can initiate.
-        *   **`procedures/` (MANDATORY):**
-            *   **`01-initiate-manager-delegation.md`**: Details the logic for how the Orchestrator, based on user choice from `00-initial-options.md`, identifies the correct Manager mode, creates the top-level MDTM task for that Manager, and delegates the task.
-            *   **`02-handle-session-mgmt-commands.md`**: Details the procedures for handling explicit session management commands from the user (e.g., start a new session without a manager, list sessions, resume, summarize, end session). This includes how it interacts with session logs and artifact structures, and when it might delegate session scaffold creation.
-            *   `(Optional) [other_core_procedure_name].md`: For other distinct high-level procedures it might follow.
-        *   **`reference/` (MANDATORY):**
-            *   **`00-available-managers-summary.md`**: Lists the "Manager" modes that this Orchestrator knows how to delegate to, along with a brief description of their domain and the primary user intent they serve. This file is key for the logic in `procedures/01-initiate-manager-delegation.md`.
-        *   **`examples/` (Highly Recommended):**
-            *   `01-sample-manager-mdtm-task.md`: An example of a well-formed top-level MDTM task it creates for a Manager mode.
-        *   **`skills/` (Optional, for orchestration techniques):**
-            *   Purpose: To store specific techniques related to *its role as an orchestrator*, such as advanced query parsing for intent recognition, or strategies for summarizing complex multi-manager workflows (if applicable in the future).
-            *   Example: `skills/intent_recognition/parsing_complex_user_requests.md`.
-        *   **`wisdom/` (Optional, for guiding principles of orchestration):**
-            *   Purpose: To store higher-level insights or strategic considerations for *its role as a system-wide coordinator*.
-            *   Example: `wisdom/orchestration_principles/maintaining_user_context_across_managers.md`.
-    *   The mode's `system_prompt` (in its `.mode.md` file) will instruct it to consult its KB for these specific procedures and references.
+1.  **Copy Template:** When creating or defining an Orchestrator mode:
+    *   Copy `[.roo/commander/templates/modes/orchestrator/template_00_orchestrator.mode.md](.roo/commander/templates/modes/orchestrator/template_00_orchestrator.mode.md)` to the mode's directory (e.g., `[.roo/commander/modes/roo-commander/roo-commander.mode.md]`).
+2.  **Populate TOML Frontmatter:**
+    *   Replace all placeholders like `[orchestrator-mode-slug]` and `[Orchestrator Mode Name]` with actual values.
+    *   The `id` field should be the mode's unique slug.
+    *   The `name` field is for the display name in Roo Code.
+    *   The `roleDefinition` should be a concise statement of its core identity and purpose.
+    *   The `groups` field defines tool access (defaults to all).
+    *   `classification` **MUST be `"orchestrator"`**.
+    *   `custom_instructions_dir` **MUST be the full workspace-relative path** to the mode's KB, e.g., `".roo/commander/modes/[orchestrator-mode-slug]/kb/"`.
+    *   Fill in other metadata fields (`domain`, `summary`, `tags`, `categories`, `delegate_to`, `reports_to`, `created_date`, `last_updated`) as appropriate.
+3.  **Customize Markdown Body (Mode Documentation):**
+    *   Fill in the sections under `# [Orchestrator Mode Name] - Mode Documentation` to clearly describe the mode for human developers, replacing placeholders.
 
-## 3. TOML Frontmatter Schema (for the `.mode.md` file)
+## 3. TOML Frontmatter Schema (for an instance created from this template)
 
-*   **`id` (String, Required):** Unique slug for the Orchestrator mode (e.g., `"roo-commander"`).
-*   **`name` (String, Required):** Human-friendly name (e.g., `"👑 Roo Commander V8"`).
-*   **`version` (String, Required):** Mode definition version.
-*   **`classification` (String, Required):** Typically `"core"` or `"executive_orchestrator"`.
-*   **`domain` (String, Required):** Its area of operation (e.g., `"system-orchestration"`).
-*   `sub_domain` (String, Optional): Further specialization.
-*   **`summary` (String, Required):** One-sentence description of its role.
-*   **`system_prompt` (String, Required, Multiline):**
-    *   Defines its identity as a top-level Orchestrator, its core responsibilities (user interaction via KB prompts, session management, creating top-level MDTM tasks for Managers, delegating to Managers), and operational guidelines.
-    *   Emphasizes tool-agnostic instructions and reliance on its KB.
-*   `allowed_tool_groups` (Array of Strings, Optional): Default: Permissive.
-*   `file_access` (Table, Optional): Default: Permissive.
+### 3.1. Fields Directly Used for `.roomodes` Generation:
+
+*   **`name` (String, Required):**
+    *   The human-friendly display name for the mode (e.g., `"👑 Roo Commander"`).
+    *   *Maps to `.roomodes` property: `name`.*
+*   **`roleDefinition` (String, Required, Multiline):**
+    *   The core identity, expertise, and primary function of the mode. The first sentence is particularly important.
+    *   *Maps to `.roomodes` property: `roleDefinition`.*
+*   **`groups` (Array of Strings, Required):**
+    *   Defines toolsets available to the mode (e.g., `["read", "edit", "browser", "command", "mcp"]`).
+    *   *Maps to `.roomodes` property: `groups`.*
+
+### 3.2. Workspace Internal Metadata Fields (for the `.mode.md` file itself):
+
+*   **`id` (String, Required):** Unique slug for this mode (e.g., `"roo-commander"`).
+*   **`version` (String, Required):** Version of this mode definition file (e.g., `"1.0.0"`).
+*   **`classification` (String, Required):** **MUST be `"orchestrator"`**.
+*   **`domain` (String, Required):** Primary operational domain (e.g., `"system-orchestration"`).
+*   **`summary` (String, Required):** A concise one-sentence summary of the mode's role.
+*   **`created_date` (String, Required):** Date of mode definition creation (`YYYY-MM-DD`).
+    *   *Placeholder in template:* `{{YYYYMMDD}}`
+*   **`last_updated` (String, Required):** Timestamp of last significant update to the mode definition (`YYYY-MM-DDTHH:MM:SSZ`).
+    *   *Placeholder in template:* `{{TIMESTAMP_ISO_Z}}`
 *   **`[metadata]` (Table, Optional):**
-    *   `tags` (Array of Strings, Required): Keywords. Include `"orchestrator"`, `"core-system"`, `"session-manager"`.
+    *   `tags` (Array of Strings, Required): Keywords for discoverability.
     *   `categories` (Array of Strings, Required): Broader functional grouping.
-    *   `delegate_to` (Array of Strings, Required): List of slugs for the Manager modes it can delegate to.
+    *   `delegate_to` (Array of Strings, Required): List of slugs for Manager modes it can delegate to.
     *   `reports_to` (String, Required): Typically `"user"`.
-*   **`custom_instructions_dir` (String, Required):** Standard value: `"kb"`. Points to the mode's own knowledge base directory: `.roo/commander/modes/[orchestrator-mode-slug]/kb/`.
+    *   `squad_name` (String, Optional): Not typically applicable to orchestrators.
+    *   `primary_output_description` (String, Optional): Not typically applicable to orchestrators.
+    *   `primary_output_template` (String, Optional): Not typically applicable to orchestrators.
+*   **`custom_instructions_dir` (String, Required):**
+    *   **Full workspace-relative path** to the mode's own Knowledge Base directory.
+    *   *Placeholder in template:* `".roo/commander/modes/[orchestrator-mode-slug]/kb/"`
+*   **`template_schema_doc` (String, Required):**
+    *   Path to this schema documentation file.
+    *   *Value:* `".roo/commander/templates/modes/orchestrator/template_00_orchestrator.README.md"`
 
-## 4. Markdown Body Structure (for the `.mode.md` file's documentation section)
+## 4. Markdown Body Structure (Human-Readable Documentation)
 
-*   **`# [Orchestrator Mode Name] - Mode Documentation`**: Main title.
-*   **`## 1. Description & Purpose`**: Its role as the main user interface and delegator to Manager modes.
-*   **`## 2. Core Responsibilities & Capabilities`**: Key functions.
-*   **`## 3. Typical Inputs`**: What triggers its actions (user prompts, selections).
-*   **`## 4. Primary Outputs`**: Session structures, top-level MDTM tasks for Managers, user communication.
-*   **`## 5. Workflow Overview`**: High-level flow from user interaction to Manager delegation.
-*   **`## 6. Limitations`**: What it doesn't do (e.g., domain-specific work).
+The Markdown section of the `.mode.md` file serves as its own documentation for developers:
 
-## 5. Role in the "Manager + Squad" Architecture
+*   `# [Orchestrator Mode Name] - Mode Documentation`: Main title.
+*   `## 1. Description & Purpose`
+*   `## 2. Core Responsibilities & Capabilities`
+*   `## 3. Key Inputs & Triggers`
+*   `## 4. Primary Outputs & Deliverables`
+*   `## 5. Workflow & Interactions`
+*   `## 6. Key Knowledge Base (KB) & Rule Components`
+*   `## 7. Limitations`
+*   `## 8. Design Rationale / Notes (Optional)`
+*   `## 9. External Resources / Links (Optional)`
 
-The Orchestrator mode is the **entry point and highest level of coordination** in the system. It sets up the overall work context (the session) and hands off responsibility for specific, complex domains to Manager modes by assigning them a formal MDTM task. This allows the Orchestrator to remain relatively simple and focused on user interaction and session context, while enabling the system to handle diverse and complex workflows through its pluggable Manager modes. Its own Knowledge Base is critical for defining its initial user interactions and its logic for selecting and initiating Manager modes.
+This template structure ensures that Orchestrator modes are defined in a way that is directly consumable by the Roo Code system (for `.roomodes`) while also providing comprehensive documentation for human developers.

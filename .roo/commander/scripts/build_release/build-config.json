@@ -1,6 +1,6 @@
 {
     "sourceRooDir": ".roo",
-    "outputBuildRootDir": ".roo/commander/builds",
+    "outputBuildRootDir": ".build",
     "packageDirNameTemplate": "roo_commander_v{VERSION}",
     "foldersToEmptyInPackagedCommanderDir": [
       "archive",
@@ -20,7 +20,7 @@
       "LICENSE.txt",
       "CHANGELOG.md"
     ],
-    "roomodesSourceFile": ".roo/commander/builds/.roomodes",
+    "roomodesSourceFile": ".roomodes",
     "roomodesTargetInPackage": ".roo/commander/.roomodes",
     "createArchive": true,
     "archiveType": "zip"

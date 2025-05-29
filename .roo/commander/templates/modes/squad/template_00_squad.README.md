@@ -1,82 +1,72 @@
-# Documentation: Template `02_squad_member_mode_template.md`
+# Documentation: Template `template_00_squad.mode.md`
 
 ## 1. Purpose
 
-This template defines the standard structure for creating **Squad Member modes** within the Roo Commander V8 ecosystem. Squad Member modes are specialist worker AIs designed to perform a specific, well-defined task as part of a larger workflow orchestrated by a "Manager" mode (e.g., `manager-data-product`).
+This template defines the standard structure for creating the `.mode.md` file for **Squad Member modes** within the Roo Commander ecosystem. Squad Member modes are specialist worker AIs designed to perform a specific, well-defined task as part of a larger workflow orchestrated by a "Manager" mode (e.g., `🧑‍💼 Data Product Manager`). They are the "doers" within a squad, each contributing a specific piece to the overall goal.
 
-Their primary interaction pattern involves receiving an MDTM (Markdown-Driven Task Management) task file, executing the instructions within it, producing a specific output artifact (typically a structured TOML+MD document), and updating the MDTM task file to reflect their progress and completion.
+This template ensures that Squad Member mode definitions are consistent and provide all necessary information for both the Roo Code system (to generate the `.roomodes` entry) and for human developers.
 
 ## 2. Usage
 
 1.  **Copy Template:** When creating a new Squad Member mode (e.g., `data-product-strategist`):
-    *   Copy `.roo/commander/templates/modes/02_squad_member_mode_template.md` to the new mode's directory (e.g., `.roo/commander/modes/data-product-strategist/data-product-strategist.mode.md`).
-2.  **Populate TOML Frontmatter in the `.mode.md` file:**
-    *   Fill in all placeholders marked with `[...]` in the copied `.mode.md` file.
-    *   Pay close attention to `id`, `name`, `classification` (should be "worker" or "specialist"), `domain`, and `summary`.
-    *   The `system_prompt` provides a strong boilerplate; customize the bracketed placeholders like `[Squad Member Mode Name]` and `[specific-domain-of-expertise]`. The core responsibilities (Task Ingestion, Execution, Artifact Creation, MDTM Updates, Reporting) should generally be preserved as they define the standard interaction pattern for squad members.
-    *   Update `[metadata].tags`, `[metadata].categories`, and `[metadata].reports_to` (which should be the slug of its managing "Manager" mode).
-3.  **Customize Markdown Body (Mode Documentation) in the `.mode.md` file:**
-    *   Fill in the sections under `# [Squad Member Mode Name] - Mode Documentation` to describe the mode's specific expertise, capabilities, typical inputs/outputs, and its role within its squad.
-4.  **Knowledge Base (KB) Creation & Structure:**
-    *   Create a `kb/` subdirectory for the mode: `.roo/commander/modes/[squad-member-mode-slug]/kb/`.
-    *   While a Squad Member's KB might be minimal initially, it **SHOULD** follow this standard structure for future scalability and consistency. Not all subdirectories need to be created if empty, but this is the recommended organization:
-        *   **`README.md` (KB Index):**
-            *   **Purpose:** Overview of this Squad Member's KB. Briefly state its core function and link to any critical documents within its `skills/` or `wisdom/` if they exist. For very simple squad members, this might be the only KB file initially.
-        *   **`procedures/` (Optional, for complex internal logic):**
-            *   `01-core-task-execution-flow.md`: If the squad member has a standard internal multi-step process to arrive at its output (beyond just following the MDTM checklist), document it here. Many simple squad members may not need this if their system prompt and MDTM checklist are sufficient.
-        *   **`reference/` (Optional):**
-            *   `00-output-artifact-template.md`: A note pointing to, or containing an example of, the primary TOML+MD template it uses for its output artifact (e.g., for `data-product-strategist`, it would reference `template_product_strategy.md`).
-        *   **`examples/` (Optional):**
-            *   `01-sample-input-task.md`: An example of a well-formed MDTM task it expects to receive.
-            *   `02-sample-output-artifact.md`: An example of its typical primary output artifact.
-        *   **`skills/` (Optional, for "how-to" knowledge):**
-            *   Purpose: To store specific, actionable techniques, "how-to" guides for tools or methodologies relevant to this mode's function.
-            *   Structure: May contain subdirectories for categories of skills.
-            *   Example: `skills/data_analysis_techniques/interpreting_correlation_matrices.md`
-        *   **`wisdom/` (Optional, for guiding principles):**
-            *   Purpose: To store higher-level insights, best practices, anti-patterns, design principles, or strategic considerations relevant to this mode's domain.
-            *   Structure: May contain subdirectories for topics.
-            *   Example: `wisdom/strategic_thinking/common_biases_in_strategy.md`
-    *   The mode's `system_prompt` (in its `.mode.md` file) will instruct it to consult its KB. The mode's own KB lookup rule (`99-[squad-member-slug]-kb-lookup.md`, if created, or a general squad member KB lookup rule) would guide *how* it navigates these KB sections.
+    *   Copy `[.roo/commander/templates/modes/squad/template_00_squad.mode.md](.roo/commander/templates/modes/squad/template_00_squad.mode.md)` to the new mode's directory (e.g., `[.roo/commander/modes/data-product-strategist/data-product-strategist.mode.md]`).
+2.  **Populate TOML Frontmatter:**
+    *   Replace all placeholders like `[squad-member-mode-slug]`, `[Squad Member Mode Name]`, `[Squad Name]`, `[manager-mode-slug]`, etc., with actual values.
+    *   The `id` field should be the mode's unique slug.
+    *   The `name` field is for the display name in Roo Code.
+    *   The `roleDefinition` should be a concise statement of its core identity, squad context, reporting line, core function, and main deliverable.
+    *   The `groups` field defines tool access (defaults to all).
+    *   `classification` **MUST be `"squad"`**.
+    *   `custom_instructions_dir` **MUST be the full workspace-relative path** to the mode's KB, e.g., `".roo/commander/modes/[squad-member-mode-slug]/kb/"`.
+    *   Fill in other metadata fields (`domain`, `summary`, `tags`, `categories`, `squad_name`, `primary_output_description`, `primary_output_template`, `reports_to`, `created_date`, `last_updated`) as appropriate.
+3.  **Customize Markdown Body (Mode Documentation):**
+    *   Fill in the sections under `# [Squad Member Mode Name] - Mode Documentation` to clearly describe the mode for human developers, replacing placeholders.
 
-## 3. TOML Frontmatter Schema (for the `.mode.md` file)
+## 3. TOML Frontmatter Schema (for an instance created from this template)
 
-*   **`id` (String, Required):** Unique slug for the mode (e.g., `"data-product-strategist"`).
-*   **`name` (String, Required):** Human-friendly name (e.g., `"📊 Data Product Strategist"`).
-*   **`version` (String, Required):** Version of this mode definition (e.g., `"1.0.0"`).
-*   **`classification` (String, Required):** Typically `"worker"` or `"specialist"`.
-*   **`domain` (String, Required):** The specific area of expertise (e.g., `"data-product-strategy"`).
-*   `sub_domain` (String, Optional): Further specialization if needed.
-*   **`summary` (String, Required):** One-sentence description of its function.
-*   **`system_prompt` (String, Required, Multiline):**
-    *   Defines the mode's identity, core responsibilities (MDTM task handling, artifact creation, status reporting), and operational guidelines.
-    *   The template provides a standard structure; specific details like the mode's name and domain need to be filled in.
-    *   Emphasizes tool-agnostic instructions, focusing on outcomes.
-*   `allowed_tool_groups` (Array of Strings, Optional):
-    *   **Default:** Permissive (commented out in template, implying Roo Code default access). Define explicitly if restrictions are needed later.
-*   `file_access` (Table, Optional):
-    *   **Default:** Permissive (commented out). Define `read_allow` and `write_allow` glob patterns if restrictions are needed.
+### 3.1. Fields Directly Used for `.roomodes` Generation:
+
+*   **`name` (String, Required):** Display name (e.g., `"📊 Data Product Strategist"`). *Maps to `.roomodes` `name`.*
+*   **`roleDefinition` (String, Required, Multiline):** Core identity, expertise, squad context, and reporting structure. *Maps to `.roomodes` `roleDefinition`.*
+*   **`groups` (Array of Strings, Required):** Tool access. *Maps to `.roomodes` `groups`.*
+
+### 3.2. Workspace Internal Metadata Fields (for the `.mode.md` file itself):
+
+*   **`id` (String, Required):** Workspace internal slug (e.g., `"data-product-strategist"`).
+*   **`version` (String, Required):** Version of this mode definition file.
+*   **`classification` (String, Required):** **MUST be `"squad"`**.
+*   **`domain` (String, Required):** Specific area of expertise.
+*   **`summary` (String, Required):** One-sentence summary.
+*   **`created_date` (String, Required):** Date of mode definition creation (`YYYY-MM-DD`).
+    *   *Placeholder in template:* `{{YYYYMMDD}}`
+*   **`last_updated` (String, Required):** Timestamp of last significant update to the mode definition (`YYYY-MM-DDTHH:MM:SSZ`).
+    *   *Placeholder in template:* `{{TIMESTAMP_ISO_Z}}`
 *   **`[metadata]` (Table, Optional):**
-    *   `tags` (Array of Strings, Required): Keywords for discoverability. Include domain-specific tags and `"squad-member"`.
-    *   `categories` (Array of Strings, Required): Broader functional grouping.
-    *   `delegate_to` (Array of Strings, Optional): Usually empty for squad members.
-    *   `reports_to` (String, Required): The slug of the Manager mode this squad member reports to (e.g., `"manager-data-product"`).
-    *   `documentation_urls` (Array of Strings, Optional): Links to external docs relevant to its expertise.
-    *   `context_files` (Array of Strings, Optional): Key reference files (rarely needed if all input comes via MDTM task `input_artifacts`).
-*   **`custom_instructions_dir` (String, Required):** Standard value: `"kb"`. Points to the mode's own knowledge base directory: `.roo/commander/modes/[squad-member-mode-slug]/kb/`.
+    *   `tags` (Array of Strings, Required): Include `"squad"`, domain tag, skill tag.
+    *   `categories` (Array of Strings, Required): e.g., "Data Product Design Squad".
+    *   `squad_name` (String, Required): Name of the squad this member belongs to.
+    *   `primary_output_description` (String, Required): Description of its main deliverable.
+    *   `primary_output_template` (String, Optional): Path to its primary output template file, if applicable (using `.roo/` anchor).
+    *   `delegate_to` (Array of Strings, Optional): Typically empty for squad members.
+    *   `reports_to` (String, Required): Slug of its Manager mode.
+*   **`custom_instructions_dir` (String, Required):**
+    *   **Full workspace-relative path** to the mode's own Knowledge Base directory.
+    *   *Placeholder in template:* `".roo/commander/modes/[squad-member-mode-slug]/kb/"`
+*   **`template_schema_doc` (String, Required):**
+    *   Path to this schema documentation file.
+    *   *Value:* `".roo/commander/templates/modes/squad/template_00_squad.README.md"`
 
-## 4. Markdown Body Structure (for the `.mode.md` file's documentation section)
+## 4. Markdown Body Structure (Human-Readable Documentation)
 
-The Markdown section of the `.mode.md` file serves as its own documentation:
+*   `# [Squad Member Mode Name] - Mode Documentation`: Main title.
+*   `## 1. Description & Purpose`
+*   `## 2. Core Responsibilities & Capabilities`
+*   `## 3. Key Inputs & Triggers`
+*   `## 4. Primary Outputs & Deliverables`
+*   `## 5. Workflow & Interactions` (how it fits within its squad)
+*   `## 6. Key Knowledge Base (KB) & Rule Components`
+*   `## 7. Limitations`
+*   `## 8. Design Rationale / Notes (Optional)`
+*   `## 9. External Resources / Links (Optional)`
 
-*   **`# [Squad Member Mode Name] - Mode Documentation`**: Main title.
-*   **`## 1. Description & Expertise`**: What this mode is and does.
-*   **`## 2. Core Capabilities`**: Bullet list of its key functions.
-*   **`## 3. Typical Inputs (from MDTM Task)`**: What it expects in its assigned MDTM task.
-*   **`## 4. Primary Outputs`**: The main artifact it produces and its updated MDTM task.
-*   **`## 5. Workflow within the Squad`**: Its position in the sequence of squad operations.
-*   **`## 6. Limitations`**: What it doesn't do.
-
-## 5. Role in the "Manager + Squad" Architecture
-
-Squad Member modes are the workhorses. They are directed by a Manager mode through MDTM tasks. They perform a focused piece of work, generate a specific output (usually a design artifact for the Data Product Squad), and report back. This modularity allows for complex workflows to be built from specialized, single-responsibility modes. Their internal knowledge, if needed beyond the MDTM task instructions, is stored in their dedicated, structured KB.
+This template structure ensures that Squad Member modes are defined in a way that is directly consumable by the Roo Code system (for `.roomodes`) while also providing comprehensive documentation for human developers, clearly outlining their specialized role within a managed squad.

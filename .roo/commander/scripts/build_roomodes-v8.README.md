@@ -11,7 +11,7 @@ The `build_roomodes-v8.js` script is designed to process a predefined list of `.
 4.  Derives a `slug` for the mode from its file path.
 5.  Assigns a default set of `groups` to the mode.
 6.  Consolidates this information for all processed modes into a single JSON structure.
-7.  Writes this JSON structure to an output file named `.roomodes` located in the `.roo/commander/builds` directory.
+7.  Writes this JSON structure to an output file named `.roomodes` located in the `.build` directory.
 
 This output file is likely consumed by other parts of the Roo Commander V8 system to load and define available AI modes.
 
@@ -69,7 +69,7 @@ node .roo/commander/scripts/build_roomodes-v8.js
     *   Logs for each file being processed, indicating success or warnings/errors.
     *   A summary message stating the number of modes written to the output file.
 *   **Output File:**
-    *   A new file named `.roomodes` will be created (or overwritten) in the `.roo/commander/builds/` directory.
+    *   A new file named `.roomodes` will be created (or overwritten) in the `.build/` directory.
     *   This file will contain a JSON object with a single key `customModes`. The value of `customModes` will be an array of mode objects, where each object has the following structure:
         ```json
         {

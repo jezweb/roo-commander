@@ -24,7 +24,7 @@ These templates are used to create the core `.mode.md` files that define each AI
 
 *   **`template_00_mode_manager.mode.md`**
     *   **Purpose:** For defining Manager modes (e.g., `manager-data-product`).
-    *   **Schema Doc:** `.roo/commander/templates/modes/manager/template_00_manager.README.md`
+    *   **Schema Doc:** `.roo/commander/templates/modes/manager/template_00_manager.mode.README.md`
 
 *   **`template_00_mode_squad_member.mode.md`**
     *   **Purpose:** For defining specialist Squad Member modes (e.g., `data-product-strategist`).

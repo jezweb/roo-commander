@@ -16,7 +16,7 @@ Please select a guide below to learn more:
 1.  **[Creating New Manager Modes](./01_creating_new_manager_modes.md)**
     *   A comprehensive guide on how to design, define, and implement a new "Manager" mode. This includes structuring its `.mode.md` file, developing its core orchestration logic within its Knowledge Base (especially the `procedures/01-main-orchestration-flow.md`), and defining its squad composition.
     *   **Covers:**
-        *   Using the `.roo/commander/templates/modes/manager/template_00_manager.md`.
+        *   Using the `.roo/commander/templates/modes/manager/template_00_manager.mode.md`.
         *   Designing the Manager's primary MDTM task contract.
         *   Structuring the Manager's KB for orchestrating its squad.
         *   Best practices for Manager mode development.
