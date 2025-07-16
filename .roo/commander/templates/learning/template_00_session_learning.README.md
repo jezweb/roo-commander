@@ -21,8 +21,6 @@ This template is for documenting specific problems encountered, solutions devise
 
 ## 3. Markdown Body Structure
 
-The Markdown body should elaborate on the TOML fields:
-
 *   **`## Problem / Context`**:
     *   Describe the situation or problem encountered in more detail.
     *   What were you trying to achieve? What went wrong?
@@ -38,6 +36,6 @@ The Markdown body should elaborate on the TOML fields:
 ## 4. Usage Guidelines
 
 *   Use this template to capture significant learnings, especially those related to problem-solving.
-*   Store these artifacts in the `artifacts/learnings/` subdirectory of the relevant session folder.
+*   Store these artifacts in the `learnings/` subdirectory of the relevant session folder (e.g., `.mdtm/sessions/[SessionID]/learnings/`).
 *   The `session_log.md` should reference this learning artifact.
 *   This helps build a knowledge base within the session context.

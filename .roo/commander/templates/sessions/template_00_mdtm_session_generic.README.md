@@ -1,6 +1,6 @@
 # Schema Documentation: MDTM Session Log
 
-This document outlines the TOML schema used for MDTM Session Log files, typically named `session_log.md` within a session-specific directory (e.g., `.roo/commander/sessions/[SESSION_ID]/`).
+This document outlines the TOML schema used for MDTM Session Log files, typically named `session_log.md` within a session-specific directory (e.g., `.mdtm/sessions/[SESSION_ID]/`).
 
 ## Purpose
 

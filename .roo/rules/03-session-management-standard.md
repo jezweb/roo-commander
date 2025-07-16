@@ -34,17 +34,15 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 ## 2. Core Session Components
 
 *   **Session Directory:** Each session **MUST** have a dedicated directory.
-    *   **Location:** `.sessions/`
+    *   **Location:** `.mdtm/sessions/`
     *   **Naming Convention:** `SESSION-[SanitizedGoal]-[YYYYMMDD-HHMMSS]`
         *   `[SanitizedGoal]`: A short, filesystem-safe version of the session's primary goal or title.
         *   `[YYYYMMDD-HHMMSS]`: Timestamp of session creation for uniqueness.
 *   **Session Log File (`session_log.md`):** The central record for each session.
-    *   **Location:** Directly within the session directory (e.g., `.sessions/SESSION-XYZ-20250701-120000/session_log.md`).
+    *   **Location:** Directly within the session directory (e.g., `.mdtm/sessions/SESSION-XYZ-20250701-120000/session_log.md`).
     *   **Template:** **MUST** be created using `template_00_mdtm_session_generic.md` (located at `.roo/commander/templates/sessions/template_00_mdtm_session_generic.md`).
     *   **Format:** **MUST** adhere to `.roo/rules/01-standard-toml-md-format.md`.
-*   **Session Artifacts Directory (`artifacts/`):** A dedicated subdirectory within each session directory for storing all contextual files generated or referenced during the session.
-    *   **Location:** `[SessionDirectory]/artifacts/`
-    *   **Structure:** May contain further subdirectories for organization as defined by the session artifact scaffold (e.g., `notes/`, `learnings/`, `design_outputs/`). See Section 5.
+*   **Session Artifacts:** All contextual files generated or referenced during the session will reside directly within the session directory or its subdirectories.
 
 ## 3. Session Lifecycle & Status
 
@@ -53,7 +51,7 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
     *   **Procedure:**
         1.  Determine session goal/title.
         2.  Generate unique `RooComSessionID` (which forms part of the directory name).
-        3.  Create the session directory structure, including `artifacts/` and its standard subdirectories (see Section 5.1). This **SHOULD** be performed by a mode with appropriate file system access for efficiency.
+        3.  Create the session directory structure, including its standard subdirectories for artifacts (see Section 5.1). This **SHOULD** be performed by a mode with appropriate file system access for efficiency.
         4.  Create `session_log.md` using the standard template, populating initial TOML metadata (`id`, `title`, `status = "🟢 Active"`, `start_time`, `coordinator`).
         5.  The initiating coordinator **MUST** retain the active `RooComSessionID` for subsequent logging and artifact linking.
 *   **Active Logging:**
@@ -73,20 +71,20 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 *   **`related_tasks` (TOML Array):**
     *   This field in `session_log.md` **MUST** list the `id`s of top-level MDTM tasks initiated by the session's coordinator (e.g., the main task assigned to a Manager mode).
 *   **`related_artifacts` (TOML Array):**
-    *   This field in `session_log.md` **MUST** list the **relative paths** (from the session directory root, e.g., `artifacts/notes/NOTE-XYZ.md`, `artifacts/design_outputs/[ProjectName]/strategy.md`) to all significant contextual files or key deliverables created or referenced during the session.
+    *   This field in `session_log.md` **MUST** list the **relative paths** (from the session directory root, e.g., `notes/NOTE-XYZ.md`, `design_outputs/[ProjectName]/strategy.md`) to all significant contextual files or key deliverables created or referenced during the session.
     *   Modes creating such artifacts are responsible for ensuring their paths are logged here by the coordinator or by reporting the path back for logging.
 
-## 5. Session Artifacts (`artifacts/` directory)
+## 5. Session Artifacts
 
 *   **Purpose:** To store all supporting files, notes, learnings, research, snippets, and key design deliverables relevant to the session.
 *   **Standard Subdirectories & Scaffold:**
-    *   Upon session initiation, a standard scaffold of subdirectories **MUST** be created within `[SessionDirectory]/artifacts/`. This includes: `notes/`, `learnings/`, `summaries/`.
-    *   Additional subdirectories may be created by modes as needed for specific workflows.
+    *   Upon session initiation, a standard scaffold of subdirectories **MUST** be created directly within the `[SessionDirectory]`. This includes: `notes/`, `learnings/`, `summaries/`.
+    *   Additional subdirectories may be created by modes as needed for specific workflows (e.g., `design_outputs/`).
     *   Each of these subdirectories **SHOULD** contain a `README.md` explaining its purpose.
 *   **Artifact Creation:**
     *   Modes (or users) can create artifacts within these subdirectories as needed.
-    *   Use specific templates from `.roo/commander/templates/sessions/artifacts/` (e.g., `template_31_session_note.md`) when appropriate.
-    *   The primary design outputs from specialist Squad modes (e.g., strategy documents, ideation plans) **MUST** be stored within a relevant subdirectory, typically `artifacts/design_outputs/[ProjectName]/`.
+    *   Use specific templates from `.roo/commander/templates/` (e.g., `note/template_00_session_note.md`) when appropriate.
+    *   The primary design outputs from specialist Squad modes (e.g., strategy documents, ideation plans) **MUST** be stored within a relevant subdirectory, typically `design_outputs/[ProjectName]/`.
 *   **Naming Convention:** Artifact files should follow a consistent naming convention, typically `[TYPE_PREFIX]-[Topic]-[YYMMDDHHMMSS].[ext]`. Prefixes are defined by the artifact type (e.g., `NOTE-`, `LEARNING-`, `STRATEGY-`).
 
 ## 6. Rationale
