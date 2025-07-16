@@ -1,98 +1,130 @@
-# Roo Commander V8 + Manager-DataProduct 🚀
+# Roo Commander V8.1: Lean & Efficient AI Orchestration 👑
 
-**Version:** 8.0.0 (Core Commander) / 1.0.0 (Manager-Data-Product & Squad)
+**Version:** 8.1.0 (Core Commander)
 **Author:** Jeremy Dawes, Jezweb, Australia
 
 [![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-orange)](https://shields.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt) <!-- Ensure you have a LICENSE.txt file -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 
-Welcome to Roo Commander V8, a streamlined, intelligent orchestration system designed to manage complex workflows by leveraging specialized AI modes. This iteration introduces the **"Manager + Squad"** architectural pattern, with the initial flagship implementation being the **`manager-data-product`** for guiding the design of Data Product Proofs of Concept (PoCs).
+Welcome to **Roo Commander V8.1**, a streamlined, intelligent orchestration system designed to manage complex workflows by leveraging specialized AI modes within the Roo Code environment. This iteration focuses on a **lean, token-efficient architecture** and a clear **"Orchestrator + Manager + Squad"** hierarchical model.
 
 ## Purpose & Vision 🎯
 
-The **Roo Commander V8** system aims to:
+The **Roo Commander V8.1** system aims to:
 
 *   Provide a **lean, adaptable core orchestrator** (`roo-commander`) responsible for high-level user interaction and session management.
-*   Enable **modular, domain-specific workflow management** through specialized "Manager" modes (e.g., `manager-data-product`).
-*   Utilize "Squad" modes (e.g., `data-product-strategist`, `data-product-ideator`) under each Manager to perform focused, expert tasks.
+*   Enable **modular, domain-specific workflow management** through specialized "Manager" modes (e.g., `project-manager`).
+*   Utilize "Squad" modes (e.g., `task-planner`, `task-executor`) under each Manager to perform focused, expert tasks.
 *   Ensure **traceability and context preservation** through a robust session management system with detailed logs and linked artifacts.
 *   Standardize task delegation and tracking using **Markdown-Driven Task Management (MDTM)**.
 *   Create a **scalable and maintainable architecture** where new capabilities can be added by developing new "Manager + Squad" units.
+*   Prioritize **token efficiency** through a layered context management strategy, leveraging Roo Code's native custom instructions and dynamic KB lookup.
 
 The vision is a powerful yet intuitive system that assists users in achieving complex goals by intelligently coordinating a team of specialized AI agents.
 
 ## Core Architectural Concepts 🏗️
 
-Understanding these concepts is key to using and extending Roo Commander V8:
+Understanding these concepts is key to using and extending Roo Commander V8.1:
 
 1.  **Orchestrator (`roo-commander`):** The primary user-facing AI. It initiates sessions, understands high-level user goals, and delegates to the appropriate Manager mode.
-2.  **Manager Modes (e.g., `manager-data-product`):** Domain-specific orchestrators. They receive a high-level objective (as an MDTM task) from `roo-commander` and manage a "squad" of specialist modes to achieve it.
-3.  **Squad Modes (e.g., `data-product-strategist`):** Specialist worker AIs that perform specific tasks assigned by their Manager mode, typically producing a defined artifact.
-4.  **MDTM (Markdown-Driven Task Management):** The standardized system for creating, assigning, and tracking tasks. Tasks are defined in TOML+Markdown files and form the basis of delegation between modes.
-5.  **Sessions & Artifacts:** Each user interaction or workflow execution occurs within a "session," which has a dedicated directory (`.roo/commander/sessions/[SESSION_ID]/`). This directory contains a `session_log.md` and an `artifacts/` subdirectory for all generated notes, design documents, and other contextual files, ensuring full traceability.
-6.  **Knowledge Bases (KBs):** Each mode (`roo-commander`, Managers, Squad members) has its own KB (`kb/` subdirectory) containing its specific operational procedures, prompts, references, and domain knowledge.
+2.  **Manager Modes (e.g., `project-manager`):** Domain-specific orchestrators. They receive a high-level objective (as an MDTM task) from `roo-commander` and manage a "squad" of specialist modes to achieve it.
+3.  **Squad Modes (e.g., `task-planner`, `task-executor`):** Specialist worker AIs that perform specific tasks assigned by their Manager mode, typically producing a defined artifact.
+4.  **MDTM (Markdown-Driven Task Management):** The standardized system for creating, assigning, and tracking tasks. Tasks are defined in TOML+Markdown files and form the basis of delegation between modes. MDTM files are now stored in the project root under the `.mdtm/` directory.
+5.  **Sessions & Artifacts:** Each user interaction or workflow execution occurs within a "session," which has a dedicated directory (`.mdtm/sessions/[SESSION_ID]/`). This directory contains a `session_log.md` and other generated notes, design documents, and contextual files, ensuring full traceability.
+6.  **Layered Knowledge Bases (KBs):** A strategic approach to providing context to AI modes, optimizing for relevance and token efficiency. KBs are now located within each mode's pre-loaded rules directory (`.roo/rules-[mode_slug]/kb/`) and are dynamically accessed by the AI.
 
-## Key Capabilities (with `manager-data-product`) 💡
+## Key Capabilities 💡
 
-Initially, Roo Commander V8, in conjunction with `manager-data-product` and its squad, provides a guided workflow to:
+Roo Commander V8.1 provides a foundational framework for orchestrating diverse workflows. The initial core modes enable:
 
-*   Define the **strategy** for a new Data Product PoC.
-*   Brainstorm **ideas and scope** for the PoC.
-*   Develop detailed **user personas**.
-*   Design a **simulated data schema** and describe sample data.
-*   Conceptualize the **PoC user interface**.
-*   Consolidate all findings into a comprehensive **Data Product PoC Plan**.
+*   **High-Level User Interaction:** Through the `roo-commander` orchestrator.
+*   **Generic Project Management:** Via the `project-manager` mode, capable of breaking down and overseeing general project tasks.
+*   **Detailed Task Planning:** Using the `task-planner` to create actionable MDTM tasks.
+*   **Task Execution:** Employing the `task-executor` to perform specific work and produce artifacts.
+
+This lean core can be extended with new Manager and Squad units for specialized domains (e.g., code development, data analysis, documentation).
 
 ## Target Audience 👥
 
-*   **Users of the Data Product Design Workflow:** Product Managers, Data Strategists, UX Designers, Analysts.
-*   **Developers & Maintainers of Roo Commander V8:** Those looking to understand its architecture or extend it with new Manager and Squad modes.
-*   **AI Interaction Designers:** Interested in multi-agent orchestration patterns.
+*   **Users of Roo Code:** Seeking to leverage AI for complex, multi-step workflows.
+*   **Developers & Maintainers of Roo Commander:** Those looking to understand its architecture or extend it with new Manager and Squad modes.
+*   **AI Interaction Designers:** Interested in multi-agent orchestration patterns and token-efficient context management.
 
 ## Getting Started 🏁
 
 1.  **Prerequisites:** Ensure you have a compatible Roo Code environment.
-2.  **Explore the Documentation:**
-    *   To understand the **overall architecture and concepts**, start with:
-        *   `docs/introduction/00_overview.md`
-        *   `docs/architecture/README.md`
-    *   To learn how to **use the Data Product Design workflow**, see:
-        *   `docs/user_guides/01_getting_started_with_data_product_design.md`
-    *   For **developers looking to extend the system**, refer to:
-        *   `docs/developer_guides/README.md`
-3.  **Initiate Interaction:** Start interacting with `@roo-commander` in your Roo Code environment. It will present you with initial options.
-
-## Navigating This Documentation 🗺️
-
-All detailed documentation for Roo Commander V8 and its components can be found within the **`docs/`** subdirectory of this `.roo/commander/` folder.
-
-*   **[Introduction](./docs/introduction/README.md):** Purpose, goals, and benefits.
-*   **[Architecture](./docs/architecture/README.md):** Detailed explanation of the Orchestrator, Manager, Squad, MDTM, Session, and KB concepts.
-*   **[User Guides](./docs/user_guides/README.md):** How-to guides for using the system.
-*   **[Standards](./docs/standards/README.md):** Definitions for TOML+MD formats, MDTM tasks, session structures, etc.
-*   **[Developer Guides](./docs/developer_guides/README.md):** Information on creating new modes and extending the system.
-*   **[Glossary](./docs/glossary.md):** Definitions of key terms.
+2.  **Deployment:** Copy the contents of the `.roo/` directory from this repository into the `.roo/` directory of your project.
+3.  **Generate `.roomodes`:** From your project root, run `node .roo/commander/scripts/combine_mode_yamls.js` to generate the `.roomodes` file.
+4.  **Explore the Documentation:** All detailed documentation for Roo Commander V8.1 and its components can be found within the **`docs/`** subdirectory of the `.roo/commander/` folder.
+    *   **`/.roo/commander/docs/01_overview.md`:** Purpose, goals, and benefits.
+    *   **`/.roo/commander/docs/02_architecture_principles.md`:** Detailed explanation of the Orchestrator, Manager, Squad, MDTM, Session, and Layered KB concepts.
+    *   **`/.roo/commander/docs/03_file_structure_and_purpose.md`:** Comprehensive overview of the new file structure.
+    *   **`/.roo/commander/docs/04_roo_code_integration.md`:** How Roo Commander integrates with Roo Code.
+    *   **`/.roo/commander/docs/05_mode_development_guide.md`:** Information on creating new modes and extending the system.
+    *   **`/.roo/commander/docs/06_how_to_make_more_modes.md`:** Quick guide for creating new modes.
+5.  **Initiate Interaction:** Start interacting with `@roo-commander` in your Roo Code environment. It will present you with initial options.
 
 ## Workspace Structure Overview 📂
 
 ```
-.roo/commander/
-├── README.md                 # This file: Main overview
-├── docs/                     # Detailed documentation (see above)
-├── modes/                    # Mode definitions (.mode.md files & their KBs/rules)
-│   ├── roo-commander/
-│   ├── manager-data-product/
-│   ├── data-product-strategist/
-│   └── ... (other squad modes)
-├── rules/                    # Workspace-wide rules
-├── sessions/                 # Stores logs and artifacts for each work session
-├── tasks/                    # Stores MDTM task files
-└── templates/                # Contains all .md templates for modes, rules, KBs, tasks, artifacts
-    ├── modes/
-    ├── rules/
-    ├── tasks/
-    ├── sessions/
-    └── design_artifacts/     # Templates for outputs of data-product-* squad
+.
+├── .roomodes                 # Generated: Combined YAML definitions for all custom modes.
+├── .mdtm/                    # NEW: Stores all MDTM task and session files.
+│   ├── tasks/                # For MDTM task files.
+│   └── sessions/             # For session logs and artifacts.
+└── .roo/                     # Roo Code configuration and Roo Commander components.
+    ├── rules/                # Universal, project-wide rules (e.g., TOML+MD format, MDTM standard).
+    ├── rules-roo-commander/  # Mode-specific pre-loaded rules and KB for roo-commander.
+    │   ├── 00-roo-commander-core-principles.md
+    │   └── kb/               # Dynamic KB content for roo-commander.
+    │       ├── README.md
+    │       └── ...
+    ├── rules-project-manager/# Mode-specific pre-loaded rules and KB for project-manager.
+    │   ├── 00-project-manager-core-principles.md
+    │   └── kb/               # Dynamic KB content for project-manager.
+    │       ├── README.md
+    │       └── ...
+    ├── rules-task-planner/   # Mode-specific pre-loaded rules and KB for task-planner.
+    │   ├── 00-task-planner-core-principles.md
+    │   └── kb/               # Dynamic KB content for task-planner.
+    │       ├── README.md
+    │       └── ...
+    ├── rules-task-executor/  # Mode-specific pre-loaded rules and KB for task-executor.
+    │   ├── 00-task-executor-core-principles.md
+    │   └── kb/               # Dynamic KB content for task-executor.
+    │       ├── README.md
+    │       └── ...
+    └── commander/            # Roo Commander's internal components and authoring source.
+        ├── docs/             # Core documentation for Roo Commander (this project).
+        │   ├── 01_overview.md
+        │   ├── 02_architecture_principles.md
+        │   ├── 03_file_structure_and_purpose.md
+        │   ├── 04_roo_code_integration.md
+        │   ├── 05_mode_development_guide.md
+        │   └── 06_how_to_make_more_modes.md
+        ├── modes/            # Individual YAML definitions for each custom mode.
+        │   ├── roo-commander.yaml
+        │   ├── project-manager.yaml
+        │   ├── task-planner.yaml
+        │   └── task-executor.yaml
+        ├── scripts/          # Utility scripts (e.g., combine_mode_yamls.js).
+        │   └── combine_mode_yamls.js
+        └── templates/        # Standardized templates for MDTM tasks, sessions, notes, etc.
+            ├── tasks/
+            │   ├── template_00_mdtm_task_generic.md
+            │   └── template_00_mdtm_task_generic.README.md
+            ├── sessions/
+            │   ├── template_00_mdtm_session_generic.md
+            │   └── template_00_mdtm_session_generic.README.md
+            ├── note/
+            │   ├── template_00_session_note.md
+            │   └── template_00_session_note.README.md
+            ├── summary/
+            │   ├── template_00_session_summary.md
+            │   └── template_00_session_summary.README.md
+            └── learning/
+                ├── template_00_session_learning.md
+                └── template_00_session_learning.README.md
 ```
 
 ## Contributing 🤝
