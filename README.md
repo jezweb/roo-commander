@@ -52,17 +52,18 @@ This lean core can be extended with new Manager and Squad units for specialized 
 
 ## Getting Started 🏁
 
-1.  **Prerequisites:** Ensure you have a compatible Roo Code environment.
-2.  **Deployment:** Copy the contents of the `.roo/` directory from this repository into the `.roo/` directory of your project.
-3.  **Generate `.roomodes`:** From your project root, run `node .roo/commander/scripts/combine_mode_yamls.js` to generate the `.roomodes` file.
-4.  **Explore the Documentation:** All detailed documentation for Roo Commander V8.1 and its components can be found within the **`docs/`** subdirectory of the `.roo/commander/` folder.
+To start using Roo Commander V8.1 in your Roo Code environment:
+
+1.  **Download:** Download the latest release of Roo Commander V8.1 as a zip file from [https://github.com/jezweb/roo-commander/archive/refs/heads/v8.1.zip](https://github.com/jezweb/roo-commander/archive/refs/heads/v8.1.zip).
+2.  **Deploy:** Extract the zip and copy the contents of the `.mdtm/`, `.roo/`, and `.roomodes` files/folders directly into the root directory of your project where you use Roo Code.
+3.  **Explore the Documentation:** All detailed documentation for Roo Commander V8.1 and its components can be found within the **`docs/`** subdirectory of the `.roo/commander/` folder.
     *   **`/.roo/commander/docs/01_overview.md`:** Purpose, goals, and benefits.
     *   **`/.roo/commander/docs/02_architecture_principles.md`:** Detailed explanation of the Orchestrator, Manager, Squad, MDTM, Session, and Layered KB concepts.
     *   **`/.roo/commander/docs/03_file_structure_and_purpose.md`:** Comprehensive overview of the new file structure.
     *   **`/.roo/commander/docs/04_roo_code_integration.md`:** How Roo Commander integrates with Roo Code.
     *   **`/.roo/commander/docs/05_mode_development_guide.md`:** Information on creating new modes and extending the system.
     *   **`/.roo/commander/docs/06_how_to_make_more_modes.md`:** Quick guide for creating new modes.
-5.  **Initiate Interaction:** Start interacting with `@roo-commander` in your Roo Code environment. It will present you with initial options.
+4.  **Initiate Interaction:** Start interacting with `@roo-commander` in your Roo Code environment. It will present you with initial options.
 
 ## Workspace Structure Overview 📂
 

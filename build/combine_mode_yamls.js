@@ -2,8 +2,10 @@ const fs = require('fs').promises;
 const path = require('path');
 const yaml = require('js-yaml');
 
-const MODES_DIR = path.join(__dirname, '..', 'modes');
-const OUTPUT_FILE = path.join(__dirname, '..', '..', '..', '.roomodes'); // Corrected: Project root
+// MODES_DIR is now relative to the new script location (build/)
+const MODES_DIR = path.join(__dirname, '..', '.roo', 'commander', 'modes');
+// OUTPUT_FILE is now relative to the new script location (build/)
+const OUTPUT_FILE = path.join(__dirname, '..', '.roomodes'); // Project root
 
 async function combineModeYamls() {
     const customModes = [];

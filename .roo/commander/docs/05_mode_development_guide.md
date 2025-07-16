@@ -20,13 +20,13 @@ For a new mode with `[mode_slug]` (e.g., `project-manager`):
 2.  **Mode-Specific Rules Folder:** Create `/.roo/rules-[mode_slug]/`.
 3.  **Knowledge Base (KB) Folder:** Create `/.roo/rules-[mode_slug]/kb/`.
 
-## 3. Define the Mode (`.roo/commander/modes/[mode_slug].yaml`)
+## 3. Define the Mode (`/.roo/commander/modes/[mode_slug].yaml`)
 
 This YAML file defines the mode's core identity for Roo Code. Keep it concise.
 
 ```yaml
 slug: [mode_slug] # Unique identifier (e.g., project-manager)
-name: [Mode Name] # Human-readable name (e.g., 🧑‍💼 Project Manager)
+name: [Mode Name] # Human-readable name (e.g., 🧑‍💼 Project Manager) - Single emoji at start!
 description: [Concise one-sentence summary of purpose] # e.g., Orchestrates project workflows and manages a team of specialists.
 roleDefinition: |
   [Very concise statement of core persona and high-level purpose.]
@@ -45,7 +45,7 @@ customInstructions: |
   # Example: "Adhere strictly to project standards and communicate progress clearly."
 ```
 
-## 4. Create Mode-Specific Pre-loaded Rules (`.roo/rules-[mode_slug]/00-[mode_slug]-core-principles.md`)
+## 4. Create Mode-Specific Pre-loaded Rules (`/.roo/rules-[mode_slug]/00-[mode_slug]-core-principles.md`)
 
 This file defines the mode's fundamental operational tenets that are *always* loaded.
 
@@ -89,57 +89,27 @@ This is where the detailed, dynamically retrieved knowledge resides.
     This index helps you navigate your internal knowledge base.
 
     ## Procedures
-    *   `procedures/main-orchestration-flow.md`: Step-by-step guide for [main workflow].
+    *   `procedures/main-workflow.md`: Step-by-step guide for [main workflow].
     *   `procedures/error-handling.md`: How to handle common errors.
 
     ## Skills
-    *   `skills/task-breakdown-techniques.md`: Methods for breaking down complex tasks.
+    *   `skills/code-review-techniques.md`: Methods for effective code review.
 
     ## Reference
-    *   `reference/squad-composition.md`: List of your squad members and their roles.
+    *   `reference/coding-standards.md`: Project-specific coding standards.
 
     ## Examples
-    *   `examples/sample-input-task.md`: A sample MDTM task this mode expects.
+    *   `examples/sample-review-report.md`: A sample output review report.
     ```
 *   **Subdirectories:** Create `procedures/`, `prompts/`, `reference/`, `examples/`, `skills/`, `wisdom/` as needed.
-*   **Content:** Fill these with Markdown files containing specific, actionable knowledge. Remember to remove TOML frontmatter from these files if you're copying them from an old `.mode.md` structure, as they are now pure Markdown content for the AI.
+*   **Content:** Fill these with Markdown files containing specific, actionable knowledge. Ensure they are pure Markdown (no TOML frontmatter).
 
-## 6. Update `.roomodes` Generation Script
+## 6. Build Step
 
-You will need a simple Node.js script (e.g., `/.roo/commander/scripts/combine_mode_yamls.js`) to read all individual YAML files from `/.roo/commander/modes/` and combine them into a single `.roomodes` file.
+After creating/modifying modes, remember to run the `combine_mode_yamls.js` script to update the `.roomodes` file:
 
-```javascript
-// .roo/commander/scripts/combine_mode_yamls.js
-const fs = require('fs').promises;
-const path = require('path');
-const yaml = require('js-yaml');
-
-const MODES_DIR = path.join(__dirname, '..', 'modes');
-const OUTPUT_FILE = path.join(__dirname, '..', '..', '..', '.roomodes'); // Project root
-
-async function combineModeYamls() {
-    const customModes = [];
-    try {
-        const files = await fs.readdir(MODES_DIR);
-        for (const file of files) {
-            if (file.endsWith('.yaml')) {
-                const filePath = path.join(MODES_DIR, file);
-                const fileContent = await fs.readFile(filePath, 'utf8');
-                const modeConfig = yaml.load(fileContent);
-                customModes.push(modeConfig);
-            }
-        }
-
-        const finalYaml = yaml.dump({ customModes: customModes }, { indent: 2 });
-        await fs.writeFile(OUTPUT_FILE, finalYaml, 'utf8');
-        console.log(`Successfully combined ${customModes.length} modes into ${OUTPUT_FILE}`);
-
-    } catch (error) {
-        console.error('Error combining mode YAMLs:', error);
-    }
-}
-
-combineModeYamls();
+```bash
+node build/combine_mode_yamls.js
 ```
 
 ## 7. Deployment
