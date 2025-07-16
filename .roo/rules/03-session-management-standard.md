@@ -34,12 +34,12 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 ## 2. Core Session Components
 
 *   **Session Directory:** Each session **MUST** have a dedicated directory.
-    *   **Location:** `.roo/commander/sessions/`
+    *   **Location:** `.sessions/`
     *   **Naming Convention:** `SESSION-[SanitizedGoal]-[YYYYMMDD-HHMMSS]`
         *   `[SanitizedGoal]`: A short, filesystem-safe version of the session's primary goal or title.
         *   `[YYYYMMDD-HHMMSS]`: Timestamp of session creation for uniqueness.
 *   **Session Log File (`session_log.md`):** The central record for each session.
-    *   **Location:** Directly within the session directory (e.g., `.roo/commander/sessions/SESSION-XYZ-20250701-120000/session_log.md`).
+    *   **Location:** Directly within the session directory (e.g., `.sessions/SESSION-XYZ-20250701-120000/session_log.md`).
     *   **Template:** **MUST** be created using `template_00_mdtm_session_generic.md` (located at `.roo/commander/templates/sessions/template_00_mdtm_session_generic.md`).
     *   **Format:** **MUST** adhere to `.roo/rules/01-standard-toml-md-format.md`.
 *   **Session Artifacts Directory (`artifacts/`):** A dedicated subdirectory within each session directory for storing all contextual files generated or referenced during the session.
@@ -80,8 +80,9 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 
 *   **Purpose:** To store all supporting files, notes, learnings, research, snippets, and key design deliverables relevant to the session.
 *   **Standard Subdirectories & Scaffold:**
-    *   Upon session initiation, a standard scaffold of subdirectories **MUST** be created within `[SessionDirectory]/artifacts/`. This includes (but is not limited to): `notes/`, `learnings/`, `questions/`, `snippets/`, `design_outputs/`, `research/`, `blockers/`, `context/`, `deferred/`, `docs/`, `environment/`, `features/`, `feedback/`, `summaries/`.
-    *   Each of these subdirectories **SHOULD** contain a `README.md` explaining its purpose (these can be copied from a central template scaffold, e.g., `.roo/commander/templates/sessions/artifacts_scaffold_readme_templates/`).
+    *   Upon session initiation, a standard scaffold of subdirectories **MUST** be created within `[SessionDirectory]/artifacts/`. This includes: `notes/`, `learnings/`, `summaries/`.
+    *   Additional subdirectories may be created by modes as needed for specific workflows.
+    *   Each of these subdirectories **SHOULD** contain a `README.md` explaining its purpose.
 *   **Artifact Creation:**
     *   Modes (or users) can create artifacts within these subdirectories as needed.
     *   Use specific templates from `.roo/commander/templates/sessions/artifacts/` (e.g., `template_31_session_note.md`) when appropriate.
