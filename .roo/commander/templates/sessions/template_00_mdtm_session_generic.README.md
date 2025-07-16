@@ -1,4 +1,4 @@
-# Schema Documentation: MDTM Session Log (`19_mdtm_session.md`)
+# Schema Documentation: MDTM Session Log
 
 This document outlines the TOML schema used for MDTM Session Log files, typically named `session_log.md` within a session-specific directory (e.g., `.roo/commander/sessions/[SESSION_ID]/`).
 
@@ -10,7 +10,7 @@ To provide a structured, persistent record of a user's interaction focused on ac
 
 The following fields are defined within the `+++` TOML block:
 
-*   **`session_id`** (String, Required)
+*   **`id`** (String, Required)
     *   Unique identifier for the session.
     *   Format: Typically "SESSION-YYYYMMDD-HHMMSS".
     *   *Must be generated at runtime.*
@@ -21,7 +21,7 @@ The following fields are defined within the `+++` TOML block:
 
 *   **`status`** (String, Required)
     *   Current status of the session.
-    *   Allowed values: `"🟢 Active"`, `"🟡 Paused"`, `"⚪ Completed"`, `"🔴 Error"`.
+    *   Allowed values: `"🟢 Active"`, `"⏸️ Paused"`, `"🏁 Completed"`, `"🔴 Error"`.
     *   *Default: `"🟢 Active"`.*
 
 *   **`start_time`** (Datetime, Required)
@@ -34,7 +34,7 @@ The following fields are defined within the `+++` TOML block:
     *   Format: ISO 8601 or similar standard datetime string.
     *   *Set at runtime when applicable.*
 
-*   **`coordinator_mode`** (String, Required)
+*   **`coordinator`** (String, Required)
     *   The slug of the Coordinator mode (e.g., "prime-coordinator", "roo-commander") that initiated and manages this session.
     *   *Must be set at runtime.*
 
@@ -42,7 +42,7 @@ The following fields are defined within the `+++` TOML block:
     *   A list of formal MDTM Task IDs (e.g., "TASK-...") that were spawned or are relevant to this session.
 
 *   **`related_artifacts`** (Array of Strings, Optional)
-    *   A list of file paths relative to the session's root directory (e.g., `artifacts/CONFIRM-edit_xyz.md`, `artifacts/research_notes.txt`) for files created or used during the session.
+    *   A list of file paths relative to the session's root directory (e.g., `note/NOTE-initial_plan-2506050100.md`, `summary/SUMMARY-final_report-2506050200.md`) for files created or used during the session.
 
 *   **`tags`** (Array of Strings, Optional)
     *   Keywords relevant to the session's goal or content (e.g., "session", "log", "refactoring", "mode-creation").
@@ -55,5 +55,4 @@ The following fields are defined within the `+++` TOML block:
 
 ## Related Context
 
-*   `[.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md): Defines the standard Session Management workflow.
-*   `[.roo/rules/03-session-management-standard.md`](.roo/rules/03-session-management-standard.md): Provides details on logging procedures.
+*   `/.roo/rules/03-session-management-standard.md`: Defines the standard Session Management workflow and logging procedures.

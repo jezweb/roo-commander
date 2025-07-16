@@ -13,7 +13,9 @@ tags = ["rules", "standard", "session-management", "logging", "artifacts", "toml
 related_context = [
     ".roo/commander/templates/sessions/template_00_mdtm_session_generic.md", # Path to your session log template
     ".roo/commander/templates/sessions/template_00_mdtm_session_generic.README.md",
-    ".roo/commander/templates/sessions/artifacts/", # Points to the directory of session artifact templates
+    ".roo/commander/templates/note/template_00_session_note.md", # Updated path
+    ".roo/commander/templates/summary/template_00_session_summary.md", # Updated path
+    ".roo/commander/templates/learning/template_00_session_learning.md", # Updated path
     ".roo/rules/01-standard-toml-md-format.md",
     ".roo/rules/02-mdtm-task-standard.md" # MDTM tasks are often related to sessions
 ]
@@ -51,7 +53,7 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
     *   **Procedure:**
         1.  Determine session goal/title.
         2.  Generate unique `RooComSessionID` (which forms part of the directory name).
-        3.  Create the session directory structure, including `artifacts/` and its standard subdirectories (see Section 5.1). This **SHOULD** be delegated to a simple file worker mode if possible for efficiency.
+        3.  Create the session directory structure, including `artifacts/` and its standard subdirectories (see Section 5.1). This **SHOULD** be performed by a mode with appropriate file system access for efficiency.
         4.  Create `session_log.md` using the standard template, populating initial TOML metadata (`id`, `title`, `status = "🟢 Active"`, `start_time`, `coordinator`).
         5.  The initiating coordinator **MUST** retain the active `RooComSessionID` for subsequent logging and artifact linking.
 *   **Active Logging:**
@@ -69,9 +71,9 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 ## 4. Linking MDTM Tasks and Session Artifacts in `session_log.md`
 
 *   **`related_tasks` (TOML Array):**
-    *   This field in `session_log.md` **MUST** list the `id`s of top-level MDTM tasks initiated by the session's coordinator (e.g., the main task assigned to `manager-data-product`).
+    *   This field in `session_log.md` **MUST** list the `id`s of top-level MDTM tasks initiated by the session's coordinator (e.g., the main task assigned to a Manager mode).
 *   **`related_artifacts` (TOML Array):**
-    *   This field in `session_log.md` **MUST** list the **relative paths** (from the session directory root, e.g., `artifacts/notes/NOTE-XYZ.md`, `artifacts/design_outputs/PRODUCT_ABC/strategy.md`) to all significant contextual files or key deliverables created or referenced during the session.
+    *   This field in `session_log.md` **MUST** list the **relative paths** (from the session directory root, e.g., `artifacts/notes/NOTE-XYZ.md`, `artifacts/design_outputs/[ProjectName]/strategy.md`) to all significant contextual files or key deliverables created or referenced during the session.
     *   Modes creating such artifacts are responsible for ensuring their paths are logged here by the coordinator or by reporting the path back for logging.
 
 ## 5. Session Artifacts (`artifacts/` directory)
@@ -83,7 +85,7 @@ To establish a consistent, workspace-wide standard for initiating, managing, log
 *   **Artifact Creation:**
     *   Modes (or users) can create artifacts within these subdirectories as needed.
     *   Use specific templates from `.roo/commander/templates/sessions/artifacts/` (e.g., `template_31_session_note.md`) when appropriate.
-    *   The primary design outputs from the `dp-*` squad (e.g., `product_strategy.md`, `poc_ideation.md`) **MUST** be stored within a relevant subdirectory, typically `artifacts/design_outputs/[ProductName]/`.
+    *   The primary design outputs from specialist Squad modes (e.g., strategy documents, ideation plans) **MUST** be stored within a relevant subdirectory, typically `artifacts/design_outputs/[ProjectName]/`.
 *   **Naming Convention:** Artifact files should follow a consistent naming convention, typically `[TYPE_PREFIX]-[Topic]-[YYMMDDHHMMSS].[ext]`. Prefixes are defined by the artifact type (e.g., `NOTE-`, `LEARNING-`, `STRATEGY-`).
 
 ## 6. Rationale

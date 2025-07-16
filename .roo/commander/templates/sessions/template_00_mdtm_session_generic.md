@@ -14,7 +14,7 @@ related_artifacts = [
 ]
 tags = [
     # (Array of Strings, Optional) Keywords relevant to the session goal or content.
-    "session", "log", "v6",
+    "session", "log",
 ]
 +++
 

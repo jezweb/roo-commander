@@ -1,70 +1,50 @@
 +++
-# --- MDTM Task Generic ---
-id = "TASK-[TEAM_PREFIX]-[YYYYMMDD-HHMMSS]" # e.g., TASK-MDP-20250701-100000, TASK-DPSTRAT-20250701-100500
+id = "MDTM-TASK-GENERIC-V1"
+title = "Generic MDTM Task Template"
+context_type = "template"
+scope = "Standard template for all Markdown-Driven Task Management (MDTM) tasks."
+target_audience = ["all"]
+granularity = "task"
+status = "active"
+last_updated = "{{YYYYMMDD}}"
+version = "1.0"
+tags = ["template", "mdtm", "task", "workflow"]
+related_context = [
+    ".roo/rules/01-standard-toml-md-format.md",
+    ".roo/rules/02-mdtm-task-standard.md"
+]
+template_schema_doc = ".roo/commander/templates/tasks/template_00_mdtm_task_generic.README.md"
+
+# --- Task Specific Fields ---
+id = "TASK-[TEAM_PREFIX]-[YYYYMMDD-HHMMSS]" # e.g., TASK-PM-20250701-100000, TASK-TP-20250701-100500
 title = "[Concise Task Title]"
-status = "🟡 To Do" # Options: "🟡 To Do", "🔵 In Progress", "🟢 Done", "🔴 Error", "⚪ Blocked", "🟣 Review"
-type = "⚙️ Task" # Default. Can be overridden (e.g., "🌟 Feature", "🐞 BugFix", "📖 Documentation", "📊 DataProductDesignPhase")
-priority = "▶️ Medium" # Options: "🚨 Critical", "🟧 High", "▶️ Medium", "🔽 Low", "🧊 Lowest"
+description = """
+[Detailed description of the task, its context, and overall goal.]
+"""
+acceptance_criteria = """
+[Specific, measurable criteria that define successful completion of this task.]
+"""
+status = "🟡 To Do" # Options: 🟡 To Do, 🔵 In Progress, 🟣 Review, 🟢 Done, 🔴 Error, ⚪ Blocked
+type = "[Task Type]" # e.g., "code-implementation", "documentation", "planning", "research"
+priority = "medium" # Options: low, medium, high, critical
+created_date = "{{YYYY-MM-DDTHH:MM:SSZ}}"
+updated_date = "{{YYYY-MM-DDTHH:MM:SSZ}}"
+assigned_to = "[mode_slug]" # The slug of the AI mode assigned to this task (e.g., "task-executor")
+coordinator = "[mode_slug_or_task_id]" # The slug of the AI mode that delegated this task (e.g., "project-manager") or the ID of the parent MDTM task
+parent_task_id = "[Parent MDTM Task ID]" # Optional: ID of the higher-level task this sub-task belongs to
+input_artifacts = [] # Optional: Array of relative paths to input files/artifacts needed for this task
+output_artifacts = [] # Optional: Array of relative paths to output files/artifacts produced by this task
+related_docs = [] # Optional: Array of relative paths to other relevant documentation
+tags = [] # Optional: Array of relevant keywords for categorization
 
-created_date = "[YYYY-MM-DDTHH:MM:SSZ]" # ISO 8601 format
-updated_date = "[YYYY-MM-DDTHH:MM:SSZ]" # ISO 8601 format
-# due_date = "[YYYY-MM-DD]" # Optional
+# --- Checklist / Sub-Tasks ---
+## Checklist
+- [ ] [Sub-task 1]
+- [ ] [Sub-task 2]
+- [ ] [Sub-task 3]
 
-assigned_to = "[mode_slug]" # Slug of the mode responsible for executing this task
-coordinator = "[mode_slug_or_task_id]" # Slug of the delegating mode OR its MDTM Task ID
-# parent_task_id = "" # Optional: ID of the parent MDTM task, if this is a sub-task
-
-# --- Task Context & I/O ---
-input_artifacts = [
-    # List of relative paths (from workspace root or session artifacts root) to files needed for this task
-    # e.g., ".roo/commander/sessions/SESSION_XYZ/artifacts/design_outputs/product_strategy_v1.md"
-]
-output_artifacts = [
-    # List of relative paths (from workspace root or session artifacts root) to files created/modified by this task
-]
-related_docs = [
-    # List of paths to other relevant documents, specifications, ADRs, etc.
-]
-tags = ["mdtm"] # Add specific task-related tags (e.g., "strategy-phase", "persona-dev", "data-schema")
-template_schema_doc = ".roo/commander/templates/template_00_mdtm_task_generic.README.md" # Path to this task's schema
-
-# --- AI Interaction Hints (Optional) ---
-# context_type = "task_definition"
-# target_audience = ["assigned_mode"] # Typically the mode in assigned_to
-# granularity = "detailed_task"
-+++
-
-# Task: {{ title | default: "[Specify Task Title]" }}
-
-## 1. Description ✍️
-
-*   **Goal:** [Clearly state the primary objective of this task.]
-*   **Context:** [Briefly explain the background or context for this task. Why is it needed?]
-*   **Scope:** [Define what is included and, if necessary, what is explicitly excluded from this task.]
-
-## 2. Acceptance Criteria ✅
-
-*List specific, measurable, achievable, relevant, and time-bound (SMART-like) criteria that must be met for this task to be considered complete.*
-
-*   - [ ] Criterion 1:
-*   - [ ] Criterion 2:
-*   - [ ] ...
-
-## 3. Checklist / Sub-Tasks 📝
-
-*Break down the task into actionable steps for the assigned mode. The assigned mode will update the status of these checklist items (`- [ ]` -> `- [✅]`) as it progresses.*
-
-*   - [ ] Step 1: [Detailed action for the assigned mode]
-*   - [ ] Step 2: [Detailed action for the assigned mode]
-    *   - [ ] Sub-step 2a (if applicable)
-*   - [ ] Step 3: [If this step involves creating a specific file, note the target path, e.g., "Create `product_strategy.md` in session artifacts."]
-*   - [ ] Step 4: [Update this task's `output_artifacts` TOML field with the path(s) to created file(s).]
-*   - [ ] Step 5: [Update this task's `status` TOML field to '🟢 Done' (or other appropriate status).]
-*   - [ ] Step 6: [Report completion to the coordinator.]
-
-## 4. Log Entries / Notes 🪵
-
-*(The assigned mode should append its progress updates, observations, errors encountered, and significant actions here. Timestamps are recommended.)*
-
-*   `[YYYY-MM-DDTHH:MM:SSZ] - [Mode Slug]: Starting task.`
-*   `[YYYY-MM-DDTHH:MM:SSZ] - [Mode Slug]: Completed Step 1.`
+# --- Log Entries / Notes 🪵 ---
+## Log Entries
+# [YYYY-MM-DDTHH:MM:SSZ] - [Mode/User]: [Log entry details]
+# Example: 2025-07-16T10:30:00Z - project-manager: Delegated task to task-planner.
+# Example: 2025-07-16T11:00:00Z - task-planner: Started task decomposition.
