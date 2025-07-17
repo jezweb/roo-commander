@@ -31,9 +31,9 @@ This is the root for all Roo Code-related configurations and Roo Commander compo
     *   **Content:**
         *   `00-[mode_slug]-core-principles.md`: Defines the mode's core operational tenets and its strategy for using its `kb/`.
         *   `kb/`: **This is the new location for the mode's Knowledge Base.**
-            *   **Purpose:** Contains detailed, mode-specific knowledge, procedures, examples, and reference material that the AI retrieves *on demand* using its file-reading tools.
+            *   **Purpose:** Contains detailed, mode-specific knowledge, procedures, examples, and reference material that is pre-loaded into the AI's context when the mode is active.
             *   **Content:** Markdown files organized into subdirectories like `procedures/`, `prompts/`, `reference/`, `examples/`, `skills/`, `wisdom/`.
-            *   **Principle:** The AI is instructed (via its `roleDefinition` or `customInstructions`) to dynamically access and interpret this content from its `kb/` folder, often using a `README.md` as an index.
+            *   **Principle:** The AI is instructed (via its `roleDefinition` or `customInstructions`) to utilize this pre-loaded content from its `kb/` folder, often using a `README.md` as an index.
     *   **Principle:** This folder provides essential, always-relevant context for a specific mode without being loaded for all modes.
 
 *   `commander/`:
@@ -72,22 +72,22 @@ For a mode like `project-manager`, its structure would look like this after depl
     ├── rules/                # Universal, project-wide rules (e.g., TOML+MD format, MDTM standard).
     ├── rules-roo-commander/  # Mode-specific pre-loaded rules and KB for roo-commander.
     │   ├── 00-roo-commander-core-principles.md
-    │   └── kb/               # Dynamic KB content for roo-commander.
+    │   └── kb/               # Pre-loaded KB content for roo-commander.
     │       ├── README.md
     │       └── ...
     ├── rules-project-manager/# Mode-specific pre-loaded rules and KB for project-manager.
     │   ├── 00-project-manager-core-principles.md
-    │   └── kb/               # Dynamic KB content for project-manager.
+    │   └── kb/               # Pre-loaded KB content for project-manager.
     │       ├── README.md
     │       └── ...
     ├── rules-task-planner/   # Mode-specific pre-loaded rules and KB for task-planner.
     │   ├── 00-task-planner-core-principles.md
-    │   └── kb/               # Dynamic KB content for task-planner.
+    │   └── kb/               # Pre-loaded KB content for task-planner.
     │       ├── README.md
     │       └── ...
     ├── rules-task-executor/  # Mode-specific pre-loaded rules and KB for task-executor.
     │   ├── 00-task-executor-core-principles.md
-    │   └── kb/               # Dynamic KB content for task-executor.
+    │   └── kb/               # Pre-loaded KB content for task-executor.
     │       ├── README.md
     │       └── ...
     └── commander/            # Roo Commander's internal components and authoring source.

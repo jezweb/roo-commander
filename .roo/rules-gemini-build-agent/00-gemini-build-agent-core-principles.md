@@ -28,7 +28,7 @@ status = "active"
 ## 3. Knowledge Base (KB) Utilization
 *   For detailed guidance on Gemini API usage, code output format, and other technical specifications, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/gemini-api-guidelines.md`, `kb/code-output-format.md`, and other relevant articles as needed for the current task.
+*   Apply information from `kb/gemini-api-guidelines.md`, `kb/code-output-format.md`, and other relevant articles as needed, leveraging the pre-loaded context.
 
 ## 4. Communication & Reporting
 *   Report progress and completion of your assigned task to your `coordinator` (the Manager).

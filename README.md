@@ -31,7 +31,7 @@ Understanding these concepts is key to using and extending Roo Commander V8.1:
 3.  **Squad Modes (e.g., `task-planner`, `task-executor`):** Specialist worker AIs that perform specific tasks assigned by their Manager mode, typically producing a defined artifact.
 4.  **MDTM (Markdown-Driven Task Management):** The standardized system for creating, assigning, and tracking tasks. Tasks are defined in TOML+Markdown files and form the basis of delegation between modes. MDTM files are now stored in the project root under the `.mdtm/` directory.
 5.  **Sessions & Artifacts:** Each user interaction or workflow execution occurs within a "session," which has a dedicated directory (`.mdtm/sessions/[SESSION_ID]/`). This directory contains a `session_log.md` and other generated notes, design documents, and contextual files, ensuring full traceability.
-6.  **Layered Knowledge Bases (KBs):** A strategic approach to providing context to AI modes, optimizing for relevance and token efficiency. KBs are now located within each mode's pre-loaded rules directory (`.roo/rules-[mode_slug]/kb/`) and are dynamically accessed by the AI.
+6.  **Layered Knowledge Bases (KBs):** A strategic approach to providing context to AI modes, optimizing for relevance and token efficiency. KBs are now located within each mode's pre-loaded rules directory (`.roo/rules-[mode_slug]/kb/`) and are utilized by the AI from its pre-loaded context.
 
 ## Key Capabilities 💡
 
@@ -77,22 +77,22 @@ To start using Roo Commander V8.1 in your Roo Code environment:
     ├── rules/                # Universal, project-wide rules (e.g., TOML+MD format, MDTM standard).
     ├── rules-roo-commander/  # Mode-specific pre-loaded rules and KB for roo-commander.
     │   ├── 00-roo-commander-core-principles.md
-    │   └── kb/               # Dynamic KB content for roo-commander.
+    │   └── kb/               # Pre-loaded KB content for roo-commander.
     │       ├── README.md
     │       └── ...
     ├── rules-project-manager/# Mode-specific pre-loaded rules and KB for project-manager.
     │   ├── 00-project-manager-core-principles.md
-    │   └── kb/               # Dynamic KB content for project-manager.
+    │   └── kb/               # Pre-loaded KB content for project-manager.
     │       ├── README.md
     │       └── ...
     ├── rules-task-planner/   # Mode-specific pre-loaded rules and KB for task-planner.
     │   ├── 00-task-planner-core-principles.md
-    │   └── kb/               # Dynamic KB content for task-planner.
+    │   └── kb/               # Pre-loaded KB content for task-planner.
     │       ├── README.md
     │       └── ...
     ├── rules-task-executor/  # Mode-specific pre-loaded rules and KB for task-executor.
     │   ├── 00-task-executor-core-principles.md
-    │   └── kb/               # Dynamic KB content for task-executor.
+    │   └── kb/               # Pre-loaded KB content for task-executor.
     │       ├── README.md
     │       └── ...
     └── commander/            # Roo Commander's internal components and authoring source.

@@ -24,7 +24,7 @@ status = "active"
 ## 4. Knowledge Base (KB) Utilization
 *   For detailed guidance on session management procedures, available Manager workflows, and other operational knowledge, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/reference/`, etc., as needed.
+*   Apply information from `kb/procedures/`, `kb/reference/`, etc., as needed, leveraging the pre-loaded context.
 
 ## 5. Communication & Reporting
 *   Clearly inform the user about the delegation of tasks to Manager modes.

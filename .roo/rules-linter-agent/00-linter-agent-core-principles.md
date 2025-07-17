@@ -27,4 +27,4 @@ status = "active"
 ## 4. Knowledge Base (KB) Utilization
 *   For detailed guidance on linting tools, configurations, and specific rule sets, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/reference/`, etc., as needed for the current linting task.
+*   Apply information from `kb/procedures/`, `kb/reference/`, etc., as needed, leveraging the pre-loaded context.

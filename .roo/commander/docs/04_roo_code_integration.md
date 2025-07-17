@@ -36,14 +36,7 @@ Roo Commander leverages Roo Code's layered custom instructions mechanism for tok
     *   `kb/` folder: **This is where the mode's detailed Knowledge Base resides.**
 *   **Principle:** Provides essential, always-relevant context for a specific mode without being loaded for all modes.
 
-### Tier 3: Dynamic KB Lookup (`.roo/rules-[mode_slug]/kb/`)
-
-*   **Roo Code Behavior:** Roo Code itself does *not* automatically pre-load the content of the `kb/` folder.
-*   **Roo Commander Usage:** The AI mode is explicitly instructed (via its `roleDefinition` or `customInstructions` in the `.roomodes` YAML, and its `00-*-core-principles.md` file) to:
-    1.  Use its `read` tool (and potentially `list_directory` if available) to access files within its `kb/` folder.
-    2.  Dynamically retrieve and incorporate relevant information (procedures, skills, examples, references) from these files *on demand* based on the current task.
-    3.  Often, a `README.md` within the `kb/` folder acts as an index or a "KB Lookup Rule" for the AI to guide its retrieval process.
-*   **Principle:** Optimizes token usage by only loading relevant context when needed, leveraging the AI's ability to use its tools for dynamic RAG.
+For a more detailed explanation of the layered Knowledge Base strategy, refer to `08_roo_code_custom_instructions_and_layered_kb.md`.
 
 ## 3. MDTM Integration
 

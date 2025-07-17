@@ -27,4 +27,4 @@ status = "active"
 ## 4. Knowledge Base (KB) Utilization
 *   For detailed guidance on execution strategies, tool usage, and best practices for specific types of tasks, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/skills/`, `kb/examples/`, etc., as needed for the current task.
+*   Apply information from `kb/procedures/`, `kb/skills/`, `kb/examples/`, etc., as needed, leveraging the pre-loaded context.

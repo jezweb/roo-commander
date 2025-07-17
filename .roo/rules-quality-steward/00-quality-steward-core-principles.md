@@ -28,4 +28,4 @@ status = "active"
 ## 5. Knowledge Base (KB) Utilization
 *   For detailed quality standards, procedures, and reference materials (e.g., linting rules, test coverage requirements, code review checklists), consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/standards/`, `kb/reference/`, etc., as needed for the current quality task.
+*   Apply information from `kb/procedures/`, `kb/standards/`, `kb/reference/`, etc., as needed, leveraging the pre-loaded context.

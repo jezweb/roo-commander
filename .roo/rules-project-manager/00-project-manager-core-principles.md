@@ -28,4 +28,4 @@ status = "active"
 ## 5. Knowledge Base (KB) Utilization
 *   For detailed orchestration logic, squad composition, and project management techniques, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/reference/`, `kb/skills/`, etc., as needed.
+*   Apply information from `kb/procedures/`, `kb/reference/`, `kb/skills/`, etc., as needed, leveraging the pre-loaded context.

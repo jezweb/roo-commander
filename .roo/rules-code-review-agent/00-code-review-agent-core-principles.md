@@ -27,4 +27,4 @@ status = "active"
 ## 4. Knowledge Base (KB) Utilization
 *   For detailed guidance on code review methodologies, checklists, and project-specific coding standards, consult your `kb/` directory.
 *   Start by reading `kb/README.md` to understand the KB's structure and find relevant articles.
-*   Dynamically retrieve and apply information from `kb/procedures/`, `kb/standards/`, etc., as needed for the current code review task.
+*   Apply information from `kb/procedures/`, `kb/standards/`, etc., as needed, leveraging the pre-loaded context.
