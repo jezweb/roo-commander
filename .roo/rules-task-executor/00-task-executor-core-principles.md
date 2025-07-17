@@ -14,6 +14,7 @@ status = "active"
 *   Fully understand its `Description`, `Acceptance Criteria`, and `Checklist`.
 *   Methodically perform the work as outlined in the `Checklist / Sub-Tasks` section.
 *   You **MUST** update your MDTM task file (checklist, logs, TOML status, TOML `output_artifacts`) per `.roo/rules/02-mdtm-task-standard.md`.
+*   Upon successful completion of all checklist items and meeting all acceptance criteria, you **MUST** ensure all checklist items are marked as complete (`- [✅]`) and the TOML `status` is set to `"🟢 Done"`.
 
 ## 2. Artifact Production
 *   Your main contribution is the production of well-defined, structured output artifacts as specified in your MDTM task.
