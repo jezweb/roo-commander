@@ -2,7 +2,7 @@
 
 **Current Phase**: Phase 5
 **Current Stage**: Implementation
-**Last Checkpoint**: a58bd9f (2025-11-08)
+**Last Checkpoint**: a24c943 (2025-11-08)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
 
 ---
@@ -103,8 +103,24 @@
 - ✅ --source flag works with custom directories
 - ✅ --output flag allows custom output path
 
-## Phase 5: Custom Instructions Templates ⏸️
+## Phase 5: Custom Instructions Templates 🔄
+**Type**: Templates | **Started**: 2025-11-08
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-5-custom-instructions-templates`
+
+**Progress**:
+- [ ] Create template for .roo/rules/00-roo-commander.md (Roo Commander mode introduction)
+- [ ] Create template for .roo/rules/02-skills-workflow.md (how to use skills)
+- [ ] Test templates in .roo/rules/ directory
+- [ ] Verify templates load correctly in Roo Code
+
+**Next Action**: Create .roo/rules/00-roo-commander.md template explaining Roo Commander mode
+
+**Key Files**:
+- src/templates/rules/00-roo-commander.md
+- src/templates/rules/02-skills-workflow.md
+- src/commands/init.ts (Phase 9 will copy templates)
+
+**Known Issues**: None
 
 ## Phase 6: Roo Commander Mode Configuration ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-6-roo-commander-mode-configuration`
