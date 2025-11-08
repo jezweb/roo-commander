@@ -1,0 +1,49 @@
+{
+  "name": "@jezweb/roo-commander",
+  "version": "9.0.0",
+  "description": "CLI tool to bridge Claude Code skills with Roo Code - brings 68 production-tested skills to Roo Code users",
+  "main": "dist/index.js",
+  "bin": {
+    "roo-commander": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "roo-code",
+    "claude-code",
+    "skills",
+    "cli",
+    "ai",
+    "development",
+    "orchestrator"
+  ],
+  "author": "Jeremy Dawes <jeremy@jezweb.net>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jezweb/roo-commander.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jezweb/roo-commander/issues"
+  },
+  "homepage": "https://github.com/jezweb/roo-commander#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
+    "ora": "^8.1.1",
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
