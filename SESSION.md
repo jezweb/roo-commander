@@ -1,8 +1,8 @@
 # Session State
 
-**Current Phase**: Phase 4
+**Current Phase**: Phase 5
 **Current Stage**: Implementation
-**Last Checkpoint**: 9898be9 (2025-11-08)
+**Last Checkpoint**: a0f4292 (2025-11-08)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
 
 ---
@@ -76,8 +76,32 @@
 - ✅ --raw flag outputs plain markdown without formatting
 - ✅ Missing skills directory shows helpful error with solutions
 
-## Phase 4: Index Generation ⏸️
+## Phase 4: Index Generation ✅
+**Type**: Feature | **Completed**: 2025-11-08
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-4-index-generation`
+
+**Summary**: Implemented index generation system that creates categorized markdown index of all skills for Roo Code custom instructions. Generates .roo/rules/01-skills-index.md with 7 categories and usage instructions.
+
+**Files Created**:
+- src/generator/index-generator.ts (categorization logic, markdown generation, 303 lines)
+- src/commands/generate-index.ts (generate-index command, 75 lines)
+- src/commands/sync-index.ts (sync-index alias, 20 lines)
+
+**Files Modified**:
+- src/cli.ts (wired both commands with --source and --output options)
+
+**Verification Results**:
+- ✅ `roo-commander generate-index` creates .roo/rules/01-skills-index.md
+- ✅ Index includes all 62 skills (299 lines total)
+- ✅ Skills categorized into 7 logical groups (AI, Cloudflare, Frontend, etc.)
+- ✅ Each skill has name, description, keywords
+- ✅ Category headers have appropriate emoji (🤖 ☁️ ⚛️ 📝 📊 📄 📦)
+- ✅ Usage instructions section is clear and helpful
+- ✅ Markdown is valid and readable
+- ✅ `sync-index` command updates existing index successfully
+- ✅ Creates .roo/rules/ directory if missing
+- ✅ --source flag works with custom directories
+- ✅ --output flag allows custom output path
 
 ## Phase 5: Custom Instructions Templates ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-5-custom-instructions-templates`

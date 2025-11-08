@@ -3,6 +3,8 @@ import chalk from 'chalk';
 import { listCommand } from './commands/list.js';
 import { readCommand } from './commands/read.js';
 import { searchCommand } from './commands/search.js';
+import { generateIndexCommand } from './commands/generate-index.js';
+import { syncIndexCommand } from './commands/sync-index.js';
 
 /**
  * Main CLI Program
@@ -63,9 +65,10 @@ cli
 cli
   .command('generate-index')
   .description('Generate skills index for custom instructions')
+  .option('-s, --source <path>', 'Custom skills directory path')
   .option('-o, --output <path>', 'Output file path', '.roo/rules/01-skills-index.md')
   .action(async (options) => {
-    console.log(chalk.yellow(`generate-index command - coming in Phase 4`));
+    await generateIndexCommand(options);
   });
 
 /**
@@ -75,9 +78,10 @@ cli
 cli
   .command('sync-index')
   .description('Update skills index after skills change')
+  .option('-s, --source <path>', 'Custom skills directory path')
   .option('-o, --output <path>', 'Output file path', '.roo/rules/01-skills-index.md')
   .action(async (options) => {
-    console.log(chalk.yellow(`sync-index command - coming in Phase 4`));
+    await syncIndexCommand(options);
   });
 
 /**
