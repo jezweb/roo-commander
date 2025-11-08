@@ -1,6 +1,6 @@
 # Session State
 
-**Current Phase**: Phase 3
+**Current Phase**: Phase 4
 **Current Stage**: Implementation
 **Last Checkpoint**: 9898be9 (2025-11-08)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
@@ -50,27 +50,31 @@
 - ✅ Broken symlinks handled gracefully (warning, no crash)
 - ✅ Error handling for missing name field (motion skill skipped)
 
-## Phase 3: CLI Commands - List & Read 🔄
-**Type**: Feature | **Started**: 2025-11-08
+## Phase 3: CLI Commands - List & Read ✅
+**Type**: Feature | **Completed**: 2025-11-08
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-3-cli-commands---list--read`
 
-**Progress**:
-- [ ] Implement `roo-commander list` command
-- [ ] Implement `roo-commander read <skill>` command
-- [ ] Implement `roo-commander search <keyword>` command
-- [ ] Add formatted output with chalk
-- [ ] Add error handling for missing skills
-- [ ] Test all three commands with real skills
+**Summary**: Implemented all three CLI commands (list, read, search) with formatted output, fuzzy matching, loading spinners, and comprehensive error handling. Tested successfully with 62 real skills.
 
-**Next Action**: Implement list command in src/cli.ts to show all skills with formatted output
+**Files Created**:
+- src/commands/list.ts (compact/verbose list view with keywords and templates)
+- src/commands/read.ts (output skill content with fuzzy matching)
+- src/commands/search.ts (keyword search with scoring algorithm)
 
-**Key Files**:
-- src/cli.ts (command implementations)
-- src/commands/list.ts (list command logic)
-- src/commands/read.ts (read command logic)
-- src/commands/search.ts (search command logic)
+**Files Modified**:
+- src/cli.ts (wired all three commands with --source and --verbose options)
 
-**Known Issues**: None
+**Verification Results**:
+- ✅ `roo-commander list` shows all 62 skills with name, description, keywords
+- ✅ Loading spinners display during skill discovery
+- ✅ `roo-commander read "Cloudflare D1 Database"` outputs full SKILL.md content
+- ✅ Skill not found shows helpful error with similar suggestions
+- ✅ `roo-commander search cloudflare` finds 45 matching skills
+- ✅ Case-insensitive fuzzy matching works correctly
+- ✅ --source flag works with custom directory
+- ✅ --verbose flag shows full descriptions
+- ✅ --raw flag outputs plain markdown without formatting
+- ✅ Missing skills directory shows helpful error with solutions
 
 ## Phase 4: Index Generation ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-4-index-generation`

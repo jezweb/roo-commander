@@ -1,5 +1,8 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
+import { listCommand } from './commands/list.js';
+import { readCommand } from './commands/read.js';
+import { searchCommand } from './commands/search.js';
 
 /**
  * Main CLI Program
@@ -21,8 +24,10 @@ cli
 cli
   .command('list')
   .description('List all available skills from ~/.claude/skills/')
-  .action(async () => {
-    console.log(chalk.yellow('list command - coming in Phase 3'));
+  .option('-s, --source <path>', 'Custom skills directory path')
+  .option('-v, --verbose', 'Show full descriptions and details')
+  .action(async (options) => {
+    await listCommand(options);
   });
 
 /**
@@ -32,8 +37,10 @@ cli
 cli
   .command('read <skill>')
   .description('Read and output a specific skill content')
-  .action(async (skill: string) => {
-    console.log(chalk.yellow(`read command for ${skill} - coming in Phase 3`));
+  .option('-s, --source <path>', 'Custom skills directory path')
+  .option('-r, --raw', 'Output raw markdown without formatting')
+  .action(async (skill: string, options) => {
+    await readCommand(skill, options);
   });
 
 /**
@@ -43,8 +50,10 @@ cli
 cli
   .command('search <keyword>')
   .description('Search for skills by keyword')
-  .action(async (keyword: string) => {
-    console.log(chalk.yellow(`search command for ${keyword} - coming in Phase 3`));
+  .option('-s, --source <path>', 'Custom skills directory path')
+  .option('-v, --verbose', 'Show full descriptions and details')
+  .action(async (keyword: string, options) => {
+    await searchCommand(keyword, options);
   });
 
 /**
