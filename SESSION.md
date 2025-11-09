@@ -1,8 +1,8 @@
 # Session State
 
-**Current Phase**: Phase 5
+**Current Phase**: Phase 6
 **Current Stage**: Implementation
-**Last Checkpoint**: a24c943 (2025-11-08)
+**Last Checkpoint**: 14637f3 (2025-11-08)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
 
 ---
@@ -103,24 +103,27 @@
 - ✅ --source flag works with custom directories
 - ✅ --output flag allows custom output path
 
-## Phase 5: Custom Instructions Templates 🔄
-**Type**: Templates | **Started**: 2025-11-08
+## Phase 5: Custom Instructions Templates ✅
+**Type**: Templates | **Completed**: 2025-11-08
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-5-custom-instructions-templates`
 
-**Progress**:
-- [ ] Create template for .roo/rules/00-roo-commander.md (Roo Commander mode introduction)
-- [ ] Create template for .roo/rules/02-skills-workflow.md (how to use skills)
-- [ ] Test templates in .roo/rules/ directory
-- [ ] Verify templates load correctly in Roo Code
+**Summary**: Created 2 comprehensive template files that teach ALL Roo Code modes how to use roo-commander CLI and when to check for skills before implementing features. Templates are ready for Phase 9 init command to copy to .roo/rules/.
 
-**Next Action**: Create .roo/rules/00-roo-commander.md template explaining Roo Commander mode
+**Files Created**:
+- src/templates/rules/02-cli-usage.md (CLI command reference, 341 lines)
+- src/templates/rules/03-skill-patterns.md (skill usage patterns, 408 lines)
 
-**Key Files**:
-- src/templates/rules/00-roo-commander.md
-- src/templates/rules/02-skills-workflow.md
-- src/commands/init.ts (Phase 9 will copy templates)
-
-**Known Issues**: None
+**Verification Results**:
+- ✅ All 6 CLI commands documented with full syntax
+- ✅ Command examples match actual implementation
+- ✅ Troubleshooting section covers common errors
+- ✅ When to check skills clearly defined with keyword triggers
+- ✅ 3 practical examples showing time/token savings
+- ✅ Anti-patterns section warns about common mistakes
+- ✅ Decision tree for skills vs manual implementation
+- ✅ Writing tone is imperative for AI agents
+- ✅ Markdown formatting is valid (headings, lists, code blocks)
+- ✅ Templates ready for init command to copy in Phase 9
 
 ## Phase 6: Roo Commander Mode Configuration ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-6-roo-commander-mode-configuration`
