@@ -1,6 +1,6 @@
 # Session State
 
-**Current Phase**: Phase 9
+**Current Phase**: Phase 10
 **Current Stage**: Planning
 **Last Checkpoint**: 608dc81 (2025-11-09)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
@@ -195,8 +195,31 @@
 - ✅ Instructions are clear and actionable
 - ✅ Markdown structure valid (H1 title, H2+ sections)
 
-## Phase 9: CLI Init Command ⏸️
+## Phase 9: CLI Init Command ✅
+**Type**: Integration | **Completed**: 2025-11-09
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-9-cli-init-command`
+
+**Summary**: Implemented complete init command that sets up Roo Commander in any project. Handles skills directory cloning, template installation, skills index generation, and .roomodes merging.
+
+**Files Created**:
+- src/installer/github-cloner.ts (204 lines) - Clone skills from GitHub
+- src/installer/template-installer.ts (283 lines) - Copy templates to project
+- src/commands/init.ts (225 lines) - Main init command orchestration
+
+**Files Modified**:
+- src/cli.ts (wired init command with --source and --force options)
+
+**Verification Results**:
+- ✅ TypeScript compilation successful (npm run build)
+- ✅ github-cloner handles missing ~/.claude/skills/ with git clone --depth 1
+- ✅ template-installer copies all templates (.roo/rules, rules-roo-commander, commands)
+- ✅ .roomodes file merging (doesn't overwrite existing modes)
+- ✅ Skills index generation integrated
+- ✅ Idempotent operation (checks if already installed)
+- ✅ Progress spinners for long operations (ora)
+- ✅ Comprehensive success message with next steps
+- ✅ --force flag for reinstallation
+- ✅ --source flag for custom skills directory
 
 ## Phase 10: Documentation & Testing ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-10-documentation--testing`

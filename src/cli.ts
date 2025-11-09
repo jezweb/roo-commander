@@ -5,6 +5,7 @@ import { readCommand } from './commands/read.js';
 import { searchCommand } from './commands/search.js';
 import { generateIndexCommand } from './commands/generate-index.js';
 import { syncIndexCommand } from './commands/sync-index.js';
+import { initCommand } from './commands/init.js';
 
 /**
  * Main CLI Program
@@ -91,8 +92,10 @@ cli
 cli
   .command('init')
   .description('Initialize Roo Commander system in current project')
-  .action(async () => {
-    console.log(chalk.yellow('init command - coming in Phase 9'));
+  .option('-s, --source <path>', 'Custom skills directory path')
+  .option('--force', 'Force reinstall (overwrite existing files)')
+  .action(async (options) => {
+    await initCommand(options);
   });
 
 // Handle unknown commands
