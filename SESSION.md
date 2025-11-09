@@ -1,6 +1,6 @@
 # Session State
 
-**Current Phase**: Phase 8
+**Current Phase**: Phase 9
 **Current Stage**: Planning
 **Last Checkpoint**: 456b5ff (2025-11-09)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
@@ -171,8 +171,29 @@
 - ✅ Markdown structure valid (H1 title, H2+ sections)
 - ✅ Line counts meet specifications (wrap: ~180, continue: ~120, list: ~60, load: ~80)
 
-## Phase 8: Slash Commands - Planning & Release ⏸️
+## Phase 8: Slash Commands - Planning & Release ✅
+**Type**: Integration | **Completed**: 2025-11-09
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-8-slash-commands---planning--release`
+
+**Summary**: Created five slash commands for project planning and release workflows. Planning commands adapted from Claude Code with manual workflows (no automation/skills). Release commands provide complete checklists for GitHub and general releases.
+
+**Files Created**:
+- src/templates/commands/explore-idea.md (361 lines) - Research and validate project idea
+- src/templates/commands/plan-project.md (497 lines) - Create implementation phases
+- src/templates/commands/plan-feature.md (470 lines) - Plan new feature addition
+- src/templates/commands/github-release.md (437 lines) - GitHub release workflow
+- src/templates/commands/release.md (527 lines) - Complete release checklist
+
+**Verification Results**:
+- ✅ All commands have valid YAML frontmatter (description + argument-hint)
+- ✅ explore-idea provides 10-step manual research framework
+- ✅ plan-project includes IMPLEMENTATION_PHASES.md template structure
+- ✅ plan-feature explains manual phase insertion and renumbering
+- ✅ github-release has complete git tag + GitHub release workflow
+- ✅ release has 9-step comprehensive checklist (version, build, test, deploy)
+- ✅ No Claude Code-specific features (skills, subagents, automation removed)
+- ✅ Instructions are clear and actionable
+- ✅ Markdown structure valid (H1 title, H2+ sections)
 
 ## Phase 9: CLI Init Command ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-9-cli-init-command`
