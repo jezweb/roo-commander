@@ -1,7 +1,7 @@
 {
   "name": "@jezweb/roo-commander",
   "version": "9.0.0",
-  "description": "CLI tool to bridge Claude Code skills with Roo Code - brings 68 production-tested skills to Roo Code users",
+  "description": "Bridge Claude Code skills to Roo Code with intelligent orchestration. CLI tool + Custom Mode + 60+ production-tested skills for Cloudflare, AI, Frontend development.",
   "main": "dist/index.js",
   "bin": {
     "roo-commander": "./dist/index.js"
@@ -18,7 +18,18 @@
     "cli",
     "ai",
     "development",
-    "orchestrator"
+    "orchestrator",
+    "cloudflare",
+    "workers",
+    "d1",
+    "openai",
+    "gemini",
+    "tailwind",
+    "react",
+    "nextjs",
+    "vscode-extension",
+    "ai-assistant",
+    "code-generation"
   ],
   "author": "Jeremy Dawes <jeremy@jezweb.net>",
   "license": "MIT",
