@@ -211,8 +211,8 @@ Some requests require multiple skills working together.
 Task: Set up Cloudflare D1 database with Drizzle ORM
 
 Skills to use:
-- Run: `roo-commander read "Cloudflare D1 Database"`
-- Run: `roo-commander read "drizzle-orm-d1"`
+- Run: `roocommander read "Cloudflare D1 Database"`
+- Run: `roocommander read "drizzle-orm-d1"`
 
 [rest of delegation message]
 ```
@@ -232,8 +232,8 @@ Skills to use:
 Task: Implement Clerk auth with D1 session storage
 
 Skills to use:
-- Run: `roo-commander read "clerk-auth"`
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "clerk-auth"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 
 [complete implementation]
 ```
@@ -257,9 +257,9 @@ Skills to use:
 Task: Build chat interface with OpenAI and conversation persistence
 
 Skills to use:
-- Run: `roo-commander read "ai-sdk-ui"`
-- Run: `roo-commander read "openai-api"`
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "ai-sdk-ui"`
+- Run: `roocommander read "openai-api"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 
 [complete implementation covering all three]
 ```
@@ -281,8 +281,8 @@ Skills to use:
 Task: Scaffold Cloudflare Workers project with Tailwind v4
 
 Skills to use:
-- Run: `roo-commander read "cloudflare-worker-base"`
-- Run: `roo-commander read "Tailwind v4 + shadcn/ui Stack"`
+- Run: `roocommander read "cloudflare-worker-base"`
+- Run: `roocommander read "Tailwind v4 + shadcn/ui Stack"`
 
 [scaffold project]
 ```
@@ -292,8 +292,8 @@ Skills to use:
 Task: Add D1 database and Clerk authentication
 
 Skills to use:
-- Run: `roo-commander read "Cloudflare D1 Database"`
-- Run: `roo-commander read "clerk-auth"`
+- Run: `roocommander read "Cloudflare D1 Database"`
+- Run: `roocommander read "clerk-auth"`
 
 [add services]
 ```

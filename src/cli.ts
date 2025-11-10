@@ -10,13 +10,13 @@ import { initCommand } from './commands/init.js';
 /**
  * Main CLI Program
  *
- * Defines all commands and global options for roo-commander.
+ * Defines all commands and global options for roocommander.
  */
 
 const cli = new Command();
 
 cli
-  .name('roo-commander')
+  .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
   .version('9.0.0');
 

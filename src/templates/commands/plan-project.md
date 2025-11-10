@@ -36,7 +36,7 @@ Wait for user response.
 
 Based on tech stack, identify relevant skills:
 
-Run: `roo-commander search <technology>`
+Run: `roocommander search <technology>`
 
 Example:
 - If "Cloudflare D1" mentioned: search `d1 database`
@@ -185,7 +185,7 @@ Project scaffold complete, build working, ready for feature implementation.
 
 ### Skills to Use
 
-- Load: `roo-commander read "[skill-name]"`
+- Load: `roocommander read "[skill-name]"`
 - This skill provides: [what it covers]
 
 ### Tasks
@@ -362,7 +362,7 @@ When creating phases, use this detailed template for each phase:
 
 ### Skills to Use
 
-- Load: `roo-commander read "[skill-name]"`
+- Load: `roocommander read "[skill-name]"`
 - This skill provides: [key topics from skill]
 
 ### Critical Dependencies

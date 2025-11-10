@@ -11,11 +11,11 @@ Available commands: `list`, `read`, `search`, `generate-index`, `sync-index`, `i
 Before using CLI commands, verify installation:
 
 ```bash
-# Check if roo-commander is installed
-which roo-commander
+# Check if roocommander is installed
+which roocommander
 
 # If not installed, inform user to install
-npm install -g @jezweb/roo-commander
+npm install -g @jezweb/roocommander
 ```
 
 **Skills directory locations:**
@@ -32,9 +32,9 @@ npm install -g @jezweb/roo-commander
 
 **Syntax**:
 ```bash
-roo-commander list
-roo-commander list --verbose
-roo-commander list --source ~/custom/skills
+roocommander list
+roocommander list --verbose
+roocommander list --source ~/custom/skills
 ```
 
 **Options**:
@@ -62,9 +62,9 @@ Source: /home/user/.claude/skills
 
 **Syntax**:
 ```bash
-roo-commander read <skill-name>
-roo-commander read "Cloudflare D1 Database"
-roo-commander read cloudflare-d1 --raw
+roocommander read <skill-name>
+roocommander read "Cloudflare D1 Database"
+roocommander read cloudflare-d1 --raw
 ```
 
 **Options**:
@@ -103,10 +103,10 @@ Templates: N files
 
 **Syntax**:
 ```bash
-roo-commander search <keyword>
-roo-commander search database
-roo-commander search "cloudflare workers"
-roo-commander search ai --verbose
+roocommander search <keyword>
+roocommander search database
+roocommander search "cloudflare workers"
+roocommander search ai --verbose
 ```
 
 **Options**:
@@ -139,9 +139,9 @@ Source: /home/user/.claude/skills
 
 **Syntax**:
 ```bash
-roo-commander generate-index
-roo-commander generate-index --output custom/path.md
-roo-commander generate-index --source ~/custom/skills
+roocommander generate-index
+roocommander generate-index --output custom/path.md
+roocommander generate-index --source ~/custom/skills
 ```
 
 **Options**:
@@ -167,8 +167,8 @@ roo-commander generate-index --source ~/custom/skills
 
 **Syntax**:
 ```bash
-roo-commander sync-index
-roo-commander sync-index --output custom/path.md
+roocommander sync-index
+roocommander sync-index --output custom/path.md
 ```
 
 **Options**:
@@ -192,7 +192,7 @@ roo-commander sync-index --output custom/path.md
 
 **Syntax**:
 ```bash
-roo-commander init
+roocommander init
 ```
 
 **Output**: Creates complete `.roo/` structure:
@@ -202,7 +202,7 @@ roo-commander init
     01-skills-index.md
     02-cli-usage.md (this file)
     03-skill-patterns.md
-  rules-roo-commander/
+  rules-roocommander/
     00-core-identity.md
     01-orchestration.md
     02-skill-routing.md
@@ -242,7 +242,7 @@ All commands support these flags:
    ```
 3. Use `--source` flag to point to custom location:
    ```bash
-   roo-commander list --source /path/to/skills
+   roocommander list --source /path/to/skills
    ```
 
 ### Skill Not Found
@@ -256,32 +256,32 @@ All commands support these flags:
    ```
 2. Use fuzzy search:
    ```bash
-   roo-commander search skill-name
+   roocommander search skill-name
    ```
 3. List all available skills:
    ```bash
-   roo-commander list
+   roocommander list
    ```
 
 CLI supports case-insensitive fuzzy matching, but exact names work best.
 
 ### Command Not Found
 
-**Error**: `roo-commander: command not found`
+**Error**: `roocommander: command not found`
 
 **Solutions**:
 1. Install globally:
    ```bash
-   npm install -g @jezweb/roo-commander
+   npm install -g @jezweb/roocommander
    ```
 2. Use npx (no installation needed):
    ```bash
-   npx @jezweb/roo-commander list
+   npx @jezweb/roocommander list
    ```
 3. Check installation:
    ```bash
-   which roo-commander
-   npm list -g @jezweb/roo-commander
+   which roocommander
+   npm list -g @jezweb/roocommander
    ```
 
 ### Empty Output
@@ -304,11 +304,11 @@ find ~/.claude/skills/ -name "SKILL.md"
 
 ## Integration Workflow
 
-Typical workflow for using roo-commander CLI:
+Typical workflow for using roocommander CLI:
 
 1. **Check skills index**: Read `.roo/rules/01-skills-index.md`
 2. **Identify relevant skill**: Match user request to skill keywords
-3. **Load skill**: Run `roo-commander read <skill-name>`
+3. **Load skill**: Run `roocommander read <skill-name>`
 4. **Parse output**: Full SKILL.md content appears in stdout
 5. **Apply knowledge**: Use patterns, templates, gotchas in implementation
 
@@ -318,7 +318,7 @@ User: "Set up Cloudflare D1 database"
 
 1. Check index: Find "Cloudflare D1 Database" skill
 2. Match keywords: "d1", "database", "cloudflare", "sql"
-3. Load: `roo-commander read "Cloudflare D1 Database"`
+3. Load: `roocommander read "Cloudflare D1 Database"`
 4. Parse: Read wrangler.toml binding syntax, migration patterns, Drizzle integration
 5. Apply: Use proven patterns instead of trial-and-error
 ```
@@ -329,8 +329,8 @@ User: "Set up Cloudflare D1 database"
 
 All commands output to stdout, suitable for:
 - Direct reading by AI agents
-- Piping to other tools: `roo-commander read cloudflare-d1 | grep "wrangler"`
-- Saving to files: `roo-commander list > skills-list.txt`
+- Piping to other tools: `roocommander read cloudflare-d1 | grep "wrangler"`
+- Saving to files: `roocommander list > skills-list.txt`
 
 **Output formatting**:
 - Default: Colored, formatted for terminal display

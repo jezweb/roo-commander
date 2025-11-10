@@ -85,7 +85,7 @@ Run: /load-skill [name] to load relevant skills
 Search for skills related to the feature:
 
 ```bash
-roo-commander search <keyword>
+roocommander search <keyword>
 ```
 
 Present findings:
@@ -206,7 +206,7 @@ Add database schema and data access functions for [feature].
 
 ### Skills to Use
 
-- Load: `roo-commander read "[skill-name]"`
+- Load: `roocommander read "[skill-name]"`
 - This skill provides: [what it covers]
 
 ### Critical Dependencies
@@ -344,7 +344,7 @@ When generating phases, use this exact structure:
 
 ### Skills to Use
 
-- Load: `roo-commander read "[skill-name]"`
+- Load: `roocommander read "[skill-name]"`
 - This skill provides: [key topics]
 
 ### Critical Dependencies

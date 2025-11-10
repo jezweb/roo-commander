@@ -1,10 +1,10 @@
 {
-  "name": "@jezweb/roo-commander",
+  "name": "roocommander",
   "version": "9.0.0",
   "description": "Bridge Claude Code skills to Roo Code with intelligent orchestration. CLI tool + Custom Mode + 60+ production-tested skills for Cloudflare, AI, Frontend development.",
   "main": "dist/index.js",
   "bin": {
-    "roo-commander": "./dist/index.js"
+    "roocommander": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

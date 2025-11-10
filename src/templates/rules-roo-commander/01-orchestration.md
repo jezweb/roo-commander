@@ -160,7 +160,7 @@ Use new_task tool with complete, standalone message.
 
 **Required components**:
 1. **Task description** - Clear, specific, actionable
-2. **Skill instructions** - Exact roo-commander commands
+2. **Skill instructions** - Exact roocommander commands
 3. **Context** - Current state, file paths, constraints
 4. **Deliverables** - Measurable success criteria
 
@@ -169,7 +169,7 @@ Use new_task tool with complete, standalone message.
 Task: [One sentence summary]
 
 Skills to use:
-- Run: `roo-commander read "[skill-name]"`
+- Run: `roocommander read "[skill-name]"`
 - This skill provides: [key topics]
 [repeat for multiple skills]
 
@@ -235,7 +235,7 @@ Recommend:
 Task: Set up Cloudflare D1 database with schema and migrations
 
 Skills to use:
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 - This skill provides: wrangler.toml binding syntax, migration patterns, seed data
 
 Context:
@@ -259,9 +259,9 @@ Return a summary when complete.
 Task: Implement authentication with Clerk and D1 session storage
 
 Skills to use:
-- Run: `roo-commander read "clerk-auth"`
+- Run: `roocommander read "clerk-auth"`
 - This provides: Clerk SDK setup, middleware patterns, JWT validation
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 - This provides: D1 query patterns, binding usage
 
 Context:
@@ -287,7 +287,7 @@ Return a summary when complete.
 Task: Create chat interface with AI streaming using Vercel AI SDK
 
 Skills to use:
-- Run: `roo-commander read "ai-sdk-ui"`
+- Run: `roocommander read "ai-sdk-ui"`
 - This skill provides: useChat hook patterns, streaming UI, message state
 
 Context:
@@ -313,7 +313,7 @@ Return a summary when complete.
 Task: Fix TypeError in D1 query execution
 
 Skills to use:
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 - This skill provides: Common D1 errors and fixes, query patterns
 
 Context:
@@ -361,9 +361,9 @@ Return a summary when complete.
 Task: Review authentication architecture and recommend improvements
 
 Skills to use:
-- Run: `roo-commander read "clerk-auth"`
+- Run: `roocommander read "clerk-auth"`
 - This skill provides: Clerk patterns and best practices
-- Run: `roo-commander read "cloudflare-zero-trust-access"`
+- Run: `roocommander read "cloudflare-zero-trust-access"`
 - This skill provides: Alternative auth approach with Cloudflare Access
 
 Context:
@@ -398,7 +398,7 @@ Return analysis when complete.
 Task: Scaffold Cloudflare Workers + React project
 
 Skills to use:
-- Run: `roo-commander read "cloudflare-worker-base"`
+- Run: `roocommander read "cloudflare-worker-base"`
 - Provides: Vite setup, Cloudflare plugin, wrangler.toml template
 
 Context:
@@ -431,11 +431,11 @@ Return summary when complete.
 Task: Implement AI chat with conversation persistence
 
 Skills to use:
-- Run: `roo-commander read "ai-sdk-ui"`
+- Run: `roocommander read "ai-sdk-ui"`
 - Provides: React useChat hook, streaming patterns
-- Run: `roo-commander read "openai-api"`
+- Run: `roocommander read "openai-api"`
 - Provides: OpenAI SDK setup, chat completions
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 - Provides: D1 query patterns for storing messages
 
 Context:
@@ -555,7 +555,7 @@ Your choice:
 
 ✅ **Always check skills index** before delegating implementation work
 ✅ **Include complete context** in delegation messages (modes don't inherit yours)
-✅ **Specify exact skill loading commands** (`roo-commander read "skill-name"`)
+✅ **Specify exact skill loading commands** (`roocommander read "skill-name"`)
 ✅ **Define measurable deliverables** (not vague "make it work")
 ✅ **Summarize results** after mode completes
 ✅ **Ask for clarification** when request is ambiguous
@@ -575,7 +575,7 @@ Your choice:
 
 **Standard delegation format**:
 1. Task: [one sentence]
-2. Skills to use: [roo-commander read commands]
+2. Skills to use: [roocommander read commands]
 3. Context: [current state + constraints]
 4. Expected deliverables: [measurable outcomes]
 

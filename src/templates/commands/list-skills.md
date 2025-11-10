@@ -5,25 +5,25 @@ argument-hint: none
 
 # List Skills
 
-Display all available skills with descriptions and keywords using the roo-commander CLI.
+Display all available skills with descriptions and keywords using the roocommander CLI.
 
 ---
 
 ## Your Task
 
-Use the roo-commander CLI to list all available skills and present them to the user in a readable format.
+Use the roocommander CLI to list all available skills and present them to the user in a readable format.
 
 ### Step 1: Check CLI Installation
 
-Verify roo-commander is installed:
+Verify roocommander is installed:
 
 ```bash
-which roo-commander
+which roocommander
 ```
 
 **If not found**:
-- Output: "❌ roo-commander CLI not installed."
-- Instruct user: "Install with: `npm install -g @jezweb/roo-commander`"
+- Output: "❌ roocommander CLI not installed."
+- Instruct user: "Install with: `npm install -g @jezweb/roocommander`"
 - Stop here
 
 **If found**:
@@ -31,10 +31,10 @@ which roo-commander
 
 ### Step 2: Run List Command
 
-Execute the roo-commander list command:
+Execute the roocommander list command:
 
 ```bash
-roo-commander list --verbose
+roocommander list --verbose
 ```
 
 **Command options**:
@@ -63,14 +63,14 @@ Read the command output and present it to the user.
 Skills are organized by category in the skills index.
 Use /load-skill [name] to load a specific skill into context.
 
-[Output from roo-commander list --verbose]
+[Output from roocommander list --verbose]
 
 ───────────────────────────────────────────────
 
-💡 Tip: Use roo-commander search <keyword> to find skills by technology:
-   - roo-commander search cloudflare
-   - roo-commander search authentication
-   - roo-commander search chat
+💡 Tip: Use roocommander search <keyword> to find skills by technology:
+   - roocommander search cloudflare
+   - roocommander search authentication
+   - roocommander search chat
 
 Or read the full skills index: .roo/rules/01-skills-index.md
 ```
@@ -92,11 +92,11 @@ Your choice (1/2/3/4):
 
 **If choice 1**:
 - Ask: "Which skill would you like to load? (Enter name)"
-- When user provides name, use /load-skill command or run `roo-commander read <skill>`
+- When user provides name, use /load-skill command or run `roocommander read <skill>`
 
 **If choice 2**:
 - Ask: "What keyword should I search for?"
-- Run: `roo-commander search <keyword>`
+- Run: `roocommander search <keyword>`
 - Display results
 
 **If choice 3**:
@@ -112,13 +112,13 @@ Your choice (1/2/3/4):
 
 **CLI not installed**:
 ```
-❌ roo-commander CLI not found.
+❌ roocommander CLI not found.
 
 Install it with:
-npm install -g @jezweb/roo-commander
+npm install -g @jezweb/roocommander
 
 Or use npx (no installation):
-npx @jezweb/roo-commander list
+npx @jezweb/roocommander list
 ```
 
 **Skills directory not found**:
@@ -130,7 +130,7 @@ This means:
 2. Skills are in a custom location
 
 If custom location, run:
-roo-commander list --source /path/to/skills
+roocommander list --source /path/to/skills
 ```
 
 **Empty output**:
@@ -149,11 +149,11 @@ find ~/.claude/skills/ -name "SKILL.md"
 
 **Command fails**:
 ```
-❌ roo-commander list command failed: [error message]
+❌ roocommander list command failed: [error message]
 
 Try:
-1. Check installation: which roo-commander
-2. Check version: roo-commander --version
+1. Check installation: which roocommander
+2. Check version: roocommander --version
 3. Check skills directory: ls ~/.claude/skills/
 ```
 
@@ -182,17 +182,17 @@ Try:
 
 **Command**:
 ```bash
-roo-commander list --verbose
+roocommander list --verbose
 ```
 
 **Alternative with custom path**:
 ```bash
-roo-commander list --source /path/to/skills --verbose
+roocommander list --source /path/to/skills --verbose
 ```
 
 **Follow-up actions**:
-- Load skill: `/load-skill [name]` or `roo-commander read [name]`
-- Search: `roo-commander search [keyword]`
+- Load skill: `/load-skill [name]` or `roocommander read [name]`
+- Search: `roocommander search [keyword]`
 - Read index: `.roo/rules/01-skills-index.md`
 
 ---

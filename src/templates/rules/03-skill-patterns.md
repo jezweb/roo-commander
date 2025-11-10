@@ -65,8 +65,8 @@ Command:
 cat .roo/rules/01-skills-index.md
 
 # Option B: Search for specific terms
-roo-commander search d1
-roo-commander search database
+roocommander search d1
+roocommander search database
 ```
 
 ### Step 3: Match Keywords
@@ -82,11 +82,11 @@ Keywords: drizzle orm, drizzle d1, type-safe sql, drizzle schema, drizzle migrat
 ```
 
 ### Step 4: Load Skill
-Run `roo-commander read <skill-name>` to get full skill content.
+Run `roocommander read <skill-name>` to get full skill content.
 
 ```bash
-roo-commander read "Cloudflare D1 Database"
-roo-commander read drizzle-orm-d1
+roocommander read "Cloudflare D1 Database"
+roocommander read drizzle-orm-d1
 ```
 
 Output: Full SKILL.md markdown with patterns, examples, gotchas, templates.
@@ -134,7 +134,7 @@ Some requests require multiple skills working together.
 ### Use Skills When:
 
 **Technology is listed** in skills index
-- Check: `roo-commander list | grep -i <technology>`
+- Check: `roocommander list | grep -i <technology>`
 - If match found → load skill
 
 **Setting up new service/framework**
@@ -170,7 +170,7 @@ Some requests require multiple skills working together.
 - Domain-specific rules
 
 **No matching skill exists**
-- Check: `roo-commander search <keyword>`
+- Check: `roocommander search <keyword>`
 - If no results → implement manually
 
 **Trivial tasks**
@@ -230,7 +230,7 @@ Some requests require multiple skills working together.
 
 **With cloudflare-d1 skill**:
 ```bash
-roo-commander read "Cloudflare D1 Database"
+roocommander read "Cloudflare D1 Database"
 ```
 ```
 1. Copy binding syntax from skill (proven correct)
@@ -260,7 +260,7 @@ roo-commander read "Cloudflare D1 Database"
 
 **With tailwind-v4-shadcn skill**:
 ```bash
-roo-commander read "Tailwind v4"
+roocommander read "Tailwind v4"
 ```
 ```
 1. Install @tailwindcss/vite (not PostCSS)
@@ -289,7 +289,7 @@ roo-commander read "Tailwind v4"
 
 **With openai-api skill**:
 ```bash
-roo-commander read "openai-api"
+roocommander read "openai-api"
 ```
 ```
 1. Use current openai@5.x SDK
@@ -345,7 +345,7 @@ Skills are maintained separately from Roo Commander CLI.
 
 2. **Regenerate index**:
    ```bash
-   roo-commander sync-index
+   roocommander sync-index
    ```
 
 3. **New index available**: `.roo/rules/01-skills-index.md` refreshed with latest skills
@@ -373,7 +373,7 @@ User (in Code mode): "Set up Cloudflare D1 database"
 
 Code mode workflow:
 1. Check: .roo/rules/01-skills-index.md → find "Cloudflare D1 Database"
-2. Load: roo-commander read "Cloudflare D1 Database"
+2. Load: roocommander read "Cloudflare D1 Database"
 3. Implement: Using patterns from skill
 4. Verify: Against verification criteria in skill
 ```
@@ -392,9 +392,9 @@ Code mode workflow:
 
 **Commands**:
 ```bash
-roo-commander list              # Browse all skills
-roo-commander search <keyword>  # Find relevant skills
-roo-commander read <skill>      # Load skill content
+roocommander list              # Browse all skills
+roocommander search <keyword>  # Find relevant skills
+roocommander read <skill>      # Load skill content
 ```
 
 **Decision**:

@@ -25,7 +25,7 @@ Roo Commander makes your Roo Code AI agent **skill-aware**:
 ### 1. Install CLI
 
 ```bash
-npm install -g @jezweb/roo-commander
+npm install -g roocommander
 ```
 
 ### 2. Install Roo Commander Mode
@@ -38,7 +38,7 @@ npm install -g @jezweb/roo-commander
 **Option B: Manual Init**
 ```bash
 cd your-project
-roo-commander init
+roocommander init
 ```
 
 This creates:
@@ -69,11 +69,11 @@ In Roo Code:
 ### CLI Commands
 
 ```bash
-roo-commander list              # Show all 60+ skills
-roo-commander search ai         # Search by keyword
-roo-commander read "skill-name" # Load skill content
-roo-commander generate-index    # Create skills index
-roo-commander init              # Set up Roo Commander
+roocommander list              # Show all 60+ skills
+roocommander search ai         # Search by keyword
+roocommander read "skill-name" # Load skill content
+roocommander generate-index    # Create skills index
+roocommander init              # Set up Roo Commander
 ```
 
 ### Slash Commands (9 total)
@@ -133,9 +133,9 @@ Delegating to Code mode with instructions to load these skills...
 Task: Scaffold Cloudflare Workers project with D1 and Tailwind v4
 
 Skills to use:
-- Run: `roo-commander read "cloudflare-worker-base"`
-- Run: `roo-commander read "Cloudflare D1 Database"`
-- Run: `roo-commander read "Tailwind v4 + shadcn/ui Stack"`
+- Run: `roocommander read "cloudflare-worker-base"`
+- Run: `roocommander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Tailwind v4 + shadcn/ui Stack"`
 
 [Implementation follows skill patterns]
 ```
@@ -179,7 +179,7 @@ Features: User auth, task CRUD, filtering
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│ 1. CLI Tool (@jezweb/roo-commander)                │
+│ 1. CLI Tool (roocommander)                         │
 │    - List/search/read skills                        │
 │    - Generate skills index                          │
 │    - Initialize project                             │
@@ -210,7 +210,7 @@ flowchart TB
     C --> D{Match keywords?}
     D -->|Yes| E[Found: cloudflare-d1, drizzle-orm-d1]
     E --> F[Delegate to Code mode]
-    F --> G[Include: roo-commander read "Cloudflare D1 Database"]
+    F --> G[Include: roocommander read "Cloudflare D1 Database"]
     G --> H[Code mode loads skill]
     H --> I[Implementation using skill patterns]
 ```
@@ -267,9 +267,9 @@ See `.roo/rules/01-skills-index.md` for complete list with descriptions and keyw
 Show all available skills.
 
 ```bash
-roo-commander list              # Compact list
-roo-commander list --verbose    # With descriptions
-roo-commander list --source ~/custom/skills  # Custom directory
+roocommander list              # Compact list
+roocommander list --verbose    # With descriptions
+roocommander list --source ~/custom/skills  # Custom directory
 ```
 
 **Output**: Table of skill names, descriptions, keywords
@@ -279,9 +279,9 @@ roo-commander list --source ~/custom/skills  # Custom directory
 Find skills by keyword.
 
 ```bash
-roo-commander search database
-roo-commander search cloudflare
-roo-commander search auth --verbose
+roocommander search database
+roocommander search cloudflare
+roocommander search auth --verbose
 ```
 
 **Scoring**: Name match > keyword match > description match
@@ -291,8 +291,8 @@ roo-commander search auth --verbose
 Output skill content.
 
 ```bash
-roo-commander read "Cloudflare D1 Database"
-roo-commander read clerk-auth --raw  # Plain markdown
+roocommander read "Cloudflare D1 Database"
+roocommander read clerk-auth --raw  # Plain markdown
 ```
 
 **Fuzzy matching**: "cloudflare d1" matches "Cloudflare D1 Database"
@@ -302,8 +302,8 @@ roo-commander read clerk-auth --raw  # Plain markdown
 Create categorized skills index.
 
 ```bash
-roo-commander generate-index
-roo-commander generate-index --output custom/path.md
+roocommander generate-index
+roocommander generate-index --output custom/path.md
 ```
 
 **Output**: `.roo/rules/01-skills-index.md` with 7 categories
@@ -313,9 +313,9 @@ roo-commander generate-index --output custom/path.md
 Initialize Roo Commander in project.
 
 ```bash
-roo-commander init              # Interactive setup
-roo-commander init --force      # Reinstall
-roo-commander init --source ~/custom/skills  # Custom directory
+roocommander init              # Interactive setup
+roocommander init --force      # Reinstall
+roocommander init --source ~/custom/skills  # Custom directory
 ```
 
 **Creates**: Complete `.roo/` structure, skills index, .roomodes entry
@@ -329,11 +329,11 @@ See `docs/CLI_REFERENCE.md` for complete documentation.
 ### Manual Testing Checklist
 
 **CLI Commands**:
-- [ ] `roo-commander list` shows skills
-- [ ] `roo-commander search cloudflare` finds 15 skills
-- [ ] `roo-commander read "Cloudflare D1 Database"` outputs content
-- [ ] `roo-commander generate-index` creates index file
-- [ ] `roo-commander init` sets up project
+- [ ] `roocommander list` shows skills
+- [ ] `roocommander search cloudflare` finds 15 skills
+- [ ] `roocommander read "Cloudflare D1 Database"` outputs content
+- [ ] `roocommander generate-index` creates index file
+- [ ] `roocommander init` sets up project
 
 **Slash Commands** (in Roo Code):
 - [ ] `/list-skills` runs CLI and formats output
@@ -417,7 +417,7 @@ Contributions welcome! Please:
 ## 🔗 Links
 
 - **GitHub**: https://github.com/jezweb/roo-commander
-- **npm**: https://www.npmjs.com/package/@jezweb/roo-commander
+- **npm**: https://www.npmjs.com/package/roocommander
 - **Skills Repository**: https://github.com/jezweb/claude-skills
 - **Roo Code**: [VS Code Extension]
 - **Claude Code**: https://docs.claude.com/claude-code

@@ -66,7 +66,7 @@ Choose the appropriate mode based on task type:
 
 Use `new_task` to delegate with:
 - **Task description**: Clear, specific, actionable
-- **Skill loading instruction**: "Before implementing, run: `roo-commander read <skill-name>`"
+- **Skill loading instruction**: "Before implementing, run: `roocommander read <skill-name>`"
 - **Required context**: File paths, current state, constraints
 - **Expected deliverables**: What success looks like
 
@@ -198,7 +198,7 @@ Which approach should I take?
 Task: [Clear description of what to implement]
 
 Skills to use:
-- Run: `roo-commander read "[skill-name]"`
+- Run: `roocommander read "[skill-name]"`
 - This skill provides: [what the skill contains]
 
 Context:
@@ -218,7 +218,7 @@ Return a summary when complete.
 Task: Set up Cloudflare D1 database with migrations
 
 Skills to use:
-- Run: `roo-commander read "Cloudflare D1 Database"`
+- Run: `roocommander read "Cloudflare D1 Database"`
 - This skill provides: wrangler.toml bindings, migration patterns, seed data examples
 
 Context:

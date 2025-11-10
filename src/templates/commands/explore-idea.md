@@ -52,14 +52,14 @@ Wait for responses.
 
 Based on technologies mentioned, check if relevant skills exist:
 
-Run: `/list-skills` or `roo-commander search <keyword>`
+Run: `/list-skills` or `roocommander search <keyword>`
 
 Example searches based on common needs:
-- Database: `roo-commander search database`
-- Auth: `roo-commander search authentication`
-- AI: `roo-commander search ai`
-- Cloudflare: `roo-commander search cloudflare`
-- Frontend: `roo-commander search react`
+- Database: `roocommander search database`
+- Auth: `roocommander search authentication`
+- AI: `roocommander search ai`
+- Cloudflare: `roocommander search cloudflare`
+- Frontend: `roocommander search react`
 
 Present findings:
 

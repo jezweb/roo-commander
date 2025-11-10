@@ -5,13 +5,13 @@ argument-hint: <skill-name>
 
 # Load Skill
 
-Load a specific skill's full content into context for implementation using the roo-commander CLI.
+Load a specific skill's full content into context for implementation using the roocommander CLI.
 
 ---
 
 ## Your Task
 
-Use the roo-commander CLI to load a skill's SKILL.md content and parse it for use in implementation.
+Use the roocommander CLI to load a skill's SKILL.md content and parse it for use in implementation.
 
 ### Step 1: Parse Skill Name
 
@@ -32,15 +32,15 @@ Extract skill name from user command.
 
 ### Step 2: Check CLI Installation
 
-Verify roo-commander is installed:
+Verify roocommander is installed:
 
 ```bash
-which roo-commander
+which roocommander
 ```
 
 **If not found**:
-- Output: "❌ roo-commander CLI not installed."
-- Instruct: "Install with: `npm install -g @jezweb/roo-commander`"
+- Output: "❌ roocommander CLI not installed."
+- Instruct: "Install with: `npm install -g @jezweb/roocommander`"
 - Stop here
 
 **If found**:
@@ -48,10 +48,10 @@ which roo-commander
 
 ### Step 3: Run Read Command
 
-Execute roo-commander read command:
+Execute roocommander read command:
 
 ```bash
-roo-commander read "<skill-name>"
+roocommander read "<skill-name>"
 ```
 
 **Command options**:
@@ -140,13 +140,13 @@ Your choice (1/2/3/4):
 
 **CLI not installed**:
 ```
-❌ roo-commander CLI not found.
+❌ roocommander CLI not found.
 
 Install it with:
-npm install -g @jezweb/roo-commander
+npm install -g @jezweb/roocommander
 
 Or use npx (no installation):
-npx @jezweb/roo-commander read "<skill-name>"
+npx @jezweb/roocommander read "<skill-name>"
 ```
 
 **Skill not found**:
@@ -159,7 +159,7 @@ This might mean:
 
 Try:
 1. List all skills: /list-skills
-2. Search for similar: roo-commander search <keyword>
+2. Search for similar: roocommander search <keyword>
 3. Check skills index: .roo/rules/01-skills-index.md
 
 Similar skills found:
@@ -178,17 +178,17 @@ Similar skills found:
 
 Setup skills:
 1. Clone: git clone https://github.com/jezweb/claude-skills ~/.claude/skills
-2. Or specify custom path: roo-commander read "<skill>" --source /path/to/skills
+2. Or specify custom path: roocommander read "<skill>" --source /path/to/skills
 ```
 
 **Command fails**:
 ```
-❌ roo-commander read command failed: [error message]
+❌ roocommander read command failed: [error message]
 
 Debug:
-1. Check installation: which roo-commander
-2. Check version: roo-commander --version
-3. Try list command: roo-commander list
+1. Check installation: which roocommander
+2. Check version: roocommander --version
+3. Try list command: roocommander list
 4. Check skill exists: ls ~/.claude/skills/[skill-name]/
 ```
 
@@ -254,17 +254,17 @@ Some implementations require multiple skills working together.
 
 **Basic usage**:
 ```bash
-roo-commander read "<skill-name>"
+roocommander read "<skill-name>"
 ```
 
 **With custom path**:
 ```bash
-roo-commander read "<skill-name>" --source /path/to/skills
+roocommander read "<skill-name>" --source /path/to/skills
 ```
 
 **Raw output (no formatting)**:
 ```bash
-roo-commander read "<skill-name>" --raw
+roocommander read "<skill-name>" --raw
 ```
 
 **Common skill names**:
@@ -278,7 +278,7 @@ roo-commander read "<skill-name>" --raw
 
 **Finding skills**:
 - List all: `/list-skills`
-- Search: `roo-commander search <keyword>`
+- Search: `roocommander search <keyword>`
 - Index: `.roo/rules/01-skills-index.md`
 
 ---

@@ -13,11 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ⚠️ Breaking Changes
 
-**Version 9.0.0 is a complete rewrite** and is **NOT compatible** with v8.1 or earlier.
+**Version 9.0.0 is a complete rewrite** and is **NOT compatible** with v0.1.x or v8.1 or earlier.
 
+- **Package name change**: Previously published as `roocommander` v0.1.x (incomplete prototype), now republished with complete rebuild
 - **New Target**: Built for Roo Code VS Code extension (not Claude Code CLI)
 - **Architecture Change**: Three-component system (CLI + Custom Instructions + Mode)
-- **No Backward Compatibility**: Skills, commands, and structure completely redesigned
+- **No Backward Compatibility**: Skills, commands, and structure completely redesigned from v0.1.x
+
+**Migration from v0.1.x**: Not supported. v0.1.x was an incomplete prototype. v9.0.0 is a production-ready complete rebuild for a different platform (Roo Code).
 
 **Migration from v8.1**: Not supported. This is a new product for a different platform.
 
@@ -252,11 +255,22 @@ See git history for v8.1 features.
 ## Version History
 
 - **9.0.0** (2025-11-09) - Complete rebuild for Roo Code integration
+- **0.1.17** (2025-05-05) - Last prototype version (deprecated, incomplete)
 - **8.1.0** (2024-XX-XX) - Last Claude Code version (deprecated)
 
 ---
 
 ## Migration Guides
+
+### From v0.1.x to v9.0
+
+**Not supported**. v0.1.x was an incomplete prototype. v9.0.0 is a production-ready complete rebuild.
+
+**Recommendation**: Upgrade to v9.0.0:
+1. Uninstall old version: `npm uninstall -g roocommander`
+2. Install new version: `npm install -g roocommander`
+3. Run: `roocommander init` in your project
+4. Install Roo Commander mode from marketplace (or use manual init)
 
 ### From v8.1 to v9.0
 
@@ -264,8 +278,8 @@ See git history for v8.1 features.
 
 **Recommendation**: Start fresh with v9.0.0:
 1. Uninstall v8.1: `npm uninstall -g roo-commander`
-2. Install v9.0: `npm install -g @jezweb/roo-commander`
-3. Run: `roo-commander init` in your project
+2. Install v9.0: `npm install -g roocommander`
+3. Run: `roocommander init` in your project
 4. Install Roo Commander mode from marketplace
 
 ---
@@ -294,5 +308,5 @@ See git history for v8.1 features.
 ## Links
 
 - **GitHub**: https://github.com/jezweb/roo-commander
-- **npm**: https://www.npmjs.com/package/@jezweb/roo-commander
+- **npm**: https://www.npmjs.com/package/roocommander
 - **Skills Repo**: https://github.com/jezweb/claude-skills
