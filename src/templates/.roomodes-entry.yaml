@@ -1,6 +1,6 @@
 # Roo Commander Mode Configuration
 #
-# This is the .roomodes entry for Roo Commander v9.0.1
+# This is the .roomodes entry for Roo Commander v9.0.2
 # Copy this entire block into your project's .roomodes file
 #
 # Installation:
@@ -44,7 +44,8 @@ customModes:
       Always check the skills index before delegating implementation work.
 
     groups:
-      - workflow
+      - read
+      - mcp
 
     customInstructions:
       - .roo/rules/01-skills-index.md

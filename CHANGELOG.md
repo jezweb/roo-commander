@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.0.2] - 2025-11-10
+
+### 🐛 Fixed
+
+**Critical Fix**: Invalid `groups` value in .roomodes template
+
+- **Issue**: Template used `groups: [workflow]` which is NOT a valid Roo Code tool group
+- **Impact**: Mode may not load correctly in Roo Code extension or fail silently
+- **Root Cause**: Used non-existent "workflow" group instead of official values
+- **Fix**: Changed to `groups: [read, mcp]` (allows reading skills index and MCP access)
+- **Valid Groups**: `read`, `edit`, `browser`, `command`, `mcp` (per official Roo Code docs)
+
+**Documentation Improvements**:
+- Fixed CLI command name in 3 locations (changed hyphenated `roo-commander` to `roocommander`)
+  - `src/installer/github-cloner.ts:110` - Help text
+  - `src/cli.ts:104` - Error message
+  - `src/commands/init.ts:40` - Reinstall message
+- Added prominent VS Code reload warning to init output (yellow warning + first step)
+- Updated README version footer to 9.0.2
+
+**Changes**:
+- `src/templates/.roomodes-entry.yaml`: Changed `groups: [workflow]` → `groups: [read, mcp]`
+- `src/commands/init.ts`: Added reload VS Code warning in output
+- `src/installer/github-cloner.ts`: Fixed command name
+- `src/cli.ts`: Fixed command name
+- `README.md`: Updated version footer
+
+**Why This Matters**:
+- Invalid groups value could cause mode to be rejected by Roo Code extension
+- Users won't see mode if they don't reload VS Code (root cause of v9.0.0/9.0.1 confusion)
+- Wrong CLI command names cause copy/paste errors
+
+**Migration**: Users should upgrade immediately:
+```bash
+npm install -g roocommander@latest
+roocommander init --force
+# Reload VS Code
+```
+
+---
+
 ## [9.0.1] - 2025-11-10
 
 ### 🐛 Fixed

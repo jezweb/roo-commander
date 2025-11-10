@@ -18,7 +18,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.0.1');
+  .version('9.0.2');
 
 /**
  * Command: list
@@ -101,7 +101,7 @@ cli
 // Handle unknown commands
 cli.on('command:*', () => {
   console.error(chalk.red(`\nError: Unknown command '${cli.args.join(' ')}'`));
-  console.log(chalk.gray('\nRun \'roo-commander --help\' for available commands.\n'));
+  console.log(chalk.gray('\nRun \'roocommander --help\' for available commands.\n'));
   process.exit(1);
 });
 

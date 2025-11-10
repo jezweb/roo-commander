@@ -37,7 +37,7 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
     console.log(chalk.yellow('⚠️  Roo Commander is already installed in this project.'));
     console.log(
       chalk.gray(
-        `\nRun ${chalk.cyan('roo-commander init --force')} to reinstall.\n`
+        `\nRun ${chalk.cyan('roocommander init --force')} to reinstall.\n`
       )
     );
     return;
@@ -188,19 +188,26 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
   console.log(chalk.gray('  ✅ Roo Commander mode configuration'));
   console.log(chalk.gray('  ✅ 9 slash commands (session management, planning, release)'));
 
-  console.log(chalk.bold('\n📖 Next Steps:\n'));
-  console.log(chalk.cyan('  1. Switch to Roo Commander mode:'));
+  console.log(chalk.bold('\n⚠️  IMPORTANT:\n'));
+  console.log(chalk.yellow('  Reload VS Code to see Roo Commander in the mode selector'));
+  console.log(chalk.gray('  Command Palette (Cmd/Ctrl+Shift+P) → "Developer: Reload Window"\n'));
+
+  console.log(chalk.bold('📖 Next Steps:\n'));
+  console.log(chalk.cyan('  1. Reload VS Code (required for mode to appear)'));
+  console.log(chalk.gray('     Cmd/Ctrl+Shift+P → Developer: Reload Window\n'));
+
+  console.log(chalk.cyan('  2. Switch to Roo Commander mode:'));
   console.log(chalk.gray('     /mode roo-commander\n'));
 
-  console.log(chalk.cyan('  2. List available skills:'));
+  console.log(chalk.cyan('  3. List available skills:'));
   console.log(chalk.gray('     /list-skills'));
-  console.log(chalk.gray('     or: roo-commander list\n'));
+  console.log(chalk.gray('     or: roocommander list\n'));
 
-  console.log(chalk.cyan('  3. Load a skill before implementing:'));
+  console.log(chalk.cyan('  4. Load a skill before implementing:'));
   console.log(chalk.gray('     /load-skill "Cloudflare D1 Database"'));
-  console.log(chalk.gray('     or: roo-commander read "Cloudflare D1 Database"\n'));
+  console.log(chalk.gray('     or: roocommander read "Cloudflare D1 Database"\n'));
 
-  console.log(chalk.cyan('  4. Start project planning:'));
+  console.log(chalk.cyan('  5. Start project planning:'));
   console.log(chalk.gray('     /plan-project\n'));
 
   console.log(chalk.bold('🔗 Resources:\n'));

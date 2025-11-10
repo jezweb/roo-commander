@@ -442,5 +442,5 @@ Contributions welcome! Please:
 
 ---
 
-**Version**: 9.0.0 (Complete rebuild for Roo Code integration)
-**Last Updated**: 2025-11-09
+**Version**: 9.0.2 (Fixed invalid groups value and documentation)
+**Last Updated**: 2025-11-10

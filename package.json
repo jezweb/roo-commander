@@ -1,6 +1,6 @@
 {
   "name": "roocommander",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "description": "Bridge Claude Code skills to Roo Code with intelligent orchestration. CLI tool + Custom Mode + 60+ production-tested skills for Cloudflare, AI, Frontend development.",
   "main": "dist/index.js",
   "bin": {

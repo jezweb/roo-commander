@@ -107,7 +107,7 @@ export async function cloneSkills(
       chalk.gray(`\n📦 Skills available at: ${chalk.cyan(targetDir)}`)
     );
     console.log(
-      chalk.gray(`Run ${chalk.cyan('roo-commander list')} to see all skills.\n`)
+      chalk.gray(`Run ${chalk.cyan('roocommander list')} to see all skills.\n`)
     );
 
     return {
