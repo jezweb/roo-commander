@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.0.3] - 2025-11-10
+
+### 🐛 Fixed
+
+**CRITICAL: Mode Not Appearing in Roo Code Extension**
+
+- **Issue**: `.roomodes` template had invalid `emoji` field causing Roo Code to reject the mode
+- **Impact**: Mode would not appear in mode selector even after correct installation and VS Code reload
+- **Root Cause**: Template used non-existent `emoji:` property instead of including emoji in `name` field
+- **Fix**: Removed `emoji: 🎯` line and changed `name: Roo Commander` to `name: 🎯 Roo Commander`
+
+**What Was Wrong**:
+```yaml
+# ❌ INVALID (v9.0.0-9.0.2)
+- slug: roo-commander
+  name: Roo Commander
+  emoji: 🎯  # <-- Not a valid Roo Code property!
+
+# ✅ VALID (v9.0.3)
+- slug: roo-commander
+  name: 🎯 Roo Commander  # Emoji in name field
+```
+
+**Why This Matters**:
+- Roo Code extension parses `.roomodes` and rejects modes with invalid properties
+- Invalid `emoji` field caused silent failure - no error message, mode just didn't load
+- This affected ALL users in v9.0.0, v9.0.1, and v9.0.2
+
+**Changes**:
+- `src/templates/.roomodes-entry.yaml`: Removed `emoji:` field (line 15), added emoji to `name` field (line 14)
+
+**Migration**: All users MUST upgrade and reinstall:
+```bash
+npm install -g roocommander@latest
+cd your-project
+roocommander init --force
+# Reload VS Code: Cmd/Ctrl+Shift+P → Developer: Reload Window
+```
+
+**Manual Fix** (for users who can't wait for upgrade):
+1. Edit `.roomodes` in your project root
+2. Find: `name: Roo Commander` and `emoji: 🎯`
+3. Change to: `name: 🎯 Roo Commander` (remove the emoji line)
+4. Save and reload VS Code
+
+---
+
 ## [9.0.2] - 2025-11-10
 
 ### 🐛 Fixed

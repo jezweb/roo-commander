@@ -1,6 +1,6 @@
 # Roo Commander Mode Configuration
 #
-# This is the .roomodes entry for Roo Commander v9.0.2
+# This is the .roomodes entry for Roo Commander v9.0.3
 # Copy this entire block into your project's .roomodes file
 #
 # Installation:
@@ -11,8 +11,7 @@
 
 customModes:
   - slug: roo-commander
-    name: Roo Commander
-    emoji: 🎯
+    name: 🎯 Roo Commander
     description: |
       Lightweight orchestrator that analyzes requests, checks skills index, and delegates
       implementation to built-in modes (Code, Architect, Debug) with skill-aware instructions.

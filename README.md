@@ -442,5 +442,5 @@ Contributions welcome! Please:
 
 ---
 
-**Version**: 9.0.2 (Fixed invalid groups value and documentation)
+**Version**: 9.0.3 (Fixed invalid emoji field preventing mode from appearing)
 **Last Updated**: 2025-11-10
