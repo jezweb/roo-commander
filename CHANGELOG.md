@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.0.4] - 2025-11-11
+
+### 🐛 Fixed
+
+**CRITICAL: Mode Still Not Appearing (Final Fix)**
+
+- **Issue**: Two remaining schema violations preventing mode from appearing in Roo Code extension
+- **Impact**: Mode would not load even after v9.0.3 emoji fix
+- **Root Causes**:
+  1. **Missing `whenToUse` field** - Required for Orchestrator mode to know when to suggest the mode
+  2. **Invalid `customInstructions` format** - Was array of file paths, should be inline string or omitted entirely
+
+**What Was Wrong**:
+```yaml
+# ❌ INVALID (v9.0.0-9.0.3)
+customModes:
+  - slug: roo-commander
+    name: 🎯 Roo Commander
+    # Missing: whenToUse field
+    customInstructions:  # ❌ File paths not supported
+      - .roo/rules/01-skills-index.md
+      - .roo/rules/02-cli-usage.md
+
+# ✅ VALID (v9.0.4)
+customModes:
+  - slug: roo-commander
+    name: 🎯 Roo Commander
+    whenToUse: Use this mode when starting new features...  # ✅ Added
+    # customInstructions removed - using .roo/rules-roo-commander/ files instead
+```
+
+**Why This Matters**:
+- `whenToUse` tells Roo Code's Orchestrator mode when to suggest this mode
+- `customInstructions` expects inline content, NOT file paths
+- File-based instructions work via `.roo/rules-roo-commander/` directory (loaded automatically)
+
+**Changes**:
+- `src/templates/.roomodes-entry.yaml`: Added `whenToUse` field, removed invalid `customInstructions` array
+- All mode-specific instructions remain in `.roo/rules-roo-commander/` (correct approach)
+
+**Migration**: All users MUST upgrade and reinstall:
+```bash
+npm install -g roocommander@latest
+cd your-project
+roocommander init --force
+# Reload VS Code: Cmd/Ctrl+Shift+P → Developer: Reload Window
+```
+
+**Verification**: Mode should now appear in `/mode` selector after VS Code reload.
+
+---
+
 ## [9.0.3] - 2025-11-10
 
 ### 🐛 Fixed

@@ -1,6 +1,6 @@
 # Roo Commander Mode Configuration
 #
-# This is the .roomodes entry for Roo Commander v9.0.3
+# This is the .roomodes entry for Roo Commander v9.0.4
 # Copy this entire block into your project's .roomodes file
 #
 # Installation:
@@ -42,14 +42,8 @@ customModes:
       Philosophy: Skills contain production-tested patterns that save tokens and prevent errors.
       Always check the skills index before delegating implementation work.
 
+    whenToUse: Use this mode when starting new features or complex workflows where you want automatic skill discovery before delegating to implementation modes.
+
     groups:
       - read
       - mcp
-
-    customInstructions:
-      - .roo/rules/01-skills-index.md
-      - .roo/rules/02-cli-usage.md
-      - .roo/rules/03-skill-patterns.md
-      - .roo/rules-roo-commander/00-core-identity.md
-      - .roo/rules-roo-commander/01-orchestration.md
-      - .roo/rules-roo-commander/02-skill-routing.md

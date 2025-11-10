@@ -442,5 +442,5 @@ Contributions welcome! Please:
 
 ---
 
-**Version**: 9.0.3 (Fixed invalid emoji field preventing mode from appearing)
-**Last Updated**: 2025-11-10
+**Version**: 9.0.4 (Fixed missing whenToUse field and invalid customInstructions)
+**Last Updated**: 2025-11-11
