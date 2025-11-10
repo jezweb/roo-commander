@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.0.1] - 2025-11-10
+
+### 🐛 Fixed
+
+**Critical Bug**: Roo Commander mode not appearing in VS Code Roo Code extension
+
+- **Issue**: `.roomodes` file created by `roocommander init` had invalid YAML structure (bare array instead of `customModes: [array]`)
+- **Impact**: Roo Code extension couldn't parse `.roomodes`, so custom mode never loaded in mode selector
+- **Root Cause**: Template file (`src/templates/.roomodes-entry.yaml`) was missing `customModes:` wrapper key
+- **Fix**:
+  - Updated template to use proper `customModes: [array]` structure (line 12)
+  - Updated installer parsing logic to handle `customModes` wrapper (line 210-217)
+  - Updated merging logic to preserve `customModes` structure (line 223-266)
+  - Added validation to ensure `customModes` key exists and is an array
+
+**Changes**:
+- `src/templates/.roomodes-entry.yaml`: Added `customModes:` wrapper, indented mode definition
+- `src/installer/template-installer.ts`: Fixed parsing/merging to handle wrapped structure
+- `README.md`: Added note about reloading VS Code after `roocommander init`
+
+**Migration**: Users who ran `roocommander init` with v9.0.0 should:
+1. Upgrade: `npm install -g roocommander@latest`
+2. Reinstall: `roocommander init --force` (overwrites broken `.roomodes`)
+3. Reload VS Code: Command Palette → "Developer: Reload Window"
+
+---
+
 ## [9.0.0] - 2025-11-09
 
 **Complete rebuild** for Roo Code VS Code extension integration.

@@ -195,39 +195,51 @@ async function createOrMergeRoomodes(
 
   // Parse template to get Roo Commander entry
   // Template has comments, extract just the YAML entry
-  const yamlStart = templateContent.indexOf('- slug: roo-commander');
+  const yamlStart = templateContent.indexOf('customModes:');
   if (yamlStart === -1) {
     return {
       success: false,
-      error: 'Invalid .roomodes-entry.yaml template',
+      error: 'Invalid .roomodes-entry.yaml template (missing customModes key)',
     };
   }
 
   const yamlContent = templateContent.substring(yamlStart);
 
   try {
-    // Parse as array (roomodes is array of mode entries)
-    const rooCommanderEntry = yaml.parse(yamlContent);
+    // Parse template (has customModes wrapper)
+    const parsedTemplate = yaml.parse(yamlContent);
+    if (!parsedTemplate?.customModes || !Array.isArray(parsedTemplate.customModes)) {
+      return {
+        success: false,
+        error: 'Invalid .roomodes-entry.yaml template (customModes must be an array)',
+      };
+    }
+    const rooCommanderMode = parsedTemplate.customModes[0];
 
     // Check if .roomodes exists
     if (existsSync(roomodesPath)) {
       // Merge with existing
       const existingContent = readFileSync(roomodesPath, 'utf-8');
-      const existingModes = yaml.parse(existingContent) || [];
+      const existingData = yaml.parse(existingContent) || {};
+
+      // Ensure customModes array exists
+      if (!existingData.customModes) {
+        existingData.customModes = [];
+      }
 
       // Check if Roo Commander already exists
-      const hasRooCommander = existingModes.some(
+      const hasRooCommander = existingData.customModes.some(
         (mode: any) => mode.slug === 'roo-commander'
       );
 
       if (hasRooCommander) {
         // Replace existing entry
-        const filteredModes = existingModes.filter(
+        existingData.customModes = existingData.customModes.filter(
           (mode: any) => mode.slug !== 'roo-commander'
         );
-        filteredModes.push(rooCommanderEntry[0]);
+        existingData.customModes.push(rooCommanderMode);
 
-        const newContent = yaml.stringify(filteredModes);
+        const newContent = yaml.stringify(existingData);
         writeFileSync(roomodesPath, newContent, 'utf-8');
 
         console.log(
@@ -235,16 +247,19 @@ async function createOrMergeRoomodes(
         );
       } else {
         // Append to existing
-        existingModes.push(rooCommanderEntry[0]);
+        existingData.customModes.push(rooCommanderMode);
 
-        const newContent = yaml.stringify(existingModes);
+        const newContent = yaml.stringify(existingData);
         writeFileSync(roomodesPath, newContent, 'utf-8');
 
         console.log(chalk.gray(`\n  Added Roo Commander entry to .roomodes`));
       }
     } else {
-      // Create new .roomodes file
-      const newContent = yaml.stringify(rooCommanderEntry);
+      // Create new .roomodes file with customModes wrapper
+      const newData = {
+        customModes: [rooCommanderMode]
+      };
+      const newContent = yaml.stringify(newData);
       writeFileSync(roomodesPath, newContent, 'utf-8');
 
       console.log(chalk.gray(`\n  Created .roomodes with Roo Commander entry`));

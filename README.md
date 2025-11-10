@@ -47,6 +47,8 @@ This creates:
 - `.roo/commands/` - 9 slash commands
 - `.roomodes` - Roo Commander mode entry
 
+**⚠️ Important**: After running `roocommander init`, **reload VS Code** (Command Palette → "Developer: Reload Window") to see Roo Commander in the mode selector.
+
 ### 3. Use Roo Commander
 
 In Roo Code:
