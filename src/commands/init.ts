@@ -23,6 +23,8 @@ export interface InitOptions {
   source?: string;
   /** Force reinstall (overwrite existing) */
   force?: boolean;
+  /** Install to project directory instead of globally (default: false) */
+  project?: boolean;
 }
 
 export async function initCommand(options: InitOptions = {}): Promise<void> {

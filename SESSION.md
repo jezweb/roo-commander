@@ -2,20 +2,20 @@
 
 **Current Phase**: Phase 12 (Release - Critical Bugfixes)
 **Current Stage**: Production
-**Last Checkpoint**: 00b5546 (2025-11-10)
+**Last Checkpoint**: 39a2ad5 (2025-11-11)
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`, `docs/ARCHITECTURE.md`, `docs/PROJECT_BRIEF.md`
 
 ---
 
 ## 🎉 Production Release Complete!
 
-**Published to npm**: v9.0.3 (after 3 critical bugfix releases)
+**Published to npm**: v9.0.4 (after 4 critical bugfix releases)
 
-**Latest Release** (v9.0.3):
+**Latest Release** (v9.0.4):
 - ✅ Published to npm: https://www.npmjs.com/package/roocommander
-- ✅ GitHub release: https://github.com/jezweb/roo-commander/releases/tag/v9.0.3
-- ✅ All critical bugs fixed
-- ✅ Mode now appears in Roo Code extension
+- ✅ GitHub release: https://github.com/jezweb/roo-commander/releases/tag/v9.0.4
+- ✅ All schema violations fixed (whenToUse added, customInstructions corrected)
+- ✅ Mode should now appear in Roo Code extension
 - ✅ Documentation complete
 
 **What's Working**:
@@ -29,13 +29,30 @@
 - ✅ Roo Commander Mode (orchestration + skill routing - FIXED v9.0.2, v9.0.3)
 - ✅ Comprehensive Documentation (README + CHANGELOG)
 
-**Releases Today**:
+**Releases (2025-11-10 to 2025-11-11)**:
 - v9.0.0: Initial npm publish
 - v9.0.1: Fixed `.roomodes` YAML structure (customModes wrapper)
 - v9.0.2: Fixed invalid groups value (workflow → read,mcp)
 - v9.0.3: Fixed invalid emoji field (removed, added to name)
+- v9.0.4: Fixed missing whenToUse field + invalid customInstructions (file paths → removed)
 
-**Next Action**: User should test v9.0.3 in Roo Code extension to verify mode appears correctly.
+**Investigation Process (v9.0.4)**:
+- Used `/ask-gemini` to get second opinion on why mode wasn't appearing
+- Compared against official Roo Code repository examples
+- Discovered two schema violations: missing `whenToUse`, invalid `customInstructions` format
+- Learned that customInstructions must be inline string OR omitted (file paths not supported)
+- Confirmed that `.roo/rules-{mode-slug}/` directory is the correct pattern for file-based instructions
+
+**Current Work (v9.1.0 - In Progress)**:
+- Started implementing global installation feature
+- Created `src/installer/global-installer.ts` (243 lines)
+- Adds `--global` flag (default) and `--project` flag for installation scope
+- Detects Roo Code settings location across platforms (Windows/macOS/Linux)
+- Status: Partially implemented, needs integration and testing
+
+**Next Action**:
+**Option 1 (Recommended)**: Test v9.0.4 first to verify mode appears, then continue global install in next session
+**Option 2**: Complete global installation implementation now (requires significant refactoring)
 
 ---
 
