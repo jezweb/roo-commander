@@ -30,24 +30,29 @@ npm install -g roocommander
 
 ### 2. Install Roo Commander Mode
 
-**Option A: From Marketplace** (Coming Soon)
-- Open Roo Code Marketplace in VS Code
-- Search "Roo Commander"
-- Click Install
-
-**Option B: Manual Init**
+**Global Installation (Recommended)**
 ```bash
-cd your-project
 roocommander init
 ```
 
-This creates:
+This installs Roo Commander globally - available in **ALL your projects**:
+- Writes to `~/.config/Code/.../custom_modes.yaml`
+- Copies rules to `~/.roo/rules-roo-commander/`
+- 👑 Crown emoji indicates the mode
+
+**Project-Scoped Installation** (Optional)
+```bash
+cd your-project
+roocommander init --project
+```
+
+This installs only in the current project:
 - `.roo/rules/` - Custom instructions (skills index, CLI usage, patterns)
 - `.roo/rules-roo-commander/` - Mode-specific rules
 - `.roo/commands/` - 9 slash commands
 - `.roomodes` - Roo Commander mode entry
 
-**⚠️ Important**: After running `roocommander init`, **reload VS Code** (Command Palette → "Developer: Reload Window") to see Roo Commander in the mode selector.
+**⚠️ Important**: After running `roocommander init`, **reload VS Code** (Command Palette → "Developer: Reload Window") to see 👑 Roo Commander in the mode selector.
 
 ### 3. Use Roo Commander
 
@@ -442,5 +447,5 @@ Contributions welcome! Please:
 
 ---
 
-**Version**: 9.0.4 (Fixed missing whenToUse field and invalid customInstructions)
-**Last Updated**: 2025-11-11
+**Version**: 9.1.0 (Global installation support + crown emoji 👑)
+**Last Updated**: 2025-11-13

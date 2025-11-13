@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.1.0] - 2025-11-13
+
+### ✨ Features
+
+**Global Installation Support (MAJOR FEATURE)**
+
+- **New Default**: `roocommander init` now installs globally by default - mode appears in ALL projects
+- **Project Mode**: Use `--project` flag for project-scoped installation (old behavior)
+- **Crown Emoji**: Changed from 🎯 to 👑 for Roo Commander mode
+
+**Installation Modes**:
+
+```bash
+# Global (default) - Install once, use everywhere
+roocommander init
+→ Writes to ~/.config/Code/.../custom_modes.yaml
+→ Copies rules to ~/.roo/rules-roo-commander/
+→ Mode appears in ALL Roo Code projects
+
+# Project-scoped - Install per project
+roocommander init --project
+→ Writes to ./.roomodes in current directory
+→ Copies rules to ./.roo/
+→ Mode appears only in this project
+```
+
+**Why Global?**
+- Install once, available everywhere
+- No need to run `init` in every project
+- Cleaner project directories (no `.roomodes` file unless needed)
+- Can still override per-project with `--project` flag
+
+**Changes**:
+- `src/commands/init.ts`: Complete rewrite to support both global and project modes
+- `src/installer/global-installer.ts`: New module with cross-platform global installation
+- `src/cli.ts`: Added `--project` flag to init command
+- `src/templates/.roomodes-entry.yaml`: Changed emoji from 🎯 to 👑
+
+**Migration**:
+```bash
+# Upgrade CLI
+npm install -g roocommander@latest
+
+# Install globally (recommended)
+roocommander init
+
+# Reload VS Code
+# Cmd/Ctrl+Shift+P → Developer: Reload Window
+
+# Mode now appears in all projects!
+```
+
+**Breaking Changes**: None - `--project` flag preserves old behavior
+
+---
+
 ## [9.0.4] - 2025-11-11
 
 ### 🐛 Fixed

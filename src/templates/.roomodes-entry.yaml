@@ -11,7 +11,7 @@
 
 customModes:
   - slug: roo-commander
-    name: 🎯 Roo Commander
+    name: 👑 Roo Commander
     description: |
       Lightweight orchestrator that analyzes requests, checks skills index, and delegates
       implementation to built-in modes (Code, Architect, Debug) with skill-aware instructions.
