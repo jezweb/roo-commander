@@ -18,7 +18,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.1.0');
+  .version('9.2.0');
 
 /**
  * Command: list

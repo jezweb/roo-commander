@@ -1,6 +1,8 @@
 ---
 description: Update SESSION.md and create git checkpoint before ending session
 argument-hint: none
+workflow-stage: execution
+part-of: project-workflow lifecycle
 ---
 
 # Wrap Session

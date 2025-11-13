@@ -1,6 +1,8 @@
 ---
 description: Create implementation phases and planning docs for new project
 argument-hint: none
+workflow-stage: planning
+part-of: project-workflow lifecycle
 ---
 
 # Plan Project

@@ -4,6 +4,49 @@
 
 ---
 
+## Workflow Commands vs Skills (CRITICAL)
+
+**Before routing to skills, check if request is lifecycle-related.**
+
+### The Distinction
+
+**Workflow Commands** (meta-level orchestration):
+- `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/release`, `/workflow`
+- Manage project lifecycle stages
+- NOT in skills index (they're not technical patterns)
+- Handle BEFORE delegating to Code mode
+
+**Skills** (technical implementation patterns):
+- `cloudflare-d1`, `clerk-auth`, `tailwind-v4-shadcn`, etc.
+- Technical configurations and code patterns
+- IN skills index
+- Loaded BY Code mode during delegation
+
+### Decision Flow
+
+```
+User Request
+    ↓
+Is this lifecycle-related? → Check 03-workflow-orchestration.md
+    ├─ YES: Suggest workflow command, don't delegate yet
+    └─ NO: Continue to skill routing below
+         ↓
+Is this feature implementation? → Continue to Keyword Matching
+```
+
+**Examples:**
+
+| User Request | Type | Action |
+|--------------|------|--------|
+| "I want to build a chat app" | Lifecycle | Suggest `/explore-idea` or `/plan-project` |
+| "Add Cloudflare D1 database" | Implementation | Search skills → delegate with `cloudflare-d1` skill |
+| "Save my progress" | Lifecycle | Suggest `/wrap-session` |
+| "Set up Clerk authentication" | Implementation | Search skills → delegate with `clerk-auth` skill |
+
+**See 03-workflow-orchestration.md for full lifecycle recognition patterns.**
+
+---
+
 ## Routing Philosophy
 
 **Goal**: Automatically identify relevant skills from user requests by matching keywords and patterns.

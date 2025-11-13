@@ -1,6 +1,8 @@
 ---
 description: Research and validate a project idea before implementation
 argument-hint: none
+workflow-stage: exploration
+part-of: project-workflow lifecycle
 ---
 
 # Explore Idea

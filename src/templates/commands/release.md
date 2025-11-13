@@ -1,6 +1,8 @@
 ---
 description: Complete release checklist for publishing software
 argument-hint: <version>
+workflow-stage: release
+part-of: project-workflow lifecycle
 ---
 
 # Release

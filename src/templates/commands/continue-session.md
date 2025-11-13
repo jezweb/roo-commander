@@ -1,6 +1,8 @@
 ---
 description: Resume work from SESSION.md after context clear
 argument-hint: none
+workflow-stage: execution
+part-of: project-workflow lifecycle
 ---
 
 # Continue Session

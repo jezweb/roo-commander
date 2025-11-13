@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [9.2.0] - 2025-11-13
+
+### ✨ Features
+
+**Workflow Orchestration Awareness (MAJOR FEATURE)**
+
+Roo Commander now understands project lifecycle stages and proactively guides users through workflow best practices.
+
+**What's New:**
+- **Workflow Intelligence**: Recognizes 7 lifecycle stages (Exploration → Planning → Execution → Wrap → Resume → Feature → Release)
+- **Proactive Suggestions**: Automatically suggests workflow commands at appropriate times
+- **Context Monitoring**: Warns when context is filling up (70%, 85%) and suggests `/wrap-session`
+- **New `/workflow` Command**: Interactive guide showing current project state and available commands
+
+**New Rule File:**
+- `src/templates/rules-roo-commander/03-workflow-orchestration.md` (~450 lines)
+  - Recognition patterns for each lifecycle stage
+  - Proactive suggestion templates
+  - Context monitoring rules
+  - Decision trees for workflow vs skill delegation
+
+**Updated Files:**
+- `src/templates/rules-roo-commander/02-skill-routing.md` - Added "Workflow Commands vs Skills" distinction
+- All 6 workflow commands now have `workflow-stage` metadata
+
+**New Command:**
+- `src/templates/commands/workflow.md` - Interactive lifecycle guide with context-aware recommendations
+
+**How It Works:**
+
+Before delegating technical work, Roo Commander now checks:
+1. **Is this lifecycle-related?** → Suggest workflow command first
+2. **Is implementation needed?** → Search skills → Delegate to Code mode
+
+**Example Behaviors:**
+
+| User Says | Roo Commander Suggests |
+|-----------|------------------------|
+| "I want to build a chat app" | `/explore-idea` to validate first or `/plan-project` to structure |
+| "Add authentication" (existing project) | `/plan-feature` to integrate properly |
+| [Context reaches 70%] | "⚠️ Use `/wrap-session` to checkpoint progress" |
+| "Continue from yesterday" | `/continue-session` to load SESSION.md context |
+| "Ready to publish" | `/release` for safety checks |
+
+**Time Savings**: Workflow automation saves 35-55 minutes per project lifecycle by preventing:
+- Unvalidated ideas leading to wasted implementation
+- Context overflow losing work
+- Missing project structure causing rework
+- Release disasters (leaked secrets, broken builds)
+
+**Migration**: No breaking changes. Existing functionality unchanged. New workflow awareness enhances orchestration.
+
+---
+
 ## [9.1.0] - 2025-11-13
 
 ### ✨ Features

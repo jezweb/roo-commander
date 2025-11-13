@@ -447,5 +447,5 @@ Contributions welcome! Please:
 
 ---
 
-**Version**: 9.1.0 (Global installation support + crown emoji 👑)
+**Version**: 9.2.0 (Workflow orchestration awareness - proactive lifecycle guidance)
 **Last Updated**: 2025-11-13

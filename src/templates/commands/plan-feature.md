@@ -1,6 +1,8 @@
 ---
 description: Plan a new feature addition to existing project
 argument-hint: none
+workflow-stage: feature
+part-of: project-workflow lifecycle
 ---
 
 # Plan Feature
