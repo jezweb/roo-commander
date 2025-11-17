@@ -1,6 +1,6 @@
 {
   "name": "roocommander",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "description": "Bridge Claude Code skills to Roo Code with intelligent orchestration. CLI tool + Custom Mode + 60+ production-tested skills for Cloudflare, AI, Frontend development.",
   "main": "dist/index.js",
   "bin": {
@@ -49,11 +49,13 @@
     "commander": "^12.1.0",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
+    "inquirer": "^9.0.0",
     "ora": "^8.1.1",
     "yaml": "^2.6.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.0",
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
   }

@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import { existsSync, mkdirSync } from 'fs';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
+import { moveSync, removeSync } from 'fs-extra';
 import ora from 'ora';
 import chalk from 'chalk';
 
@@ -90,13 +91,32 @@ export async function cloneSkills(
     `Cloning skills from GitHub to ${chalk.cyan(targetDir)}...`
   ).start();
 
+  // Use temp directory to clone, then move skills/ contents to target
+  const tempDir = join(dirname(targetDir), '.claude-skills-temp');
+
   try {
     // Use --depth 1 for faster clone (only latest commit)
     // Use --quiet to reduce output noise
-    execSync(`git clone --depth 1 --quiet "${SKILLS_REPO_URL}" "${targetDir}"`, {
+    execSync(`git clone --depth 1 --quiet "${SKILLS_REPO_URL}" "${tempDir}"`, {
       stdio: ['inherit', 'pipe', 'pipe'],
       encoding: 'utf-8',
     });
+
+    // The repo has a skills/ subdirectory - move its contents to target
+    const skillsSource = join(tempDir, 'skills');
+
+    if (existsSync(skillsSource)) {
+      // Move skills directory contents to target
+      moveSync(skillsSource, targetDir);
+    } else {
+      // Fallback: move entire temp dir if no skills/ subdirectory found
+      moveSync(tempDir, targetDir);
+    }
+
+    // Clean up temp directory if it still exists
+    if (existsSync(tempDir)) {
+      removeSync(tempDir);
+    }
 
     spinner.succeed(
       chalk.green(`✅ Skills cloned successfully to ${chalk.cyan(targetDir)}`)
@@ -116,6 +136,15 @@ export async function cloneSkills(
     };
   } catch (error) {
     spinner.fail(chalk.red('Failed to clone skills from GitHub'));
+
+    // Clean up temp directory on error
+    try {
+      if (existsSync(tempDir)) {
+        removeSync(tempDir);
+      }
+    } catch {
+      // Ignore cleanup errors
+    }
 
     const errorMessage = (error as Error).message;
 
@@ -187,6 +216,18 @@ export function isValidSkillsDirectory(skillsDir: string): boolean {
     }
 
     // Consider it valid if we found at least 10 skills
+    if (skillCount < 10) {
+      // Check for common nested skills directory issue
+      const nestedPath = join(skillsDir, 'skills');
+      if (existsSync(nestedPath)) {
+        console.log(chalk.yellow('\n⚠️  Skills directory appears to have incorrect structure'));
+        console.log(chalk.gray(`   Expected: ${chalk.cyan(skillsDir + '/<skill-name>/SKILL.md')}`));
+        console.log(chalk.gray(`   Found: ${chalk.cyan(nestedPath + '/<skill-name>/SKILL.md')}`));
+        console.log(chalk.gray(`\n   This may be due to an older installation bug.`));
+        console.log(chalk.gray(`   Run ${chalk.cyan('roocommander init')} to fix this issue.\n`));
+      }
+    }
+
     return skillCount >= 10;
   } catch {
     return false;
@@ -201,4 +242,71 @@ export function isValidSkillsDirectory(skillsDir: string): boolean {
 export function getDefaultSkillsDir(): string {
   const homeDir = process.env.HOME || process.env.USERPROFILE || '~';
   return `${homeDir}/.claude/skills`;
+}
+
+/**
+ * Detect if skills are nested in a subdirectory (common installation bug)
+ *
+ * @param skillsDir Path to skills directory
+ * @returns Path to nested skills directory if found, null otherwise
+ */
+export function detectNestedSkills(skillsDir: string): string | null {
+  if (!existsSync(skillsDir)) {
+    return null;
+  }
+
+  const nestedPath = join(skillsDir, 'skills');
+  if (existsSync(nestedPath) && isValidSkillsDirectory(nestedPath)) {
+    return nestedPath;
+  }
+
+  return null;
+}
+
+/**
+ * Fix nested skills directory by moving contents up one level
+ *
+ * @param skillsDir Path to skills directory (parent)
+ * @returns Success status
+ */
+export async function fixNestedSkills(skillsDir: string): Promise<boolean> {
+  const nestedPath = detectNestedSkills(skillsDir);
+
+  if (!nestedPath) {
+    return false;
+  }
+
+  const spinner = ora('Fixing nested skills directory...').start();
+
+  try {
+    const tempDir = join(dirname(skillsDir), '.claude-skills-fix-temp');
+
+    // Move nested skills to temp location
+    moveSync(nestedPath, tempDir);
+
+    // Remove any remaining files in parent directory
+    const { readdirSync, statSync } = require('fs');
+    const entries = readdirSync(skillsDir);
+
+    for (const entry of entries) {
+      const entryPath = join(skillsDir, entry);
+      try {
+        removeSync(entryPath);
+      } catch {
+        // Continue if we can't remove some files
+      }
+    }
+
+    // Move skills from temp to parent
+    moveSync(tempDir, skillsDir);
+
+    spinner.succeed(chalk.green('✅ Fixed nested skills directory'));
+    console.log(chalk.gray(`Skills are now correctly located at: ${chalk.cyan(skillsDir)}\n`));
+
+    return true;
+  } catch (error) {
+    spinner.fail(chalk.red('Failed to fix nested skills directory'));
+    console.error(chalk.red(`Error: ${(error as Error).message}`));
+    return false;
+  }
 }

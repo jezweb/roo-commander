@@ -208,21 +208,7 @@ Features: User auth, task CRUD, filtering
 └─────────────────────────────────────────────────────┘
 ```
 
-**Data Flow**:
-
-```mermaid
-flowchart TB
-    A[User: "Add D1 database"] --> B[Roo Commander Mode]
-    B --> C[Check .roo/rules/01-skills-index.md]
-    C --> D{Match keywords?}
-    D -->|Yes| E[Found: cloudflare-d1, drizzle-orm-d1]
-    E --> F[Delegate to Code mode]
-    F --> G[Include: roocommander read "Cloudflare D1 Database"]
-    G --> H[Code mode loads skill]
-    H --> I[Implementation using skill patterns]
-```
-
-See `docs/ARCHITECTURE.md` for complete system design.
+See `docs/ARCHITECTURE.md` for complete system design and data flow diagrams.
 
 ---
 

@@ -3,6 +3,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { homedir } from 'os';
 import yaml from 'yaml';
 import chalk from 'chalk';
+import inquirer from 'inquirer';
 
 /**
  * Global Installer for Roo Commander
@@ -79,7 +80,7 @@ export function getGlobalRooDir(): string {
  * @param force Force reinstall if already exists
  * @returns Install result
  */
-export function installGlobalMode(templatePath: string, force: boolean = false): InstallResult {
+export async function installGlobalMode(templatePath: string, force: boolean = false): Promise<InstallResult> {
   try {
     const settingsDir = getRooCodeSettingsDir();
 
@@ -146,11 +147,22 @@ export function installGlobalMode(templatePath: string, force: boolean = false):
     );
 
     if (hasRooCommander && !force) {
-      console.log(
-        chalk.yellow('\n  ⚠️  Roo Commander is already installed globally')
-      );
-      console.log(chalk.gray('     Use --force to reinstall\n'));
-      return { success: true };
+      // Prompt user before overriding
+      console.log(chalk.yellow('\n⚠️  Roo Commander is already installed globally'));
+
+      const overrideAnswer = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'shouldOverride',
+          message: 'Override existing global Roo Commander configuration?',
+          default: false,
+        },
+      ]);
+
+      if (!overrideAnswer.shouldOverride) {
+        console.log(chalk.gray('\nSkipping global mode update (existing configuration preserved)\n'));
+        return { success: true };
+      }
     }
 
     if (hasRooCommander) {
@@ -239,4 +251,47 @@ export function installGlobalRules(rulesDir: string, force: boolean = false): In
 export function isRooCodeInstalled(): boolean {
   const settingsDir = getRooCodeSettingsDir();
   return existsSync(settingsDir);
+}
+
+/**
+ * Check if Roo Commander is installed globally
+ *
+ * @returns True if Roo Commander mode exists in global settings
+ */
+export function isGloballyInstalled(): boolean {
+  try {
+    const settingsDir = getRooCodeSettingsDir();
+
+    if (!existsSync(settingsDir)) {
+      return false;
+    }
+
+    // Check both YAML and JSON files
+    const yamlPath = join(settingsDir, 'custom_modes.yaml');
+    const jsonPath = join(settingsDir, 'custom_modes.json');
+
+    // Try YAML first
+    if (existsSync(yamlPath)) {
+      const content = readFileSync(yamlPath, 'utf-8');
+      const parsed = yaml.parse(content);
+
+      if (parsed?.customModes && Array.isArray(parsed.customModes)) {
+        return parsed.customModes.some((mode: any) => mode.slug === 'roo-commander');
+      }
+    }
+
+    // Fallback to JSON
+    if (existsSync(jsonPath)) {
+      const content = readFileSync(jsonPath, 'utf-8');
+      const parsed = JSON.parse(content);
+
+      if (parsed?.customModes && Array.isArray(parsed.customModes)) {
+        return parsed.customModes.some((mode: any) => mode.slug === 'roo-commander');
+      }
+    }
+
+    return false;
+  } catch {
+    return false;
+  }
 }

@@ -2,7 +2,8 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 import ora from 'ora';
 import chalk from 'chalk';
-import { cloneSkills, getDefaultSkillsDir, isValidSkillsDirectory } from '../installer/github-cloner.js';
+import inquirer from 'inquirer';
+import { cloneSkills, getDefaultSkillsDir, isValidSkillsDirectory, detectNestedSkills, fixNestedSkills } from '../installer/github-cloner.js';
 import { installTemplates, isInstalled } from '../installer/template-installer.js';
 import { installGlobalMode, installGlobalRules, isRooCodeInstalled } from '../installer/global-installer.js';
 import { generateSkillsIndex } from '../generator/index-generator.js';
@@ -39,10 +40,37 @@ export interface InitOptions {
 
 export async function initCommand(options: InitOptions = {}): Promise<void> {
   const projectRoot = process.cwd();
-  const skillsDir = options.source || getDefaultSkillsDir();
-  const { force = false, project = false } = options;
+  let skillsDir = options.source || getDefaultSkillsDir();
+  const { force = false } = options;
+  let { project = false } = options;
 
   console.log(chalk.bold.cyan('\n👑 Roo Commander Initialization\n'));
+
+  // Interactive mode selection if not specified via flag
+  if (!options.hasOwnProperty('project')) {
+    const modeAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'installMode',
+        message: 'Where should Roo Commander be installed?',
+        choices: [
+          {
+            name: 'Global (available in all projects)',
+            value: 'global',
+            short: 'Global',
+          },
+          {
+            name: 'Project-specific (this project only)',
+            value: 'project',
+            short: 'Project',
+          },
+        ],
+        default: 'global',
+      },
+    ]);
+
+    project = modeAnswer.installMode === 'project';
+  }
 
   if (project) {
     console.log(chalk.gray('  Installation mode: Project-scoped (.roomodes)\n'));
@@ -73,42 +101,112 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
   // Step 1: Check skills directory
   console.log(chalk.bold('Step 1: Skills Directory\n'));
 
+  // Check for nested skills directory (common bug from older versions)
+  const nestedSkillsPath = detectNestedSkills(skillsDir);
+  if (nestedSkillsPath) {
+    console.log(chalk.yellow(`⚠️  Nested skills directory detected!`));
+    console.log(chalk.gray(`  Expected: ${chalk.cyan(skillsDir)}`));
+    console.log(chalk.gray(`  Found at: ${chalk.cyan(nestedSkillsPath)}\n`));
+
+    const fixAnswer = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'shouldFix',
+        message: 'Fix nested directory by moving skills up one level?',
+        default: true,
+      },
+    ]);
+
+    if (fixAnswer.shouldFix) {
+      const fixed = await fixNestedSkills(skillsDir);
+      if (!fixed) {
+        console.error(chalk.red('\n❌ Failed to fix nested directory\n'));
+        process.exit(1);
+      }
+    } else {
+      console.log(chalk.gray('\nSkipping fix. You can run this command again to fix later.\n'));
+    }
+  }
+
   if (!isValidSkillsDirectory(skillsDir)) {
     console.log(
       chalk.yellow(`Skills directory not found or invalid: ${chalk.cyan(skillsDir)}`)
     );
 
-    // Offer to clone from GitHub
-    console.log(
-      chalk.gray(
-        `\nWould you like to clone skills from GitHub?\nRepo: https://github.com/jezweb/claude-skills`
-      )
-    );
-    console.log(
-      chalk.gray(`This will download ~60 production-tested skills to ${skillsDir}\n`)
-    );
+    // Check if user wants to use a custom directory or clone from GitHub
+    const skillsAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'skillsAction',
+        message: 'Skills directory not found. What would you like to do?',
+        choices: [
+          {
+            name: 'Clone from GitHub to ~/.claude/skills (~60 production-tested skills)',
+            value: 'clone',
+            short: 'Clone',
+          },
+          {
+            name: 'Specify custom location',
+            value: 'custom',
+            short: 'Custom',
+          },
+          {
+            name: 'Skip (I\'ll set up skills manually)',
+            value: 'skip',
+            short: 'Skip',
+          },
+        ],
+        default: 'clone',
+      },
+    ]);
 
-    // In production, would use readline for y/n prompt
-    // For now, attempting to clone
-    console.log(chalk.gray('Proceeding with clone...\n'));
+    if (skillsAnswer.skillsAction === 'custom') {
+      const customAnswer = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'customPath',
+          message: 'Enter path to skills directory:',
+          validate: (input: string) => {
+            if (!input.trim()) {
+              return 'Path cannot be empty';
+            }
+            if (!isValidSkillsDirectory(input)) {
+              return `Directory not found or invalid: ${input}`;
+            }
+            return true;
+          },
+        },
+      ]);
 
-    const cloneResult = await cloneSkills({
-      targetDir: skillsDir,
-      promptUser: false, // Already prompted above
-    });
+      skillsDir = customAnswer.customPath;
+      console.log(chalk.green(`\n✅ Using skills directory: ${chalk.cyan(skillsDir)}\n`));
+    } else if (skillsAnswer.skillsAction === 'clone') {
+      const cloneResult = await cloneSkills({
+        targetDir: skillsDir,
+        promptUser: false,
+      });
 
-    if (!cloneResult.success) {
-      console.error(
-        chalk.red(
-          `\n❌ Failed to clone skills. Please set up skills directory manually.`
-        )
-      );
-      console.error(
+      if (!cloneResult.success) {
+        console.error(
+          chalk.red(
+            `\n❌ Failed to clone skills. Please set up skills directory manually.`
+          )
+        );
+        console.error(
+          chalk.gray(
+            `\nAlternatives:\n1. Clone manually: git clone https://github.com/jezweb/claude-skills ${skillsDir}\n2. Use custom directory: roocommander init --source /path/to/skills\n`
+          )
+        );
+        process.exit(1);
+      }
+    } else {
+      console.log(chalk.yellow('\n⚠️  Skipping skills installation.'));
+      console.log(
         chalk.gray(
-          `\nAlternatives:\n1. Clone manually: git clone https://github.com/jezweb/claude-skills ${skillsDir}\n2. Use custom directory: roo-commander init --source /path/to/skills\n`
+          `Set up skills manually and run: ${chalk.cyan('roocommander init --source /path/to/skills')}\n`
         )
       );
-      process.exit(1);
+      process.exit(0);
     }
   } else {
     console.log(
@@ -127,15 +225,17 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
     const templatePath = existsSync(join(__dirname, '../../src/templates/.roomodes-entry.yaml'))
       ? join(__dirname, '../../src/templates/.roomodes-entry.yaml')
       : join(__dirname, '../templates/.roomodes-entry.yaml');
-    const modeResult = installGlobalMode(templatePath, force);
+
+    modeSpinner.stop();
+    const modeResult = await installGlobalMode(templatePath, force);
 
     if (!modeResult.success) {
-      modeSpinner.fail(chalk.red('Failed to install mode'));
-      console.error(chalk.red(`\nError: ${modeResult.error}\n`));
+      console.error(chalk.red(`\n❌ Failed to install mode`));
+      console.error(chalk.red(`Error: ${modeResult.error}\n`));
       process.exit(1);
     }
 
-    modeSpinner.succeed(chalk.green('✅ Installed mode to Roo Code settings\n'));
+    console.log(chalk.green('✅ Installed mode to Roo Code settings\n'));
 
     // Step 3: Install global rules
     console.log(chalk.bold('Step 3: Installing Custom Instructions\n'));

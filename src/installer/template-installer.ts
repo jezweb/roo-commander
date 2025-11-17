@@ -3,6 +3,7 @@ import { join, dirname } from 'path';
 import ora from 'ora';
 import chalk from 'chalk';
 import yaml from 'yaml';
+import inquirer from 'inquirer';
 
 /**
  * Template Installer
@@ -233,6 +234,23 @@ async function createOrMergeRoomodes(
       );
 
       if (hasRooCommander) {
+        // Prompt user before overriding
+        console.log(chalk.yellow('\n⚠️  Roo Commander mode already exists in .roomodes'));
+
+        const overrideAnswer = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'shouldOverride',
+            message: 'Override existing Roo Commander configuration?',
+            default: false,
+          },
+        ]);
+
+        if (!overrideAnswer.shouldOverride) {
+          console.log(chalk.gray('\nSkipping .roomodes update (existing configuration preserved)\n'));
+          return { success: true };
+        }
+
         // Replace existing entry
         existingData.customModes = existingData.customModes.filter(
           (mode: any) => mode.slug !== 'roo-commander'
