@@ -21,7 +21,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.3.1');
+  .version('9.3.2');
 
 /**
  * Command: list
@@ -105,7 +105,7 @@ cli
 // Handle unknown commands
 cli.on('command:*', () => {
   console.error(chalk.red(`\nError: Unknown command '${cli.args.join(' ')}'`));
-  console.log(chalk.gray('\nRun \'roocommander --help\' for available commands.\n'));
+  console.log(chalk.white('\nRun \'roocommander --help\' for available commands.\n'));
   process.exit(1);
 });
 
@@ -127,9 +127,9 @@ export async function handleNoCommand() {
   // Case A: Nothing installed - first time setup
   if (!globalInstalled && !projectInstalled) {
     console.log(chalk.bold.cyan('\n👋 Welcome to Roo Commander!\n'));
-    console.log(chalk.gray('Roo Commander bridges Claude Code skills to Roo Code with intelligent orchestration.\n'));
-    console.log(chalk.gray('It looks like this is your first time running Roo Commander.'));
-    console.log(chalk.gray('Let\'s get you set up with an interactive installation.\n'));
+    console.log(chalk.white('Roo Commander bridges Claude Code skills to Roo Code with intelligent orchestration.\n'));
+    console.log(chalk.white('It looks like this is your first time running Roo Commander.'));
+    console.log(chalk.white('Let\'s get you set up with an interactive installation.\n'));
 
     const { proceed } = await inquirer.prompt([
       {
@@ -143,7 +143,7 @@ export async function handleNoCommand() {
     if (proceed) {
       await initCommand({});
     } else {
-      console.log(chalk.gray('\nSetup cancelled. Run \'roocommander init\' when you\'re ready.\n'));
+      console.log(chalk.white('\nSetup cancelled. Run \'roocommander init\' when you\'re ready.\n'));
     }
     return;
   }
@@ -172,7 +172,7 @@ export async function handleNoCommand() {
     } else if (action === 'install-project') {
       await initCommand({ project: true });
     } else {
-      console.log(chalk.gray('\nExiting...\n'));
+      console.log(chalk.white('\nExiting...\n'));
     }
     return;
   }
@@ -204,7 +204,7 @@ export async function handleNoCommand() {
     } else if (action === 'install-other') {
       console.log(chalk.yellow('\n💡 Tip: Navigate to the target folder and run \'roocommander init --project\'\n'));
     } else {
-      console.log(chalk.gray('\nExiting...\n'));
+      console.log(chalk.white('\nExiting...\n'));
     }
     return;
   }
