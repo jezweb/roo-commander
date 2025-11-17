@@ -141,12 +141,12 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
         message: 'Skills directory not found. What would you like to do?',
         choices: [
           {
-            name: 'Clone from GitHub to ~/.claude/skills (~60 production-tested skills)',
+            name: 'Clone from github.com/jezweb/claude-skills (60+ skills)',
             value: 'clone',
             short: 'Clone',
           },
           {
-            name: 'Specify custom location',
+            name: 'I have skills in a custom directory (specify path)',
             value: 'custom',
             short: 'Custom',
           },

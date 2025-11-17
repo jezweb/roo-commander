@@ -1,6 +1,6 @@
 {
   "name": "roocommander",
-  "version": "9.3.2",
+  "version": "9.3.3",
   "description": "Bridge Claude Code skills to Roo Code with intelligent orchestration. CLI tool + Custom Mode + 60+ production-tested skills for Cloudflare, AI, Frontend development.",
   "main": "dist/index.js",
   "bin": {
@@ -9,8 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node dist/index.js || true"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "roo-code",
