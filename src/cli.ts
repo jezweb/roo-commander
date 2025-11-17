@@ -21,7 +21,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.3.0');
+  .version('9.3.1');
 
 /**
  * Command: list
@@ -113,7 +113,7 @@ cli.on('command:*', () => {
  * Smart auto-init when no command provided
  * Detects installation status and offers appropriate actions
  */
-async function handleNoCommand() {
+export async function handleNoCommand() {
   const projectRoot = process.cwd();
   const globalInstalled = isGloballyInstalled();
   const projectInstalled = isInstalled(projectRoot);
@@ -208,14 +208,6 @@ async function handleNoCommand() {
     }
     return;
   }
-}
-
-// Handle no command provided
-if (process.argv.length === 2) {
-  handleNoCommand().catch((error) => {
-    console.error(chalk.red(`\nError: ${error.message}\n`));
-    process.exit(1);
-  });
 }
 
 export { cli };

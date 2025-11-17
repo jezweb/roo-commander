@@ -7,7 +7,17 @@
  * and providing commands to list, read, search, and integrate skills.
  */
 
-import { cli } from './cli.js';
+import { cli, handleNoCommand } from './cli.js';
 
-// Execute CLI
-cli.parse(process.argv);
+// Handle no command case with proper async/await
+(async () => {
+  if (process.argv.length === 2) {
+    await handleNoCommand();
+  } else {
+    // Normal command parsing
+    cli.parse(process.argv);
+  }
+})().catch((error) => {
+  console.error(`Error: ${error.message}`);
+  process.exit(1);
+});
