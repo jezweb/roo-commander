@@ -8,17 +8,53 @@ import chalk from 'chalk';
 /**
  * GitHub Cloner
  *
- * Clones the claude-skills repository from GitHub to a target directory.
- * Used when ~/.claude/skills/ doesn't exist and user wants to set it up.
+ * Clones skills repositories from GitHub to a target directory.
+ * Supports custom repositories or defaults to jezweb/claude-skills.
  */
 
-const SKILLS_REPO_URL = 'https://github.com/jezweb/claude-skills.git';
+const DEFAULT_SKILLS_REPO_URL = 'https://github.com/jezweb/claude-skills.git';
 
 export interface CloneOptions {
   /** Target directory to clone into */
   targetDir: string;
+  /** Custom GitHub repository URL (defaults to jezweb/claude-skills) */
+  repoUrl?: string;
   /** Prompt user for confirmation before cloning */
   promptUser?: boolean;
+}
+
+/**
+ * Normalize GitHub repository URL to full git clone URL
+ * Supports: user/repo, https://github.com/user/repo, git@github.com:user/repo.git
+ */
+export function normalizeRepoUrl(input: string): string {
+  if (!input || input.trim() === '') {
+    return DEFAULT_SKILLS_REPO_URL;
+  }
+
+  let url = input.trim();
+
+  // Already a full URL
+  if (url.startsWith('https://') || url.startsWith('git@')) {
+    // Ensure .git suffix
+    if (!url.endsWith('.git')) {
+      url = url + '.git';
+    }
+    return url;
+  }
+
+  // Shorthand format: user/repo
+  if (url.match(/^[^\/]+\/[^\/]+$/)) {
+    return `https://github.com/${url}.git`;
+  }
+
+  // Assume it's a full URL without protocol
+  if (url.startsWith('github.com/')) {
+    return `https://${url}.git`;
+  }
+
+  // Return as-is and let git handle validation
+  return url;
 }
 
 export interface CloneResult {
@@ -36,7 +72,8 @@ export interface CloneResult {
 export async function cloneSkills(
   options: CloneOptions
 ): Promise<CloneResult> {
-  const { targetDir, promptUser = true } = options;
+  const { targetDir, repoUrl, promptUser = true } = options;
+  const normalizedUrl = normalizeRepoUrl(repoUrl || '');
 
   // Check if directory already exists
   if (existsSync(targetDir)) {
@@ -55,13 +92,13 @@ export async function cloneSkills(
       )
     );
     console.log(
-      chalk.gray(
-        `\nWould you like to clone skills from GitHub?\nRepo: ${SKILLS_REPO_URL}`
+      chalk.white(
+        `\nWould you like to clone skills from GitHub?\nRepo: ${normalizedUrl}`
       )
     );
     console.log(
-      chalk.gray(
-        `This will download ~60 production-tested skills for Cloudflare, AI, Frontend, etc.\n`
+      chalk.white(
+        `This will download skills to ${targetDir}\n`
       )
     );
 
@@ -88,7 +125,7 @@ export async function cloneSkills(
 
   // Clone repository with spinner
   const spinner = ora(
-    `Cloning skills from GitHub to ${chalk.cyan(targetDir)}...`
+    `Cloning skills from ${chalk.cyan(normalizedUrl)} to ${chalk.cyan(targetDir)}...`
   ).start();
 
   // Use temp directory to clone, then move skills/ contents to target
@@ -97,7 +134,7 @@ export async function cloneSkills(
   try {
     // Use --depth 1 for faster clone (only latest commit)
     // Use --quiet to reduce output noise
-    execSync(`git clone --depth 1 --quiet "${SKILLS_REPO_URL}" "${tempDir}"`, {
+    execSync(`git clone --depth 1 --quiet "${normalizedUrl}" "${tempDir}"`, {
       stdio: ['inherit', 'pipe', 'pipe'],
       encoding: 'utf-8',
     });

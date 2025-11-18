@@ -3,7 +3,7 @@ import { join } from 'path';
 import ora from 'ora';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { cloneSkills, getDefaultSkillsDir, isValidSkillsDirectory, detectNestedSkills, fixNestedSkills } from '../installer/github-cloner.js';
+import { cloneSkills, getDefaultSkillsDir, isValidSkillsDirectory, detectNestedSkills, fixNestedSkills, normalizeRepoUrl } from '../installer/github-cloner.js';
 import { installTemplates, isInstalled } from '../installer/template-installer.js';
 import { installGlobalMode, installGlobalRules, isRooCodeInstalled } from '../installer/global-installer.js';
 import { generateSkillsIndex } from '../generator/index-generator.js';
@@ -32,6 +32,8 @@ import { writeFileSync } from 'fs';
 export interface InitOptions {
   /** Custom skills directory (default: ~/.claude/skills/) */
   source?: string;
+  /** Custom GitHub repository URL for skills */
+  repo?: string;
   /** Force reinstall (overwrite existing) */
   force?: boolean;
   /** Install to project directory instead of globally (default: false) */
@@ -105,8 +107,8 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
   const nestedSkillsPath = detectNestedSkills(skillsDir);
   if (nestedSkillsPath) {
     console.log(chalk.yellow(`⚠️  Nested skills directory detected!`));
-    console.log(chalk.gray(`  Expected: ${chalk.cyan(skillsDir)}`));
-    console.log(chalk.gray(`  Found at: ${chalk.cyan(nestedSkillsPath)}\n`));
+    console.log(chalk.white(`  Expected: ${chalk.cyan(skillsDir)}`));
+    console.log(chalk.white(`  Found at: ${chalk.cyan(nestedSkillsPath)}\n`));
 
     const fixAnswer = await inquirer.prompt([
       {
@@ -124,43 +126,82 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
         process.exit(1);
       }
     } else {
-      console.log(chalk.gray('\nSkipping fix. You can run this command again to fix later.\n'));
+      console.log(chalk.white('\nSkipping fix. You can run this command again to fix later.\n'));
     }
   }
 
-  if (!isValidSkillsDirectory(skillsDir)) {
-    console.log(
-      chalk.yellow(`Skills directory not found or invalid: ${chalk.cyan(skillsDir)}`)
-    );
+  // Count existing skills if directory exists
+  const existingSkillsValid = isValidSkillsDirectory(skillsDir);
+  let existingSkillsCount = 0;
 
-    // Check if user wants to use a custom directory or clone from GitHub
+  if (existingSkillsValid) {
+    try {
+      const existingSkills = await findAllSkills(skillsDir, { validate: false });
+      existingSkillsCount = existingSkills.length;
+    } catch {
+      // Ignore errors counting skills
+    }
+  }
+
+  // Smart detection: check if skills already exist
+  if (existingSkillsValid && existingSkillsCount > 0) {
+    console.log(chalk.green(`✅ Found existing skills at ${chalk.cyan(skillsDir)} (${existingSkillsCount} skills detected)\n`));
+
     const skillsAnswer = await inquirer.prompt([
       {
         type: 'list',
         name: 'skillsAction',
-        message: 'Skills directory not found. What would you like to do?',
+        message: 'What would you like to do with skills?',
         choices: [
           {
-            name: 'Clone from github.com/jezweb/claude-skills (60+ skills)',
+            name: `Use existing skills at ${skillsDir}`,
+            value: 'use-existing',
+            short: 'Use existing',
+          },
+          {
+            name: 'Clone skills from a GitHub repository',
             value: 'clone',
             short: 'Clone',
           },
           {
-            name: 'I have skills in a custom directory (specify path)',
+            name: 'Use skills from a different directory (specify path)',
             value: 'custom',
-            short: 'Custom',
+            short: 'Custom path',
           },
           {
-            name: 'Skip (I\'ll set up skills manually)',
+            name: 'Skip skills setup (orchestration only)',
             value: 'skip',
             short: 'Skip',
           },
         ],
-        default: 'clone',
+        default: 'use-existing',
       },
     ]);
 
-    if (skillsAnswer.skillsAction === 'custom') {
+    if (skillsAnswer.skillsAction === 'use-existing') {
+      console.log(chalk.green(`\n✅ Using existing skills directory: ${chalk.cyan(skillsDir)}\n`));
+    } else if (skillsAnswer.skillsAction === 'clone') {
+      // Ask for repo URL
+      const repoAnswer = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'repoUrl',
+          message: 'Enter GitHub repository URL:',
+          default: 'jezweb/claude-skills',
+        },
+      ]);
+
+      const cloneResult = await cloneSkills({
+        targetDir: skillsDir,
+        repoUrl: repoAnswer.repoUrl,
+        promptUser: false,
+      });
+
+      if (!cloneResult.success) {
+        console.error(chalk.red(`\n❌ Failed to clone skills: ${cloneResult.error}\n`));
+        process.exit(1);
+      }
+    } else if (skillsAnswer.skillsAction === 'custom') {
       const customAnswer = await inquirer.prompt([
         {
           type: 'input',
@@ -180,38 +221,85 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
 
       skillsDir = customAnswer.customPath;
       console.log(chalk.green(`\n✅ Using skills directory: ${chalk.cyan(skillsDir)}\n`));
-    } else if (skillsAnswer.skillsAction === 'clone') {
+    } else {
+      console.log(chalk.yellow('\n⚠️  Skipping skills setup.'));
+      console.log(chalk.white(`You can set up skills later by running: ${chalk.cyan('roocommander init')}\n`));
+    }
+  } else {
+    // No existing skills found
+    console.log(chalk.yellow(`⚠️  No skills directory found at ${chalk.cyan(skillsDir)}\n`));
+
+    const skillsAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'skillsAction',
+        message: 'What would you like to do?',
+        choices: [
+          {
+            name: 'Clone skills from a GitHub repository',
+            value: 'clone',
+            short: 'Clone',
+          },
+          {
+            name: 'I have skills in a custom directory (specify path)',
+            value: 'custom',
+            short: 'Custom path',
+          },
+          {
+            name: 'Skip skills setup (orchestration only)',
+            value: 'skip',
+            short: 'Skip',
+          },
+        ],
+        default: 'clone',
+      },
+    ]);
+
+    if (skillsAnswer.skillsAction === 'clone') {
+      // Ask for repo URL
+      const repoAnswer = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'repoUrl',
+          message: 'Enter GitHub repository URL:',
+          default: 'jezweb/claude-skills',
+        },
+      ]);
+
       const cloneResult = await cloneSkills({
         targetDir: skillsDir,
+        repoUrl: repoAnswer.repoUrl,
         promptUser: false,
       });
 
       if (!cloneResult.success) {
-        console.error(
-          chalk.red(
-            `\n❌ Failed to clone skills. Please set up skills directory manually.`
-          )
-        );
-        console.error(
-          chalk.gray(
-            `\nAlternatives:\n1. Clone manually: git clone https://github.com/jezweb/claude-skills ${skillsDir}\n2. Use custom directory: roocommander init --source /path/to/skills\n`
-          )
-        );
+        console.error(chalk.red(`\n❌ Failed to clone skills: ${cloneResult.error}\n`));
         process.exit(1);
       }
+    } else if (skillsAnswer.skillsAction === 'custom') {
+      const customAnswer = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'customPath',
+          message: 'Enter path to skills directory:',
+          validate: (input: string) => {
+            if (!input.trim()) {
+              return 'Path cannot be empty';
+            }
+            if (!isValidSkillsDirectory(input)) {
+              return `Directory not found or invalid: ${input}`;
+            }
+            return true;
+          },
+        },
+      ]);
+
+      skillsDir = customAnswer.customPath;
+      console.log(chalk.green(`\n✅ Using skills directory: ${chalk.cyan(skillsDir)}\n`));
     } else {
-      console.log(chalk.yellow('\n⚠️  Skipping skills installation.'));
-      console.log(
-        chalk.gray(
-          `Set up skills manually and run: ${chalk.cyan('roocommander init --source /path/to/skills')}\n`
-        )
-      );
-      process.exit(0);
+      console.log(chalk.yellow('\n⚠️  Skipping skills setup.'));
+      console.log(chalk.white(`You can set up skills later by running: ${chalk.cyan('roocommander init')}\n`));
     }
-  } else {
-    console.log(
-      chalk.green(`✅ Skills directory found: ${chalk.cyan(skillsDir)}\n`)
-    );
   }
 
   // GLOBAL MODE: Install to Roo Code settings

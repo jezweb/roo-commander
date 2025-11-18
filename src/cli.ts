@@ -21,7 +21,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.3.3');
+  .version('9.4.0');
 
 /**
  * Command: list
@@ -96,6 +96,7 @@ cli
   .command('init')
   .description('Initialize Roo Commander (global by default, use --project for local)')
   .option('-s, --source <path>', 'Custom skills directory path')
+  .option('-r, --repo <url>', 'GitHub repository URL for skills (e.g., user/repo)')
   .option('--force', 'Force reinstall (overwrite existing files)')
   .option('--project', 'Install to current project only (not globally)')
   .action(async (options) => {
