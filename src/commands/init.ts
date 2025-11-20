@@ -6,6 +6,7 @@ import inquirer from 'inquirer';
 import { cloneSkills, getDefaultSkillsDir, isValidSkillsDirectory, detectNestedSkills, fixNestedSkills, normalizeRepoUrl } from '../installer/github-cloner.js';
 import { installTemplates, isInstalled } from '../installer/template-installer.js';
 import { installGlobalMode, installGlobalRules, isRooCodeInstalled } from '../installer/global-installer.js';
+import { installClassic } from '../installer/classic-installer.js';
 import { generateSkillsIndex } from '../generator/index-generator.js';
 import { findAllSkills } from '../parser/skill-parser.js';
 import { writeFileSync } from 'fs';
@@ -38,6 +39,8 @@ export interface InitOptions {
   force?: boolean;
   /** Install to project directory instead of globally (default: false) */
   project?: boolean;
+  /** Install classic MDTM-based version instead of modern skills-integrated version */
+  classic?: boolean;
 }
 
 export async function initCommand(options: InitOptions = {}): Promise<void> {
@@ -45,8 +48,61 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
   let skillsDir = options.source || getDefaultSkillsDir();
   const { force = false } = options;
   let { project = false } = options;
+  let { classic = false } = options;
 
   console.log(chalk.bold.cyan('\n👑 Roo Commander Initialization\n'));
+
+  // Version selection: Modern (skills-integrated) vs Classic (MDTM)
+  if (!options.hasOwnProperty('classic')) {
+    const versionAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'version',
+        message: 'Which version would you like to install?',
+        choices: [
+          {
+            name: 'Modern (v9 - Skills-integrated orchestrator)',
+            value: 'modern',
+            short: 'Modern',
+          },
+          {
+            name: 'Classic (v8 - MDTM-based multi-agent orchestrator)',
+            value: 'classic',
+            short: 'Classic',
+          },
+        ],
+        default: 'modern',
+      },
+    ]);
+
+    classic = versionAnswer.version === 'classic';
+  }
+
+  // CLASSIC VERSION: Install MDTM-based system
+  if (classic) {
+    console.log(chalk.gray('  Installing: Classic MDTM-based orchestrator\n'));
+
+    // For classic, we only support project-scoped installation
+    const result = await installClassic({
+      projectRoot,
+      force,
+    });
+
+    if (!result.success) {
+      console.error(chalk.red('\n❌ Failed to install Roo Commander Classic:'));
+      for (const error of result.errors) {
+        console.error(chalk.red(`  - ${error}`));
+      }
+      console.log();
+      process.exit(1);
+    }
+
+    // Success - exit early, classic installer handles messaging
+    return;
+  }
+
+  // MODERN VERSION: Continue with skills-integrated installation
+  console.log(chalk.gray('  Installing: Modern skills-integrated orchestrator\n'));
 
   // Interactive mode selection if not specified via flag
   if (!options.hasOwnProperty('project')) {

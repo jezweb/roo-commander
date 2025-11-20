@@ -1,0 +1,86 @@
++++
+# --- Basic Metadata (Required for all Workspace Rules) ---
+id = "WORKSPACE-RULE-TOML-MD-FORMAT-V1"
+title = "Workspace Standard: TOML+Markdown Document Format"
+context_type = "rules" # Fixed for rule documents
+scope = "Workspace-wide standard for all structured Markdown documents (tasks, session logs, design artifacts, mode KBs, etc.)"
+target_audience = ["all"] # Applies to all modes creating or processing these files
+granularity = "standard" # Nature of the rule
+status = "active"
+last_updated = "{{YYYYMMDD}}" # Placeholder - To be filled with current date
+version = "1.0" # Version of this rule document
+tags = ["rules", "standard", "toml", "markdown", "format", "structure", "metadata"]
+related_context = [
+    ".roo/commander/templates/tasks/template_00_mdtm_task_generic.md",
+    ".roo/commander/templates/sessions/template_00_mdtm_session_generic.md"
+]
+template_schema_doc = ".roo/commander/templates/rules/template_00_workspace_rule.README.md" # Correctly points to the rule template's README
+
+# --- Rule Specific Fields (Optional) ---
+enforcement_level = "critical"
+rationale_summary = "Ensures consistent, parsable structured data combined with human-readable content for all key artifacts."
+# exceptions = ""
++++
+
+# Workspace Standard: TOML+Markdown Document Format
+
+## 1. Objective
+
+To define a consistent and mandatory format for all structured documents within this workspace that combine machine-readable metadata with human-readable content. This includes, but is not limited to, MDTM task files, session logs, design artifacts, mode knowledge base articles, and other configuration or documentation files.
+
+## 2. Scope & Applicability
+
+*   **Scope:** This rule governs the fundamental file structure for any document intended to store structured metadata alongside free-form Markdown content.
+*   **Applies To:** All AI modes and human contributors creating or modifying such documents within the `.roo/commander/` ecosystem and related project artifact directories.
+
+## 3. Rule Definition
+
+### 3.1. Core Requirement: TOML Frontmatter with Delimiters
+
+All documents adhering to this standard **MUST** begin with a TOML (Tom's Obvious, Minimal Language) frontmatter block. This block **MUST** be enclosed by triple-plus (`+++`) delimiters on separate lines.
+
+**Correct Usage Example:**
+```toml
++++
+# TOML metadata key-value pairs go here
+# Example:
+# title = "My Document Title"
+# status = "draft"
+# tags = ["example", "standard"]
++++
+
+# Markdown content starts here.
+## This is a Markdown heading
+
+This is paragraph text.
+```
+
+### 3.2. TOML Frontmatter Guidelines
+
+*   **Syntax:** All content between the `+++` delimiters **MUST** be valid TOML syntax.
+*   **Schema Adherence:** Each document type (e.g., MDTM task, session log) will have a specific TOML schema defined in its corresponding template's `.README.md` file (e.g., `.roo/commander/templates/tasks/template_00_mdtm_task_generic.README.md`). Modes creating or modifying these documents **MUST** adhere to the defined schema for that document type, including required fields and data types.
+*   **Common Fields:** While specific schemas vary, common fields like `id`, `title`, `status`, `created_date`, `updated_date`, and `tags` are encouraged for consistency where applicable.
+
+### 3.3. Markdown Body Guidelines
+
+*   The content following the closing `+++` delimiter **MUST** be standard Markdown (GitHub Flavored Markdown - GFM is preferred).
+*   This section is for human-readable descriptions, checklists, logs, notes, and other detailed content.
+*   Structure the Markdown content logically using headings, lists, code blocks, tables, etc., as appropriate for the document's purpose.
+
+## 4. Rationale
+
+*   **Machine Readability:** TOML frontmatter provides a simple, robust way to store structured metadata that can be easily parsed and processed by tools and AI modes.
+*   **Human Readability:** Markdown allows for rich, human-friendly formatting of the main content.
+*   **Consistency:** A standard format ensures all structured documents in the workspace are created and interpreted consistently, improving interoperability between modes and simplifying development of common tooling.
+*   **Discoverability:** Standardized metadata fields (like `tags`, `type`, `status`) facilitate searching, filtering, and organization of documents.
+
+## 5. Enforcement & Compliance (Optional)
+
+*   Modes creating or modifying structured documents are responsible for adhering to this format.
+*   Automated validation (e.g., by Roo Code core, pre-commit hooks, or CI/CD pipelines) may be implemented to check for correct delimiter usage and valid TOML syntax.
+
+**Failure to use the `+++` delimiters or to provide valid TOML within them will likely lead to parsing errors and prevent the document from being correctly processed by other modes or system tools.**
+
+## 6. Related Standards / Documents
+*   MDTM Task Generic Template: `.roo/commander/templates/tasks/template_00_mdtm_task_generic.md`
+*   Session Log Generic Template: `.roo/commander/templates/sessions/template_00_mdtm_session_generic.md`

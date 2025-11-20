@@ -21,7 +21,7 @@ const cli = new Command();
 cli
   .name('roocommander')
   .description('CLI tool to bridge Claude Code skills with Roo Code')
-  .version('9.4.0');
+  .version('9.5.0');
 
 /**
  * Command: list
@@ -99,6 +99,7 @@ cli
   .option('-r, --repo <url>', 'GitHub repository URL for skills (e.g., user/repo)')
   .option('--force', 'Force reinstall (overwrite existing files)')
   .option('--project', 'Install to current project only (not globally)')
+  .option('--classic', 'Install classic MDTM-based version (v8) instead of modern')
   .action(async (options) => {
     await initCommand(options);
   });
